@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics
 {
-    public static class IConfigurationRootExtensions
+    public static class ConfigurationRootProviderNameExtensions
     {
         public static void LogProviderNamesAsInformation(this IConfigurationRoot config, ILogger logger)
         {
@@ -24,7 +25,8 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
 
         public static void LogProviderNames(this IConfigurationRoot config, ILogger logger, LogLevel level)
         {
-            var providerNames = config.Providers.Select(p => p.GetType().FullName);
+            var providerNames = config.Providers
+                .Select(p => p.GetType().FullName);
             string message = "The following configuration providers were registered:" + Environment.NewLine
                 + string.Join(Environment.NewLine, providerNames);
             logger.Log(level, message);
