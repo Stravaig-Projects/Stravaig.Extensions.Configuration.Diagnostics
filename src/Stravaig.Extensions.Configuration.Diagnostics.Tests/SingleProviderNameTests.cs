@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration.Memory;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Shouldly;
+using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
 {
@@ -25,7 +26,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         {
             // Act
             ConfigRoot.LogProviderNamesAsInformation(Logger);
-
+            
             // Assert
             var logs = CaptureLoggerProvider.GetLogEntriesFor<SingleProviderNameTests>();
             logs.Count.ShouldBe(1);
@@ -60,12 +61,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         }
 
         [Test]
-        [TestCase(LogLevel.Critical)]
-        [TestCase(LogLevel.Error)]
-        [TestCase(LogLevel.Warning)]
-        [TestCase(LogLevel.Information)]
-        [TestCase(LogLevel.Debug)]
-        [TestCase(LogLevel.Trace)]
+        [TestCaseSource(typeof(LogLevelSource))]
         public void LogProviderToSpecifiedLevel(LogLevel level)
         {
             // Act

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Shouldly;
+using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
 {
@@ -49,12 +50,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         }
 
         [Test]
-        [TestCase(LogLevel.Critical)]
-        [TestCase(LogLevel.Error)]
-        [TestCase(LogLevel.Warning)]
-        [TestCase(LogLevel.Information)]
-        [TestCase(LogLevel.Debug)]
-        [TestCase(LogLevel.Trace)]
+        [TestCaseSource(typeof(LogLevelSource))]
         public void LogsThreeValuesAsSpecificLogLevel(LogLevel level)
         {
             ConfigRoot.LogConfigurationValues(Logger, level);
