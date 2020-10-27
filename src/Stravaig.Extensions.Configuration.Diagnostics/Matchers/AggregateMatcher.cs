@@ -7,7 +7,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Matchers
     /// <summary>
     /// A matcher that contains other matchers.
     /// </summary>
-    public class AggregateMatcher : IMatcher
+    public class AggregateMatcher : IMatcher, IMatchBuilder
     {
         private readonly List<IMatcher> _matchers;
 
@@ -35,7 +35,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Matchers
         /// <returns>Self, so that methods can be chained.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="matcher"/> is null</exception>
         /// <exception cref="ArgumentException"><paramref name="matcher"/> would result in a circular reference.</exception>
-        public AggregateMatcher Add(IMatcher matcher)
+        public IMatchBuilder Add(IMatcher matcher)
         {
             if (matcher == null)
                 throw new ArgumentNullException(nameof(matcher));
@@ -59,7 +59,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Matchers
         /// <returns>self, so that methods can be chained.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="matcher"/> is null</exception>
         /// <exception cref="ArgumentException"><paramref name="matcher"/> would result in a circular reference.</exception>
-        public AggregateMatcher Add(IEnumerable<IMatcher> matchers)
+        public IMatchBuilder Add(IEnumerable<IMatcher> matchers)
         {
             if (matchers == null) 
                 throw new ArgumentNullException(nameof(matchers));

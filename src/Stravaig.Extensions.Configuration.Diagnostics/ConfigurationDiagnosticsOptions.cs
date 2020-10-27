@@ -1,3 +1,4 @@
+using System;
 using Stravaig.Extensions.Configuration.Diagnostics.Matchers;
 using Stravaig.Extensions.Configuration.Diagnostics.Obfuscators;
 
@@ -30,6 +31,26 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         {
             get => _connectionStringElementMatcher;
             set => _connectionStringElementMatcher = value ?? NullMatcher.Instance;
+        }
+
+        public IMatchBuilder BuildConfigurationKeyMatcher(Action<IMatchBuilder> builder)
+        {
+            AggregateMatcher result = new AggregateMatcher();
+            if (!(ConfigurationKeyMatcher is NullMatcher))
+                result.Add(ConfigurationKeyMatcher);
+            builder(result);
+            ConfigurationKeyMatcher = result;
+            return result;
+        }
+
+        public IMatchBuilder BuildConnectionStringElementMatcher(Action<IMatchBuilder> builder)
+        {
+            AggregateMatcher result = new AggregateMatcher();
+            if (!(ConnectionStringElementMatcher is NullMatcher))
+                result.Add(ConnectionStringElementMatcher);
+            builder(result);
+            ConnectionStringElementMatcher = result;
+            return result;
         }
     }
 }
