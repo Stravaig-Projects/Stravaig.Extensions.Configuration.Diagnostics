@@ -23,5 +23,13 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Matchers
         {
             return new ContainsMatcher(contains).IsMatch(candidate);
         }
+        
+        [TestCase("The dog jumps over the fox", "cat", ExpectedResult = false)]
+        [TestCase("The dog jumps over the fox", "dog", ExpectedResult = true)]
+        [TestCase("The dog jumps over the fox", "DOG", ExpectedResult = true)]
+        public bool IsMatchCaseInsensitiveTests(string candidate, string contains)
+        {
+            return new ContainsMatcher(contains, StringComparison.OrdinalIgnoreCase).IsMatch(candidate);
+        }
     }
 }
