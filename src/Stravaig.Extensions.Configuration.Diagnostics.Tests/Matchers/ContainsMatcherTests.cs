@@ -18,7 +18,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Matchers
 
         [TestCase("The dog jumps over the fox", "cat", ExpectedResult = false)]
         [TestCase("The dog jumps over the fox", "dog", ExpectedResult = true)]
-        [TestCase("The dog jumps over the fox", "DOG", ExpectedResult = false)]
+        [TestCase("The dog jumps over the fox", "DOG", ExpectedResult = true)]
         public bool IsMatchTests(string candidate, string contains)
         {
             return new ContainsMatcher(contains).IsMatch(candidate);
@@ -26,10 +26,10 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Matchers
         
         [TestCase("The dog jumps over the fox", "cat", ExpectedResult = false)]
         [TestCase("The dog jumps over the fox", "dog", ExpectedResult = true)]
-        [TestCase("The dog jumps over the fox", "DOG", ExpectedResult = true)]
-        public bool IsMatchCaseInsensitiveTests(string candidate, string contains)
+        [TestCase("The dog jumps over the fox", "DOG", ExpectedResult = false)]
+        public bool IsMatchCaseSensitiveTests(string candidate, string contains)
         {
-            return new ContainsMatcher(contains, StringComparison.OrdinalIgnoreCase).IsMatch(candidate);
+            return new ContainsMatcher(contains, StringComparison.Ordinal).IsMatch(candidate);
         }
     }
 }

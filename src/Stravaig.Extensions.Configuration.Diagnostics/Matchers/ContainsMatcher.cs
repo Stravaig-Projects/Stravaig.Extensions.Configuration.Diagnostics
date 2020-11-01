@@ -15,7 +15,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Matchers
         /// </summary>
         /// <param name="contains">The string that must be contained in the key being matched against.</param>
         public ContainsMatcher(string contains)
-            :this(contains, StringComparison.Ordinal)
+            :this(contains, StringComparison.OrdinalIgnoreCase)
         {
         }
 
