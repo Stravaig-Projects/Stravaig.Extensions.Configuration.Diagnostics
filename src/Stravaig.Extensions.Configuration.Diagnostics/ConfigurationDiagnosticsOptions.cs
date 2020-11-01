@@ -33,24 +33,22 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
             set => _connectionStringElementMatcher = value ?? NullMatcher.Instance;
         }
 
-        public IMatchBuilder BuildConfigurationKeyMatcher(Action<IMatchBuilder> builder)
+        public ConfigurationDiagnosticsOptions BuildConfigurationKeyMatcher(Action<IKeyMatchBuilder> builder)
         {
-            AggregateMatcher result = new AggregateMatcher();
-            if (!(ConfigurationKeyMatcher is NullMatcher))
-                result.Add(ConfigurationKeyMatcher);
+            KeyMatchBuilder result = new KeyMatchBuilder();
+            result.Add(ConfigurationKeyMatcher);
             builder(result);
-            ConfigurationKeyMatcher = result;
-            return result;
+            ConfigurationKeyMatcher = result.Build();
+            return this;
         }
 
-        public IMatchBuilder BuildConnectionStringElementMatcher(Action<IMatchBuilder> builder)
+        public ConfigurationDiagnosticsOptions BuildConnectionStringElementMatcher(Action<IKeyMatchBuilder> builder)
         {
-            AggregateMatcher result = new AggregateMatcher();
-            if (!(ConnectionStringElementMatcher is NullMatcher))
-                result.Add(ConnectionStringElementMatcher);
+            KeyMatchBuilder result = new KeyMatchBuilder();
+            result.Add(ConnectionStringElementMatcher);
             builder(result);
-            ConnectionStringElementMatcher = result;
-            return result;
+            ConnectionStringElementMatcher = result.Build();
+            return this;
         }
     }
 }
