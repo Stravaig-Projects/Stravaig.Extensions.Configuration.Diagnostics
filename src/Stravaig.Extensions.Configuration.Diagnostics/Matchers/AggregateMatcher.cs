@@ -25,6 +25,8 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Matchers
         /// <param name="matchers">The matchers to initialise this <see cref="AggregateMatcher"/> with.</param>
         public AggregateMatcher(IEnumerable<IMatcher> matchers)
         {
+            if (matchers == null) 
+                throw new ArgumentNullException(nameof(matchers));
             _matchers = new List<IMatcher>(matchers);
         }
 
