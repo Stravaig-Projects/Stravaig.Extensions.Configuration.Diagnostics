@@ -4,17 +4,21 @@ using System.Collections.Generic;
 namespace Stravaig.Extensions.Configuration.Diagnostics.Matchers
 {
     /// <summary>
-    /// 
+    /// A builder for key matchers
     /// </summary>
     public class KeyMatchBuilder : IKeyMatchBuilder
     {
         private List<IMatcher> _matchers;
-
+        
+        /// <summary>
+        /// Initialises the key match builder.
+        /// </summary>
         public KeyMatchBuilder()
         {
             _matchers = new List<IMatcher>();
         }
 
+        /// <inheritdoc />
         public IKeyMatchBuilder Add(IMatcher matcher)
         {
             if (matcher == null)
@@ -24,6 +28,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Matchers
             return this;
         }
 
+        /// <inheritdoc />
         public IKeyMatchBuilder Add(IEnumerable<IMatcher> matchers)
         {
             if (matchers == null)
@@ -35,6 +40,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Matchers
             return this;
         }
 
+        /// <inheritdoc />
         public IMatcher Build()
         {
             switch (_matchers.Count)
