@@ -3,7 +3,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
     /// <summary>
     /// An obfuscator that replaces secrets with a fixed number of asterisks.
     /// </summary>
-    public class FixedAsteriskObfuscator : ISecretObuscator
+    public class FixedAsteriskObfuscator : ISecretObfuscator
     {
         private readonly string _asterisks;
 

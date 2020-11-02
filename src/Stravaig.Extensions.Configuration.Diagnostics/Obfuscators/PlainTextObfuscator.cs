@@ -3,7 +3,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
     /// <summary>
     /// An obfuscator that just returns the plain text representation back.
     /// </summary>
-    public class PlainTextObfuscator : ISecretObuscator
+    public class PlainTextObfuscator : ISecretObfuscator
     {
         /// <summary>
         /// The default instance of the <see cref="T:Stravaig.Extensions.Configuration.Diagnostics.Obfuscators.PlainTextObfuscator"/>.

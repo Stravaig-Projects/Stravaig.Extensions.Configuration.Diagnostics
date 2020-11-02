@@ -1,6 +1,9 @@
 namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
 {
-    public interface ISecretObuscator
+    /// <summary>
+    /// An interface for strategies to obfuscate secrets.
+    /// </summary>
+    public interface ISecretObfuscator
     {
         /// <summary>
         /// Obfuscate the given secret.

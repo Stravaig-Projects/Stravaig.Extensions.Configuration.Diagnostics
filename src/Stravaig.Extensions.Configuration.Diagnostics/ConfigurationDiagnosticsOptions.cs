@@ -9,13 +9,13 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
     /// </summary>
     public class ConfigurationDiagnosticsOptions
     {
-        private ISecretObuscator _obfuscator = PlainTextObfuscator.Instance;
+        private ISecretObfuscator _obfuscator = PlainTextObfuscator.Instance;
         private IMatcher _configurationKeyMatcher = NullMatcher.Instance;
         private IMatcher _connectionStringElementMatcher = NullMatcher.Instance;
             
         public ConfigurationDiagnosticsOptions GlobalOptions { get; } = new ConfigurationDiagnosticsOptions();
 
-        public ISecretObuscator Obfuscator
+        public ISecretObfuscator Obfuscator
         {
             get => _obfuscator;
             set => _obfuscator = value ?? PlainTextObfuscator.Instance;
