@@ -27,6 +27,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
         /// <inheritdoc />
         public string Obfuscate(string secret)
         {
+            if (string.IsNullOrWhiteSpace(secret))
+                return string.Empty;
+            
             return _asterisks;
         }
     }
