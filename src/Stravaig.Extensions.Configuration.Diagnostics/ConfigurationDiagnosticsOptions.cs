@@ -12,27 +12,44 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         private ISecretObfuscator _obfuscator = PlainTextObfuscator.Instance;
         private IMatcher _configurationKeyMatcher = NullMatcher.Instance;
         private IMatcher _connectionStringElementMatcher = NullMatcher.Instance;
-            
-        public ConfigurationDiagnosticsOptions GlobalOptions { get; } = new ConfigurationDiagnosticsOptions();
+        
+        /// <summary>
+        /// Global options used if no specific options are set.
+        /// </summary>
+        public static ConfigurationDiagnosticsOptions GlobalOptions { get; } = new ConfigurationDiagnosticsOptions();
 
+        /// <summary>
+        /// The obfuscator to use to mask out secrets.
+        /// </summary>
         public ISecretObfuscator Obfuscator
         {
             get => _obfuscator;
             set => _obfuscator = value ?? PlainTextObfuscator.Instance;
         }
 
+        /// <summary>
+        /// The matcher that identifies which configuration elements are secrets.
+        /// </summary>
         public IMatcher ConfigurationKeyMatcher
         {
             get => _configurationKeyMatcher;
             set => _configurationKeyMatcher = value ?? NullMatcher.Instance;
         }
 
+        /// <summary>
+        /// The matcher that identifies which parts of a connection string are secret.
+        /// </summary>
         public IMatcher ConnectionStringElementMatcher
         {
             get => _connectionStringElementMatcher;
             set => _connectionStringElementMatcher = value ?? NullMatcher.Instance;
         }
 
+        /// <summary>
+        /// Assists the creation of the <see cref="ConfigurationKeyMatcher"/>.
+        /// </summary>
+        /// <param name="builder">An <see cref="Action"/> that builds the matcher.</param>
+        /// <returns></returns>
         public ConfigurationDiagnosticsOptions BuildConfigurationKeyMatcher(Action<IKeyMatchBuilder> builder)
         {
             KeyMatchBuilder result = new KeyMatchBuilder();
@@ -42,6 +59,11 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
             return this;
         }
 
+        /// <summary>
+        /// Assists the creation of the <see cref="ConnectionStringElementMatcher"/>.
+        /// </summary>
+        /// <param name="builder">An <see cref="Action"/> that builds the matcher.</param>
+        /// <returns></returns>
         public ConfigurationDiagnosticsOptions BuildConnectionStringElementMatcher(Action<IKeyMatchBuilder> builder)
         {
             KeyMatchBuilder result = new KeyMatchBuilder();
