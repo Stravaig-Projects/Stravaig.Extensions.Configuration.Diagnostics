@@ -14,11 +14,11 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <summary>
         /// Logs the keys and values in the given configuration object at the information level.
         /// </summary>
-        /// <param name="config">The configuration object to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
-        public static void LogConfigurationValuesAsInformation(this IConfiguration config, ILogger logger)
+        /// <param name="config">The configuration object to examine.</param>
+        public static void LogConfigurationValuesAsInformation(this ILogger logger, IConfiguration config)
         {
-            config.LogConfigurationValues(logger, LogLevel.Information);
+            logger.LogConfigurationValues(config, LogLevel.Information);
         }
         
         /// <summary>
@@ -27,9 +27,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="config">The configuration object to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
         /// <param name="options">The options to use to obfuscate secrets.</param>
-        public static void LogConfigurationValuesAsInformation(this IConfiguration config, ILogger logger, ConfigurationDiagnosticsOptions options)
+        public static void LogConfigurationValuesAsInformation(this ILogger logger, IConfiguration config, ConfigurationDiagnosticsOptions options)
         {
-            config.LogConfigurationValues(logger, LogLevel.Information, options);
+            logger.LogConfigurationValues(config, LogLevel.Information, options);
         }
 
         /// <summary>
@@ -37,9 +37,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         /// <param name="config">The configuration object to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
-        public static void LogConfigurationValuesAsDebug(this IConfiguration config, ILogger logger)
+        public static void LogConfigurationValuesAsDebug(this ILogger logger, IConfiguration config)
         {
-            config.LogConfigurationValues(logger, LogLevel.Debug);
+            logger.LogConfigurationValues(config, LogLevel.Debug);
         }
         
         /// <summary>
@@ -48,9 +48,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="config">The configuration object to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
         /// <param name="options">The options to use to obfuscate secrets.</param>
-        public static void LogConfigurationValuesAsDebug(this IConfiguration config, ILogger logger, ConfigurationDiagnosticsOptions options)
+        public static void LogConfigurationValuesAsDebug(this ILogger logger, IConfiguration config, ConfigurationDiagnosticsOptions options)
         {
-            config.LogConfigurationValues(logger, LogLevel.Debug, options);
+            logger.LogConfigurationValues(config, LogLevel.Debug, options);
         }
 
         /// <summary>
@@ -58,9 +58,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         /// <param name="config">The configuration object to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
-        public static void LogConfigurationValuesAsTrace(this IConfiguration config, ILogger logger)
+        public static void LogConfigurationValuesAsTrace(this ILogger logger, IConfiguration config)
         {
-            config.LogConfigurationValues(logger, LogLevel.Trace);
+            logger.LogConfigurationValues(config, LogLevel.Trace);
         }
         
         /// <summary>
@@ -69,9 +69,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="config">The configuration object to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
         /// <param name="options">The options to use to obfuscate secrets.</param>
-        public static void LogConfigurationValuesAsTrace(this IConfiguration config, ILogger logger, ConfigurationDiagnosticsOptions options)
+        public static void LogConfigurationValuesAsTrace(this ILogger logger, IConfiguration config, ConfigurationDiagnosticsOptions options)
         {
-            config.LogConfigurationValues(logger, LogLevel.Trace, options);
+            logger.LogConfigurationValues(config, LogLevel.Trace, options);
         }
 
         /// <summary>
@@ -80,9 +80,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="config">The configuration object to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
         /// <param name="level">The level to log at.</param>
-        public static void LogConfigurationValues(this IConfiguration config, ILogger logger, LogLevel level)
+        public static void LogConfigurationValues(this ILogger logger, IConfiguration config, LogLevel level)
         {
-            config.LogConfigurationValues(logger, level, ConfigurationDiagnosticsOptions.GlobalOptions);
+            logger.LogConfigurationValues(config, level, ConfigurationDiagnosticsOptions.GlobalOptions);
         }
         
         /// <summary>
@@ -92,7 +92,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="logger">The logger to write the results to.</param>
         /// <param name="level">The level to log at.</param>
         /// <param name="options">The options to use to obfuscate secrets.</param>
-        public static void LogConfigurationValues(this IConfiguration config, ILogger logger, LogLevel level, ConfigurationDiagnosticsOptions options)
+        public static void LogConfigurationValues(this ILogger logger, IConfiguration config, LogLevel level, ConfigurationDiagnosticsOptions options)
         {
             
             var valueMap = config.AsEnumerable()

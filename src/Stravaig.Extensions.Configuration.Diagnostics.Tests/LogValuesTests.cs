@@ -32,7 +32,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         [Test]
         public void LogsThreeValuesAsInformation()
         {
-            ConfigRoot.LogConfigurationValuesAsInformation(Logger);
+            Logger.LogConfigurationValuesAsInformation(ConfigRoot);
             CheckLog(LogLevel.Information);
         }
         
@@ -40,14 +40,14 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         public void LogsThreeValuesWithObfuscationAsInformation()
         {
             var options = SetupOptions();
-            ConfigRoot.LogConfigurationValuesAsInformation(Logger, options);
+            Logger.LogConfigurationValuesAsInformation(ConfigRoot, options);
             CheckObfuscatedLog(LogLevel.Information);
         }
         
         [Test]
         public void LogsThreeValuesAsDebug()
         {
-            ConfigRoot.LogConfigurationValuesAsDebug(Logger);
+            Logger.LogConfigurationValuesAsDebug(ConfigRoot);
             CheckLog(LogLevel.Debug);
         }
         
@@ -55,14 +55,14 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         public void LogsThreeValuesWithObfuscationAsDebug()
         {
             var options = SetupOptions();
-            ConfigRoot.LogConfigurationValuesAsDebug(Logger, options);
+            Logger.LogConfigurationValuesAsDebug(ConfigRoot, options);
             CheckObfuscatedLog(LogLevel.Debug);
         }
 
         [Test]
         public void LogsThreeValuesAsTrace()
         {
-            ConfigRoot.LogConfigurationValuesAsTrace(Logger);
+            Logger.LogConfigurationValuesAsTrace(ConfigRoot);
             CheckLog(LogLevel.Trace);
         }
 
@@ -70,7 +70,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         public void LogsThreeValuesWithObfuscationAsTrace()
         {
             var options = SetupOptions();
-            ConfigRoot.LogConfigurationValuesAsTrace(Logger, options);
+            Logger.LogConfigurationValuesAsTrace(ConfigRoot, options);
             CheckObfuscatedLog(LogLevel.Trace);
         }
 
@@ -78,7 +78,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         [TestCaseSource(typeof(LogLevelSource))]
         public void LogsThreeValuesAsSpecificLogLevel(LogLevel level)
         {
-            ConfigRoot.LogConfigurationValues(Logger, level);
+            Logger.LogConfigurationValues(ConfigRoot, level);
             CheckLog(level);
         }
 
@@ -87,7 +87,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         public void LoggedSecretsAreObfuscated(LogLevel level)
         {
             var options = SetupOptions();
-            ConfigRoot.LogConfigurationValues(Logger, level, options);
+            Logger.LogConfigurationValues(ConfigRoot, level, options);
             CheckObfuscatedLog(level);
         }
 
