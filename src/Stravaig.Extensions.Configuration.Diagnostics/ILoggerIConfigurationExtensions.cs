@@ -9,7 +9,8 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
     /// <summary>
     /// Extension method for the IConfiguration interface
     /// </summary>
-    public static class ConfigurationExtensions
+    // ReSharper disable once InconsistentNaming
+    public static class ILoggerIConfigurationExtensions
     {
         /// <summary>
         /// Logs the keys and values in the given configuration object at the information level.

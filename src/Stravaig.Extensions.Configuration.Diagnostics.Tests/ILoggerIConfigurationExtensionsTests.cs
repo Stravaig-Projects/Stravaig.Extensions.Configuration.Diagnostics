@@ -8,7 +8,8 @@ using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
 {
-    public class LogValuesTests : TestBase
+    // ReSharper disable once InconsistentNaming
+    public class ILoggerIConfigurationExtensionsTests : TestBase
     {
         [SetUp]
         public void SetUp()
