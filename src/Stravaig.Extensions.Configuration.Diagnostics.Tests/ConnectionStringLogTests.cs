@@ -10,9 +10,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
 {
     public class ConnectionStringLogTests : TestBase
     {
-        public const string BaseConfigKey = "ConnectionStrings";
-        public const string SqlServerStandardSecurityKey = "SqlServerStandardSecurity";
-        public const string SqlServerStandardSecurityValue = "Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;";
+        private const string BaseConfigKey = "ConnectionStrings";
+        private const string SqlServerStandardSecurityKey = "SqlServerStandardSecurity";
+        private const string SqlServerStandardSecurityValue = "Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;";
         
         [SetUp]
         public void SetUp()
