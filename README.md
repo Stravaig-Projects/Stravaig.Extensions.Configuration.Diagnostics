@@ -2,6 +2,10 @@
 
 Provides logged diagnostics for the app configuration.
 
+* ![Stravaig Configuration Diagnostics](https://github.com/Stravaig-Projects/Stravaig.Extensions.Configuration.Diagnostics/workflows/Stravaig%20Configuration%20Diagnostics/badge.svg)
+* ![Nuget](https://img.shields.io/nuget/v/Stravaig.Extensions.Configuration.Diagnostics?color=004880&label=nuget%20stable&logo=nuget) [View on NuGet](https://www.nuget.org/packages/Stravaig.Extensions.Configuration.Diagnostics)
+* ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/SStravaig.Extensions.Configuration.Diagnostics?color=ffffff&label=nuget%20latest&logo=nuget) [View on NuGet](https://www.nuget.org/packages/Stravaig.Extensions.Configuration.Diagnostics)
+
 ## Usage
 
 The library consists of a number of extension methods on the following interfaces:
