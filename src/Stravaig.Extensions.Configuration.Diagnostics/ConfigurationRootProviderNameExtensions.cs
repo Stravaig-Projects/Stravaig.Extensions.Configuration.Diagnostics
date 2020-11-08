@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -53,6 +54,31 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
             string message = "The following configuration providers were registered:" +
                              Environment.NewLine +
                              string.Join(Environment.NewLine, providerNames);
+            logger.Log(level, message);
+        }
+
+        public static void LogProvidersAsInformation(this ILogger logger, IConfigurationRoot config)
+        {
+            logger.LogProviders(config, LogLevel.Information);
+        }
+        
+        public static void LogProvidersAsDebug(this ILogger logger, IConfigurationRoot config)
+        {
+            logger.LogProviders(config, LogLevel.Debug);
+        }
+
+        public static void LogProvidersAsTrace(this ILogger logger, IConfigurationRoot config)
+        {
+            logger.LogProviders(config, LogLevel.Trace);
+        }
+
+        public static void LogProviders(this ILogger logger, IConfigurationRoot config, LogLevel level)
+        {
+            var providers = config.Providers
+                .Select(p => p.ToString());
+            string message = "The following configuration providers were registered:" +
+                             Environment.NewLine +
+                             string.Join(Environment.NewLine, providers);
             logger.Log(level, message);
         }
     }
