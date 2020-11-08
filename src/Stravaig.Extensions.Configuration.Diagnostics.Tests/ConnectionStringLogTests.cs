@@ -52,7 +52,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         [TestCaseSource(typeof(LogLevelSource))]
         public void ConfigSqlServerStandardSecurityConnectionString(LogLevel level)
         {
-            ConfigRoot.LogConnectionString(SqlServerStandardSecurityKey, Logger, level);
+            Logger.LogConnectionString(ConfigRoot, SqlServerStandardSecurityKey, level);
             VerifySqlServerStandardSecurityConnectionString(level, SqlServerStandardSecurityKey);
         }
 
@@ -61,7 +61,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         public void ConfigSqlServerStandardSecurityConnectionStringWithObfuscatedPassword(LogLevel level)
         {
             var options = SetupOptions();
-            ConfigRoot.LogConnectionString(SqlServerStandardSecurityKey, Logger, level, options);
+            Logger.LogConnectionString(ConfigRoot, SqlServerStandardSecurityKey, level, options);
             VerifyObfuscatedSqlServerStandardSecurityConnectionString(level, SqlServerStandardSecurityKey);
         }
 
@@ -70,7 +70,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         public void DbConnectionConnectionString(LogLevel level)
         {
             var conn = new FakeDbConnection(SqlServerStandardSecurityValue);
-            conn.LogConnectionString(Logger, level);
+            Logger.LogConnectionString(conn, level);
             VerifySqlServerStandardSecurityConnectionString(level);
         }
 
