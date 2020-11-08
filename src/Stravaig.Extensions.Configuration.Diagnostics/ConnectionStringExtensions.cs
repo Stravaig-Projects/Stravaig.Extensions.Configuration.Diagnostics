@@ -17,7 +17,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="name">The name of the connection string to log.</param>
         /// <param name="logger">The logger to send the details to.</param>
         /// <param name="level">The level to log at.</param>
-        public static void LogConnectionString(this IConfiguration config, string name, ILogger logger, LogLevel level)
+        public static void LogConnectionString(this ILogger logger, IConfiguration config, string name, LogLevel level, ConfigurationDiagnosticsOptions options = null)
         {
             string connectionString = config.GetConnectionString(name);
             if (string.IsNullOrWhiteSpace(connectionString))
@@ -29,7 +29,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
             }
             else
             {
-                logger.LogConnectionString(level, connectionString, name);
+                logger.LogConnectionString(level, connectionString, name, options);
             }
         }
 
@@ -39,9 +39,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="config">The configuration that contains the connection strings.</param>
         /// <param name="name">The name of the connection string to log.</param>
         /// <param name="logger">The logger to send the details to.</param>
-        public static void LogConnectionStringAsInformation(this IConfiguration config, string name, ILogger logger)
+        public static void LogConnectionStringAsInformation(this ILogger logger, IConfiguration config, string name, ConfigurationDiagnosticsOptions options = null)
         {
-            config.LogConnectionString(name, logger, LogLevel.Information);
+            logger.LogConnectionString(config, name, LogLevel.Information, options);
         }
 
         /// <summary>
@@ -50,9 +50,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="config">The configuration that contains the connection strings.</param>
         /// <param name="name">The name of the connection string to log.</param>
         /// <param name="logger">The logger to send the details to.</param>
-        public static void LogConnectionStringAsDebug(this IConfiguration config, string name, ILogger logger)
+        public static void LogConnectionStringAsDebug(this ILogger logger, IConfiguration config, string name, ConfigurationDiagnosticsOptions options = null)
         {
-            config.LogConnectionString(name, logger, LogLevel.Debug);
+            logger.LogConnectionString(config, name, LogLevel.Debug, options);
         }
 
         /// <summary>
@@ -61,9 +61,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="config">The configuration that contains the connection strings.</param>
         /// <param name="name">The name of the connection string to log.</param>
         /// <param name="logger">The logger to send the details to.</param>
-        public static void LogConnectionStringAsTrace(this IConfiguration config, string name, ILogger logger)
+        public static void LogConnectionStringAsTrace(this ILogger logger, IConfiguration config, string name, ConfigurationDiagnosticsOptions options)
         {
-            config.LogConnectionString(name, logger, LogLevel.Trace);
+            logger.LogConnectionString(config, name, LogLevel.Trace, options);
         }
 
         /// <summary>
@@ -72,10 +72,10 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="connection">The connection object.</param>
         /// <param name="logger">The logger to send the details to.</param>
         /// <param name="level">The level to log at.</param>
-        public static void LogConnectionString(this IDbConnection connection, ILogger logger, LogLevel level)
+        public static void LogConnectionString(this ILogger logger, IDbConnection connection, LogLevel level, ConfigurationDiagnosticsOptions options = null)
         {
             var connectionString = connection.ConnectionString;
-            logger.LogConnectionString(level, connectionString);
+            logger.LogConnectionString(level, connectionString, null, options);
         }
 
         /// <summary>
@@ -83,9 +83,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         /// <param name="connection">The connection object.</param>
         /// <param name="logger">The logger to send the details to.</param>
-        public static void LogConnectionStringAsInformation(this IDbConnection connection, ILogger logger)
+        public static void LogConnectionStringAsInformation(this ILogger logger, IDbConnection connection, ConfigurationDiagnosticsOptions options = null)
         {
-            connection.LogConnectionString(logger, LogLevel.Information);
+            logger.LogConnectionString(connection, LogLevel.Information, options);
         }
 
         /// <summary>
@@ -93,9 +93,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         /// <param name="connection">The connection object.</param>
         /// <param name="logger">The logger to send the details to.</param>
-        public static void LogConnectionStringAsDebug(this IDbConnection connection, ILogger logger)
+        public static void LogConnectionStringAsDebug(this ILogger logger, IDbConnection connection, ConfigurationDiagnosticsOptions options = null)
         {
-            connection.LogConnectionString(logger, LogLevel.Debug);
+            logger.LogConnectionString(connection, LogLevel.Debug, options);
         }
 
         /// <summary>
@@ -103,9 +103,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         /// <param name="connection">The connection object.</param>
         /// <param name="logger">The logger to send the details to.</param>
-        public static void LogConnectionStringAsTrace(this IDbConnection connection, ILogger logger)
+        public static void LogConnectionStringAsTrace(this ILogger logger, IDbConnection connection, ConfigurationDiagnosticsOptions options = null)
         {
-            connection.LogConnectionString(logger, LogLevel.Trace);
+            logger.LogConnectionString(connection, LogLevel.Trace, options);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="level">The level to log at.</param>
         /// <param name="connectionString">The connection string to be deconstructed.</param>
         /// <param name="connectionStringName">The name of the connection string, or null if there is no name or it is not known.</param>
-        public static void LogConnectionString(this ILogger logger, LogLevel level, string connectionString, string connectionStringName = null)
+        public static void LogConnectionString(this ILogger logger, LogLevel level, string connectionString, string connectionStringName = null, ConfigurationDiagnosticsOptions options = null)
         {
             if (string.IsNullOrWhiteSpace(connectionString))
             {
@@ -123,13 +123,15 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
                 return;
             }
 
+            options = options ?? ConfigurationDiagnosticsOptions.GlobalOptions;
+
             DbConnectionStringBuilder builder = new DbConnectionStringBuilder();
             builder.ConnectionString = connectionString;
 
             List<object> args = new List<object>();
             StringBuilder messageTemplate = new StringBuilder(connectionString.Length);
             BuildStartOfMessage(messageTemplate, connectionStringName, args);
-            AddConnectionStringKeysAndValues(messageTemplate, builder, args);
+            AddConnectionStringKeysAndValues(messageTemplate, builder, args, options);
 
             var objArgs = args.ToArray();
             logger.Log(level, messageTemplate.ToString(), objArgs);
@@ -172,15 +174,21 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         private static void AddConnectionStringKeysAndValues(
             StringBuilder messageTemplate,
             DbConnectionStringBuilder builder,
-            List<object> args)
+            List<object> args,
+            ConfigurationDiagnosticsOptions options)
         {
             var keys = builder.Keys ?? Array.Empty<string>();
             int index = 0;
-            foreach (var key in keys)
+            foreach (var keyObj in keys)
             {
+                string key = (string) keyObj;
                 messageTemplate.AppendLine(" * {key" + index + "} = {value" + index + "}");
-                args.Add(key);
-                args.Add(builder[(string) key]);
+                args.Add(keyObj);
+                var value =
+                    options.ConnectionStringElementMatcher.IsMatch(key)
+                        ? options.Obfuscator.Obfuscate((string) builder[key])
+                        : (string) builder[key];
+                args.Add(value);
             }
         }
 
