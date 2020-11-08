@@ -13,9 +13,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         /// <param name="config">The configuration root to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
-        public static void LogProviderNamesAsInformation(this IConfigurationRoot config, ILogger logger)
+        public static void LogProviderNamesAsInformation(this ILogger logger, IConfigurationRoot config)
         {
-            config.LogProviderNames(logger, LogLevel.Information);
+            logger.LogProviderNames(config, LogLevel.Information);
         }
 
         /// <summary>
@@ -24,9 +24,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         /// <param name="config">The configuration root to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
-        public static void LogProviderNamesAsDebug(this IConfigurationRoot config, ILogger logger)
+        public static void LogProviderNamesAsDebug(this ILogger logger, IConfigurationRoot config)
         {
-            config.LogProviderNames(logger, LogLevel.Debug);
+            logger.LogProviderNames(config, LogLevel.Debug);
         }
 
         /// <summary>
@@ -35,9 +35,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         /// <param name="config">The configuration root to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
-        public static void LogProviderNamesAsTrace(this IConfigurationRoot config, ILogger logger)
+        public static void LogProviderNamesAsTrace(this ILogger logger, IConfigurationRoot config)
         {
-            config.LogProviderNames(logger, LogLevel.Trace);
+            logger.LogProviderNames(config, LogLevel.Trace);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="config">The configuration root to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
         /// <param name="level">The log level to use.</param>
-        public static void LogProviderNames(this IConfigurationRoot config, ILogger logger, LogLevel level)
+        public static void LogProviderNames(this ILogger logger, IConfigurationRoot config, LogLevel level)
         {
             var providerNames = config.Providers
                 .Select(p => p.GetType().FullName);

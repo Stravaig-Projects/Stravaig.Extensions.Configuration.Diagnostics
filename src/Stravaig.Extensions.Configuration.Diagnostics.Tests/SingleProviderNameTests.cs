@@ -25,7 +25,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         public void LogProviderToInformation()
         {
             // Act
-            ConfigRoot.LogProviderNamesAsInformation(Logger);
+            Logger.LogProviderNamesAsInformation(ConfigRoot);
             
             // Assert
             var logs = CaptureLoggerProvider.GetLogEntriesFor<SingleProviderNameTests>();
@@ -38,7 +38,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         public void LogProviderToDebug()
         {
             // Act
-            ConfigRoot.LogProviderNamesAsDebug(Logger);
+            Logger.LogProviderNamesAsDebug(ConfigRoot);
 
             // Assert
             var logs = CaptureLoggerProvider.GetLogEntriesFor<SingleProviderNameTests>();
@@ -51,7 +51,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         public void LogProviderToTrace()
         {
             // Act
-            ConfigRoot.LogProviderNamesAsTrace(Logger);
+            Logger.LogProviderNamesAsTrace(ConfigRoot);
 
             // Assert
             var logs = CaptureLoggerProvider.GetLogEntriesFor<SingleProviderNameTests>();
@@ -65,7 +65,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         public void LogProviderToSpecifiedLevel(LogLevel level)
         {
             // Act
-            ConfigRoot.LogProviderNames(Logger, level);
+            Logger.LogProviderNames(ConfigRoot, level);
 
             // Assert
             var logs = CaptureLoggerProvider.GetLogEntriesFor<SingleProviderNameTests>();

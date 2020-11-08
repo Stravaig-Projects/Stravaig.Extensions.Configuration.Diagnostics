@@ -33,7 +33,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         public void LogProviderToSpecifiedLevel(LogLevel level)
         {
             // Act
-            ConfigRoot.LogProviderNames(Logger, level);
+            Logger.LogProviderNames(ConfigRoot, level);
 
             // Assert
             var logs = GetLogs();
