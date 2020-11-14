@@ -4,7 +4,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
     {
         private const string Redacted = "REDACTED";
 
-        private string _obfuscatedValue;
+        private readonly string _obfuscatedValue;
 
         public RedactedObfuscator()
         {
@@ -14,6 +14,11 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
         public RedactedObfuscator(string symmetricalAccoutrement)
         {
             _obfuscatedValue = $"{symmetricalAccoutrement}{Redacted}{symmetricalAccoutrement}";
+        }
+
+        public RedactedObfuscator(string leftAccoutrement, string rightAccoutrement)
+        {
+            _obfuscatedValue = $"{leftAccoutrement}{Redacted}{rightAccoutrement}";
         }
 
         public string Obfuscate(string secret)
