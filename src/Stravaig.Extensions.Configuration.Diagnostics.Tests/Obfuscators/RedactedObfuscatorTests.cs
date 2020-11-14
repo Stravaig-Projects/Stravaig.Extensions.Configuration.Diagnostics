@@ -30,5 +30,21 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Obfuscators
                 .Obfuscate("Hello World!")
                 .ShouldBe("<==REDACTED==>");
         }
+
+        [Test]
+        public void NullSecretIsObfuscatedToEmptyString()
+        {
+            new RedactedObfuscator()
+                .Obfuscate(null)
+                .ShouldBe(string.Empty);
+        }
+
+        [Test]
+        public void WhiteSpaceSecretIsObfuscatedToEmptyString()
+        {
+            new RedactedObfuscator()
+                .Obfuscate(" \t\r\n")
+                .ShouldBe(string.Empty);
+        }
     }
 }

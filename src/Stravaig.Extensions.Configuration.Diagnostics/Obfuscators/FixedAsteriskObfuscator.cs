@@ -3,16 +3,14 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
     /// <summary>
     /// An obfuscator that replaces secrets with a fixed number of asterisks.
     /// </summary>
-    public class FixedAsteriskObfuscator : ISecretObfuscator
+    public class FixedAsteriskObfuscator : FixedStringObfuscator
     {
-        private readonly string _asterisks;
-
         /// <summary>
         /// Initialises the obfuscator with 4 asterisks.
         /// </summary>
         public FixedAsteriskObfuscator()
+            : base("****")
         {
-            _asterisks = "****";
         }
 
         /// <summary>
@@ -20,17 +18,8 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
         /// </summary>
         /// <param name="numAsterisks">The number of asterisks to replace a secret with.</param>
         public FixedAsteriskObfuscator(int numAsterisks)
+            : base(new string('*', numAsterisks))
         {
-            _asterisks = new string('*', numAsterisks);
-        }
-
-        /// <inheritdoc />
-        public string Obfuscate(string secret)
-        {
-            if (string.IsNullOrWhiteSpace(secret))
-                return string.Empty;
-            
-            return _asterisks;
         }
     }
 }

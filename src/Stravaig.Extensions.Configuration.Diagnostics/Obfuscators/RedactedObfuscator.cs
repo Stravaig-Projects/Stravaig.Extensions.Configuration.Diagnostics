@@ -3,18 +3,16 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
     /// <summary>
     /// Initialises an obfuscator that replaces the secret with REDACTED.
     /// </summary>
-    public class RedactedObfuscator : ISecretObfuscator
+    public class RedactedObfuscator : FixedStringObfuscator
     {
         private const string Redacted = "REDACTED";
-
-        private readonly string _obfuscatedValue;
-
+        
         /// <summary>
         /// Initialises the obfuscator with REDACTED.
         /// </summary>
         public RedactedObfuscator()
+            : base(Redacted)
         {
-            _obfuscatedValue = Redacted;
         }
 
         /// <summary>
@@ -22,8 +20,8 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
         /// </summary>
         /// <param name="symmetricalAccoutrement">The string to place before and after the word REDACTED.</param>
         public RedactedObfuscator(string symmetricalAccoutrement)
+            : base($"{symmetricalAccoutrement}{Redacted}{symmetricalAccoutrement}")
         {
-            _obfuscatedValue = $"{symmetricalAccoutrement}{Redacted}{symmetricalAccoutrement}";
         }
 
         /// <summary>
@@ -32,14 +30,8 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
         /// <param name="leftAccoutrement">The string to place before the word REDACTED.</param>
         /// <param name="rightAccoutrement">The string to place after the word REDACTED.</param>
         public RedactedObfuscator(string leftAccoutrement, string rightAccoutrement)
+            : base($"{leftAccoutrement}{Redacted}{rightAccoutrement}")
         {
-            _obfuscatedValue = $"{leftAccoutrement}{Redacted}{rightAccoutrement}";
-        }
-
-        /// <inheritdoc />
-        public string Obfuscate(string secret)
-        {
-            return _obfuscatedValue;
         }
     }
 }
