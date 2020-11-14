@@ -14,5 +14,13 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Obfuscators
                 .Obfuscate("Hello World!")
                 .ShouldBe("REDACTED");
         }
+
+        [Test]
+        public void SecretIsChangedToRedactedWithSymmetricalAccoutrements()
+        {
+            new RedactedObfuscator("***")
+                .Obfuscate("Hello World!")
+                .ShouldBe("***REDACTED***");
+        }
     }
 }
