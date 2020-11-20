@@ -92,3 +92,27 @@ info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConnectionStringLogTes
 
 *Note: It will be an upcoming feature that known secrets will be masked out if desired.*
 
+### Options Builder
+
+```csharp
+ConfigurationDiagnosticsOptions.GlobalOptions = ConfigurationDiagnosticsOptions
+  .SetUpBy.Obfuscating.With(/*IObfuscator*/)
+  .And().MatchingConfigurationKeys().Matching(/*IMatcher*/)
+  .And().MatchingConnectionStringKeys().Matching(/*IMatcher*/)
+  .Finally.BuildOptions();
+```
+
+```csharp
+ConfigurationDiagnosticsOptions
+  .SetUpWith().Obfuscator().SetTo(/*IObfuscator*/)
+  .And().ConfigurationKeys().Where()
+    .KeyContains(/*string*/)
+    .OrContains(/*string*/)
+    .OrMatchesPattern(/*regExPattern*/)
+  .And().ConnectionStringKeys().Where()
+    .MatchesPattern(/*regExPattern*/)
+    .OrContains(/*string*/)
+  .Finally.ApplyOptions(ConfigurationDiagnosticsOptions.GlobalOptions)
+```
+
+
