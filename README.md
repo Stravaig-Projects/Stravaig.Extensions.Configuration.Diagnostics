@@ -97,15 +97,15 @@ info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConnectionStringLogTes
 ```csharp
 ConfigurationDiagnosticsOptions.GlobalOptions = ConfigurationDiagnosticsOptions
   .SetUpBy.Obfuscating.With(/*IObfuscator*/)
-  .And().MatchingConfigurationKeys().Matching(/*IMatcher*/)
-  .And().MatchingConnectionStringKeys().Matching(/*IMatcher*/)
-  .Finally.BuildOptions();
+  .And.MatchingConfigurationKeys().Matching(/*IMatcher*/)
+  .And.MatchingConnectionStringKeys().Matching(/*IMatcher*/)
+  .AndFinally.BuildOptions();
 ```
 
 ```csharp
 ConfigurationDiagnosticsOptions
-  .SetUpWith().Obfuscator().SetTo(/*IObfuscator*/)
-  .And().ConfigurationKeys().Where()
+  .SetUpBy.Obfuscating.With(/*IObfuscator*/)
+  .And.MatchingConfigurationKeys().Where()
     .KeyContains(/*string*/)
     .OrContains(/*string*/)
     .OrMatchesPattern(/*regExPattern*/)
