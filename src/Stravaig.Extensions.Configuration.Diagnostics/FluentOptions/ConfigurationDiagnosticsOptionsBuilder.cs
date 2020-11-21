@@ -3,44 +3,43 @@ using Stravaig.Extensions.Configuration.Diagnostics.Obfuscators;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.FluentOptions
 {
-    public partial class ConfigurationDiagnosticsOptionsBuilder 
-        : IConfigurationKeyMatcherOptionsBuilder,
-            IConnectionStringKeyMatcherOptionsBuilder
+    public partial class ConfigurationDiagnosticsOptionsBuilder
     {
         private ISecretObfuscator _obfuscator; 
-        private IMatcher _configKeyMatcher; 
-        private IMatcher _connectionStringKeyMatcher;
+        private IKeyMatchBuilder _configKeyMatcher; 
+        private IKeyMatchBuilder _connectionStringKeyMatcher;
         private State _state = State.None; 
-        private IKeyMatchBuilder _currentKeyMatcherBuilder; 
+        private IKeyMatchBuilder _currentKeyMatcherBuilder;
 
+        public ConfigurationDiagnosticsOptionsBuilder()
+        {
+            _configKeyMatcher = new KeyMatchBuilder();
+            _connectionStringKeyMatcher = new KeyMatchBuilder();
+        }
         public IObfuscatorOptionsBuilder Obfuscating => StartNewSection(State.BuildingObfuscator);
 
-        public IConfigurationKeyMatcherOptionsBuilder MatchingConfigurationKeys => StartNewSection(State.BuildingConfigurationKeyMatcher);
+        public IKeyMatcherOptionsBuilder MatchingConfigurationKeys => StartNewSection(State.BuildingConfigurationKeyMatcher);
 
-        public IConnectionStringKeyMatcherOptionsBuilder MatchingConnectionStringKeys => StartNewSection(State.BuildingConnectionStringKeyMatcher);
+        public IKeyMatcherOptionsBuilder MatchingConnectionStringKeys => StartNewSection(State.BuildingConnectionStringKeyMatcher);
 
         private ConfigurationDiagnosticsOptionsBuilder StartNewSection(State newAction)
         {
-            CloseOffOldState();
-            _state = newAction; 
-            _currentKeyMatcherBuilder = new KeyMatchBuilder();
+            _state = newAction;
+            switch (_state)
+            {
+                case State.BuildingConfigurationKeyMatcher:
+                    _currentKeyMatcherBuilder = _configKeyMatcher;
+                    break;
+                case State.BuildingConnectionStringKeyMatcher:
+                    _currentKeyMatcherBuilder = _connectionStringKeyMatcher;
+                    break;
+                default:
+                    _currentKeyMatcherBuilder = null;
+                    break;
+            }
+
             return this;
         }
         
-        private void CloseOffOldState() 
-        { 
-            switch (_state) 
-            { 
-                case State.BuildingConfigurationKeyMatcher: 
-                    _configKeyMatcher = _currentKeyMatcherBuilder.Build(); 
-                    break; 
-                case State.BuildingConnectionStringKeyMatcher: 
-                    _connectionStringKeyMatcher = _currentKeyMatcherBuilder.Build(); 
-                    break; 
-                case State.BuildingObfuscator: 
-                case State.None: 
-                    return; 
-            }
-        } 
     }
 }

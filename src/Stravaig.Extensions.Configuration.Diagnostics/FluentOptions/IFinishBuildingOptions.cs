@@ -9,18 +9,23 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.FluentOptions
     public partial class ConfigurationDiagnosticsOptionsBuilder
         : IFinishBuildingOptions
     {
-        public ConfigurationDiagnosticsOptions BuildOptions()
+        ConfigurationDiagnosticsOptions IFinishBuildingOptions.BuildOptions()
         {
             ConfigurationDiagnosticsOptions result = new ConfigurationDiagnosticsOptions();
-            ApplyOptions(result);
+            ApplyOptionsImpl(result);
             return result;
         }
 
-        public void ApplyOptions(ConfigurationDiagnosticsOptions options)
+        void IFinishBuildingOptions.ApplyOptions(ConfigurationDiagnosticsOptions options)
+        {
+            ApplyOptionsImpl(options);
+        }
+
+        private void ApplyOptionsImpl(ConfigurationDiagnosticsOptions options)
         {
             options.Obfuscator = _obfuscator;
-            options.ConfigurationKeyMatcher = _configKeyMatcher;
-            options.ConnectionStringElementMatcher = _connectionStringKeyMatcher;
+            options.ConfigurationKeyMatcher = _configKeyMatcher.Build();
+            options.ConnectionStringElementMatcher = _connectionStringKeyMatcher.Build();
         }
     }
 }
