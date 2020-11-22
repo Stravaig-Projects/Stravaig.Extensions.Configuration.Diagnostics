@@ -1,4 +1,5 @@
 using System;
+using Stravaig.Extensions.Configuration.Diagnostics.FluentOptions;
 using Stravaig.Extensions.Configuration.Diagnostics.Matchers;
 using Stravaig.Extensions.Configuration.Diagnostics.Obfuscators;
 
@@ -18,6 +19,11 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         public static ConfigurationDiagnosticsOptions GlobalOptions { get; } = new ConfigurationDiagnosticsOptions();
 
+        /// <summary>
+        /// Initiate the fluent configuration options builder.
+        /// </summary>
+        public static ConfigurationDiagnosticsOptionsBuilder SetupBy => new ConfigurationDiagnosticsOptionsBuilder();
+        
         /// <summary>
         /// The obfuscator to use to mask out secrets.
         /// </summary>

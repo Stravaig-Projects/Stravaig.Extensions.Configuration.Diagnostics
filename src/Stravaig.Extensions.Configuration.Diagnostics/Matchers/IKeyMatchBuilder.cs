@@ -2,6 +2,9 @@ using System.Collections.Generic;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Matchers
 {
+    /// <summary>
+    /// A builder for combining many key matchers together.
+    /// </summary>
     public interface IKeyMatchBuilder
     {
         /// <summary>

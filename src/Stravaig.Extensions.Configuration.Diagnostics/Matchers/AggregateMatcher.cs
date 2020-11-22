@@ -62,8 +62,8 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Matchers
         /// </summary>
         /// <param name="matchers">The matchers to add.</param>
         /// <returns>self, so that methods can be chained.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="matcher"/> is null</exception>
-        /// <exception cref="ArgumentException"><paramref name="matcher"/> would result in a circular reference.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="matchers"/> is null</exception>
+        /// <exception cref="ArgumentException"><paramref name="matchers"/> would result in a circular reference.</exception>
         public AggregateMatcher Add(IEnumerable<IMatcher> matchers)
         {
             if (matchers == null) 

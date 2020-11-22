@@ -90,5 +90,29 @@ info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConnectionStringLogTes
        * password = myPassword
 ```
 
-*Note: It will be an upcoming feature that known secrets will be masked out if desired.*
+### Options Builder
 
+You can build the options up using a fluent interface, for example:
+
+```csharp
+ConfigurationDiagnosticsOptions.GlobalOptions = ConfigurationDiagnosticsOptions
+  .SetUpBy.Obfuscating.WithAsterisks()
+  .And.MatchingConfigurationKeys.Containing(/*string*/)
+  .And.MatchingConnectionStringKeys.MatchingPattern(/*regExPattern*/)
+  .AndFinally.BuildOptions();
+```
+
+or
+
+```csharp
+ConfigurationDiagnosticsOptions
+  .SetUpBy.Obfuscating.ByRedacting()
+  .And.MatchingConfigurationKeys.Where
+    .KeyContains(/*string*/)
+    .OrContains(/*string*/)
+    .OrMatchesPattern(/*regExPattern*/)
+  .And.ConnectionStringKeys.Where
+    .KeyMatchesPattern(/*regExPattern*/)
+    .OrContains(/*string*/)
+  .AndFinally.ApplyOptions(ConfigurationDiagnosticsOptions.GlobalOptions);
+```
