@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics
 {
+    /// <summary>
+    /// Extensions that log information about the configuration root.
+    /// </summary>
     public static class ConfigurationRootProviderNameExtensions
     {
         /// <summary>

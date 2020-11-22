@@ -19,6 +19,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         public static ConfigurationDiagnosticsOptions GlobalOptions { get; } = new ConfigurationDiagnosticsOptions();
 
+        /// <summary>
+        /// Initiate the fluent configuration options builder.
+        /// </summary>
         public static ConfigurationDiagnosticsOptionsBuilder SetupBy => new ConfigurationDiagnosticsOptionsBuilder();
         
         /// <summary>
