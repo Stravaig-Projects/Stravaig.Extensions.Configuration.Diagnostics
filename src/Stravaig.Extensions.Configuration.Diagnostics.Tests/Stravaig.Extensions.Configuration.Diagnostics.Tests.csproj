@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -20,7 +20,7 @@
         <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0" />
         <PackageReference Include="Shouldly" Version="4.0.1" />
-        <PackageReference Include="Stravaig.Extensions.Logging.Diagnostics" Version="0.2.1" />
+        <PackageReference Include="Stravaig.Extensions.Logging.Diagnostics" Version="0.2.2" />
     </ItemGroup>
 
     <ItemGroup>
