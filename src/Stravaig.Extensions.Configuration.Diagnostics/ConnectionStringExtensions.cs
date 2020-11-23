@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -66,6 +67,30 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
             logger.LogConnectionString(config, name, LogLevel.Trace, options);
         }
 
+        public static void LogAllConnectionStrings(this ILogger logger, IConfiguration config, LogLevel level,
+            ConfigurationDiagnosticsOptions options)
+        {
+            var connectionStringSection = config.GetSection("ConnectionStrings");
+            var names = connectionStringSection
+                .GetChildren()
+                .Select(s => s.Key)
+                .OrderBy(k => k)
+                .ToArray();
+
+            if (names.Length == 0)
+            {
+                logger.Log(level, "No connections strings found in the configuration.");
+                return;
+            }
+
+            logger.Log(level, "The following connection strings were found "+string.Join(", ", names));
+            
+            foreach (string key in names)
+            {
+                logger.LogConnectionString(config, key, level, options);
+            }
+        }
+        
         /// <summary>
         /// Logs the details of the connection's connection string at the given level.
         /// </summary>

@@ -96,6 +96,29 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
             Logger.LogConnectionString(conn, level);
             VerifyDodgyConnectionStringLoggedProperly(level);
         }
+        
+        [Test]
+        [TestCaseSource(typeof(LogLevelSource))]
+        public void LogAllConnectionStrings(LogLevel level)
+        {
+            var options = SetupOptions();
+            Logger.LogAllConnectionStrings(ConfigRoot, level, options);
+            var logs = GetLogs();
+            logs.Count.ShouldBe(3);
+            logs[0].FormattedMessage.ShouldContain("The following connection strings were found");
+        }
+        
+        [Test]
+        [TestCaseSource(typeof(LogLevelSource))]
+        public void LogAllConnectionStringsWhenThereAreNone(LogLevel level)
+        {
+            SetupConfig(builder => builder.AddInMemoryCollection());
+            var options = SetupOptions();
+            Logger.LogAllConnectionStrings(ConfigRoot, level, options);
+            var logs = GetLogs();
+            logs.Count.ShouldBe(1);
+            logs[0].FormattedMessage.ShouldContain("No connections strings found in the configuration.");
+        }
 
         private static ConfigurationDiagnosticsOptions SetupOptions()
         {
