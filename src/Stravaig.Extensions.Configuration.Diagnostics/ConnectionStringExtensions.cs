@@ -125,8 +125,19 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
 
             options = options ?? ConfigurationDiagnosticsOptions.GlobalOptions;
 
-            DbConnectionStringBuilder builder = new DbConnectionStringBuilder();
-            builder.ConnectionString = connectionString;
+            DbConnectionStringBuilder builder;
+            try
+            {
+                builder = new DbConnectionStringBuilder
+                {
+                    ConnectionString = connectionString
+                };
+            }
+            catch (Exception ex)
+            {
+                LogNotAValidConnectionString(logger, level, connectionStringName, ex);
+                return;
+            }
 
             List<object> args = new List<object>();
             StringBuilder messageTemplate = new StringBuilder(connectionString.Length);
@@ -135,6 +146,19 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
 
             var objArgs = args.ToArray();
             logger.Log(level, messageTemplate.ToString(), objArgs);
+        }
+
+        private static void LogNotAValidConnectionString(ILogger logger, LogLevel level, string connectionStringName,
+            Exception ex)
+        {
+            var warningOrGreater = (LogLevel) Math.Max((int) level, (int) LogLevel.Warning);
+            StringBuilder sb = new StringBuilder();
+            sb.Append("The ");
+            if (connectionStringName != null)
+                sb.Append($"\"{connectionStringName}\" ");
+            sb.Append("connection string value could not be interpreted as a connection string.");
+            string message = sb.ToString();
+            logger.Log(warningOrGreater, ex, message);
         }
 
         /// <summary>

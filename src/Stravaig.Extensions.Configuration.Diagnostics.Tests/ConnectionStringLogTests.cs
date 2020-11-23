@@ -14,6 +14,8 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         private const string BaseConfigKey = "ConnectionStrings";
         private const string SqlServerStandardSecurityKey = "SqlServerStandardSecurity";
         private const string SqlServerStandardSecurityValue = "Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;";
+        private const string DodgySecurityKey = "DodgyConnection";
+        private const string DodgyConnectionString = "*** Comes from Secrets ***";
         
         [SetUp]
         public void SetUp()
@@ -27,6 +29,10 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
                         $"{BaseConfigKey}:{SqlServerStandardSecurityKey}",
                         SqlServerStandardSecurityValue
                     },
+                    {
+                        $"{BaseConfigKey}:{DodgySecurityKey}",
+                        DodgyConnectionString
+                    }
                 });
             });
         }
@@ -58,6 +64,14 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
 
         [Test]
         [TestCaseSource(typeof(LogLevelSource))]
+        public void ConfigReportExceptionWithDodgyConnectionString(LogLevel level)
+        {
+            Logger.LogConnectionString(ConfigRoot, DodgySecurityKey, level);
+            VerifyDodgyConnectionStringLoggedProperly(level, DodgySecurityKey);
+        }
+        
+        [Test]
+        [TestCaseSource(typeof(LogLevelSource))]
         public void ConfigSqlServerStandardSecurityConnectionStringWithObfuscatedPassword(LogLevel level)
         {
             var options = SetupOptions();
@@ -73,6 +87,15 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
             Logger.LogConnectionString(conn, level);
             VerifySqlServerStandardSecurityConnectionString(level);
         }
+        
+        [Test]
+        [TestCaseSource(typeof(LogLevelSource))]
+        public void ReportExceptionWithDodgyConnectionString(LogLevel level)
+        {
+            var conn = new FakeDbConnection(DodgyConnectionString);
+            Logger.LogConnectionString(conn, level);
+            VerifyDodgyConnectionStringLoggedProperly(level);
+        }
 
         private static ConfigurationDiagnosticsOptions SetupOptions()
         {
@@ -81,6 +104,20 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
             options.Obfuscator = new MatchedLengthAsteriskObfuscator();
             return options;
         }
+        
+        private void VerifyDodgyConnectionStringLoggedProperly(LogLevel level, string name = null)
+        {
+            var logs = GetLogs();
+            logs.Count.ShouldBe(1);
+            var log = logs[0];
+            ((int) log.LogLevel).ShouldBeGreaterThanOrEqualTo((int) level);
+            log.Exception.ShouldNotBeNull();
+            log.FormattedMessage.ShouldContain("connection string value could not be interpreted as a connection string.");
+                    
+            if (!string.IsNullOrWhiteSpace(name))
+                log.FormattedMessage.ShouldContain(name);
+        }
+        
         private void VerifySqlServerStandardSecurityConnectionString(LogLevel level, string name = null)
         {
             var logs = GetLogs();
