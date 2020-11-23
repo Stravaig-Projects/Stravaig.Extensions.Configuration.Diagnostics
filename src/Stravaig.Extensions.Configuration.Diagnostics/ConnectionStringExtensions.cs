@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics
 {
+    /// <summary>
+    /// Extension methods for deconstructing and logging the components of connection strings.
+    /// </summary>
     public static class ConnectionStringExtensions
     {
         /// <summary>
@@ -66,6 +70,73 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
             logger.LogConnectionString(config, name, LogLevel.Trace, options);
         }
 
+        /// <summary>
+        /// Logs the details of all the connection strings in the configuration at the Information level.
+        /// </summary>
+        /// <param name="logger">The logger to send the details to.</param>
+        /// <param name="config">The configuration to pick up the connection strings.</param>
+        /// <param name="options">The options defining what elements get obscured.</param>
+        public static void LogAllConnectionStringsAsInformation(this ILogger logger, IConfiguration config,
+            ConfigurationDiagnosticsOptions options = null)
+        {
+            logger.LogAllConnectionStrings(config, LogLevel.Information, options);
+        }        
+
+        /// <summary>
+        /// Logs the details of all the connection strings in the configuration at the Debug level.
+        /// </summary>
+        /// <param name="logger">The logger to send the details to.</param>
+        /// <param name="config">The configuration to pick up the connection strings.</param>
+        /// <param name="options">The options defining what elements get obscured.</param>
+        public static void LogAllConnectionStringsAsDebug(this ILogger logger, IConfiguration config,
+            ConfigurationDiagnosticsOptions options = null)
+        {
+            logger.LogAllConnectionStrings(config, LogLevel.Debug, options);
+        }        
+
+        /// <summary>
+        /// Logs the details of all the connection strings in the configuration at the Trace level.
+        /// </summary>
+        /// <param name="logger">The logger to send the details to.</param>
+        /// <param name="config">The configuration to pick up the connection strings.</param>
+        /// <param name="options">The options defining what elements get obscured.</param>
+        public static void LogAllConnectionStringsAsTrace(this ILogger logger, IConfiguration config,
+            ConfigurationDiagnosticsOptions options = null)
+        {
+            logger.LogAllConnectionStrings(config, LogLevel.Trace, options);
+        }        
+
+        /// <summary>
+        /// Logs the details of all the connection strings in the configuration.
+        /// </summary>
+        /// <param name="logger">The logger to send the details to.</param>
+        /// <param name="config">The configuration to pick up the connection strings.</param>
+        /// <param name="level">The level to log at.</param>
+        /// <param name="options">The options defining what elements get obscured.</param>
+        public static void LogAllConnectionStrings(this ILogger logger, IConfiguration config, LogLevel level,
+            ConfigurationDiagnosticsOptions options = null)
+        {
+            var connectionStringSection = config.GetSection("ConnectionStrings");
+            var names = connectionStringSection
+                .GetChildren()
+                .Select(s => s.Key)
+                .OrderBy(k => k)
+                .ToArray();
+
+            if (names.Length == 0)
+            {
+                logger.Log(level, "No connections strings found in the configuration.");
+                return;
+            }
+
+            logger.Log(level, "The following connection strings were found "+string.Join(", ", names));
+            
+            foreach (string key in names)
+            {
+                logger.LogConnectionString(config, key, level, options);
+            }
+        }
+        
         /// <summary>
         /// Logs the details of the connection's connection string at the given level.
         /// </summary>
@@ -193,7 +264,6 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         {
             logger.LogConnectionString(LogLevel.Trace, connectionString, connectionStringName);
         }
-
 
         private static void AddConnectionStringKeysAndValues(
             StringBuilder messageTemplate,
