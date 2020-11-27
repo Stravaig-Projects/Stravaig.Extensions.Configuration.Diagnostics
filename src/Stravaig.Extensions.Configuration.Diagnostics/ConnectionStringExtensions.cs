@@ -283,6 +283,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
                         ? options.Obfuscator.Obfuscate((string) builder[key])
                         : (string) builder[key];
                 args.Add(value);
+                index++;
             }
         }
 
