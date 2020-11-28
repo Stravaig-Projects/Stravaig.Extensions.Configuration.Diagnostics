@@ -41,6 +41,7 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+        fetch-depth: 0
 
       - name: Set version number
         shell: pwsh
