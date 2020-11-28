@@ -37,9 +37,23 @@ info: Stravaig.Extensions.Configuration.Diagnostics.Tests.MultipleProviderNameTe
       Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider
 ```
 
+#### Tracking where a value came from
+
+You can track where a value came from with the `LogConfigurationKeySource` based methods. It will output the providers that have the given key, the last of which will be the provider that was used for the final answer.
+
+e.g.
+
+```
+info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConfigurationProviderTrackingExtensionsTests[0]
+      Provider sources for value of SomeSection:SomeKey
+      * MemoryConfigurationProvider ==> "SomeValue"
+      * MemoryConfigurationProvider ==> null
+      * JsonStreamConfigurationProvider ==> "SomeNewValue"
+```
+
 ### IConfiguration
 
-It goes without saying that as the `IConfigurationRoot` interface is derived from the `IConfiguration` interface, that the extension methods here will work with an `IConfigurationRoot` reference too.
+As the `IConfigurationRoot` interface is derived from the `IConfiguration` interface, that the extension methods here will work with an `IConfigurationRoot` reference too.
 
 - `LogConfigurationValues` will list the configuration keys and values at the desired log level.
   - `LogConfigurationValuesAsInformation` variant that logs at the information level.
