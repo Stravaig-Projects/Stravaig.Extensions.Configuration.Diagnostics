@@ -233,5 +233,40 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
             log.FormattedMessage.Split(Environment.NewLine).ShouldNotContain(string.Empty);
         }
 
+        [Test]
+        public void CheckInformationSpecificMethod()
+        {
+            SetupConfig(b => { });
+            SetupLogger();
+            
+            Logger.LogConfigurationKeySourceAsInformation(ConfigRoot, KeyName);
+            var logs = GetLogs();
+            logs.Count.ShouldBe(1);
+            logs[0].LogLevel.ShouldBe(LogLevel.Information);
+        }
+
+        [Test]
+        public void CheckDebugSpecificMethod()
+        {
+            SetupConfig(b => { });
+            SetupLogger();
+            
+            Logger.LogConfigurationKeySourceAsDebug(ConfigRoot, KeyName);
+            var logs = GetLogs();
+            logs.Count.ShouldBe(1);
+            logs[0].LogLevel.ShouldBe(LogLevel.Debug);
+        }
+
+        [Test]
+        public void CheckTraceSpecificMethod()
+        {
+            SetupConfig(b => { });
+            SetupLogger();
+            
+            Logger.LogConfigurationKeySourceAsTrace(ConfigRoot, KeyName);
+            var logs = GetLogs();
+            logs.Count.ShouldBe(1);
+            logs[0].LogLevel.ShouldBe(LogLevel.Trace);
+        }
     }
 }

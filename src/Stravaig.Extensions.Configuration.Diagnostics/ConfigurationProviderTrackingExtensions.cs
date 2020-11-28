@@ -10,6 +10,24 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
     /// </summary>
     public static class ConfigurationProviderTrackingExtensions
     {
+        public static void LogConfigurationKeySourceAsTrace(this ILogger logger, IConfigurationRoot configRoot,
+            string key, bool compressed = false, ConfigurationDiagnosticsOptions options = null)
+        {
+            logger.LogConfigurationKeySource(LogLevel.Trace, configRoot, key, compressed, options);
+        }
+
+        public static void LogConfigurationKeySourceAsDebug(this ILogger logger, IConfigurationRoot configRoot,
+            string key, bool compressed = false, ConfigurationDiagnosticsOptions options = null)
+        {
+            logger.LogConfigurationKeySource(LogLevel.Debug, configRoot, key, compressed, options);
+        }
+
+        public static void LogConfigurationKeySourceAsInformation(this ILogger logger, IConfigurationRoot configRoot,
+            string key, bool compressed = false, ConfigurationDiagnosticsOptions options = null)
+        {
+            logger.LogConfigurationKeySource(LogLevel.Information, configRoot, key, compressed, options);
+        }
+
         public static void LogConfigurationKeySource(this ILogger logger, LogLevel level, IConfigurationRoot configRoot, string key, bool compressed = false, ConfigurationDiagnosticsOptions options = null)
         {
             if (options == null)
