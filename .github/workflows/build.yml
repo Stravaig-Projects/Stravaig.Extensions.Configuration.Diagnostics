@@ -7,6 +7,7 @@ on:
   push:
     branches: 
       - main
+      - "#32-automate-release-tagging"
     paths-ignore:
       - 'README.md'
       - 'Example/**'
@@ -76,3 +77,8 @@ jobs:
       - name: Push package to NuGet
         if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
         run: dotnet nuget push ./out/*.nupkg --api-key ${{ secrets.STRAVAIG_NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+
+      - name: List Contributors
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        shell: pwsh
+        run: ./list-contributors.ps1
