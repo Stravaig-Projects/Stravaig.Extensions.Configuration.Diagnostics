@@ -6,16 +6,78 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
-using Serilog;
 using Shouldly;
 using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
 {
     [TestFixture]
-    public class ConfigurationProviderTrackingTests : TestBase
+    public class ConfigurationProviderTrackingExtensionsTests : TestBase
     {
         private const string KeyName = "SomeSection:SomeKey";
+        
+        [Test]
+        [TestCaseSource(typeof(LogLevelSource))]
+        public void NoProviders_LogsNoProviders(LogLevel level)
+        {
+            SetupConfig(b => { });
+            SetupLogger();
+
+            Logger.LogConfigurationKeySource(level, ConfigRoot, KeyName);
+
+            var logs = GetLogs();
+            logs.Count.ShouldBe(1);
+            var log = logs[0];
+            
+            log.LogLevel.ShouldBe(level);
+            log.FormattedMessage.ShouldContain($"Cannot track {KeyName}. No configuration providers found.");
+            log.FormattedMessage.Split(Environment.NewLine).ShouldNotContain(string.Empty);
+        }
+        
+        [Test]
+        [TestCaseSource(typeof(LogLevelSource))]
+        public void KeyNotFoundInAnyProviderWithCompressedTrue_LogsNotFound(LogLevel level)
+        {
+            SetupConfig(b =>
+            {
+                b.AddInMemoryCollection();
+                b.AddInMemoryCollection();
+            });
+            SetupLogger();
+
+            Logger.LogConfigurationKeySource(level, ConfigRoot, KeyName, true);
+
+            var logs = GetLogs();
+            logs.Count.ShouldBe(1);
+            var log = logs[0];
+            
+            log.LogLevel.ShouldBe(level);
+            log.FormattedMessage.ShouldContain($"Provider sources for value of {KeyName} were not found.");
+            log.FormattedMessage.Split(Environment.NewLine).ShouldNotContain(string.Empty);
+        }
+
+        [Test]
+        [TestCaseSource(typeof(LogLevelSource))]
+        public void KeyNotFoundInAnyProviderWithCompressedFalse_LogsNotFound(LogLevel level)
+        {
+            SetupConfig(b =>
+            {
+                b.AddInMemoryCollection();
+                b.AddInMemoryCollection();
+            });
+            SetupLogger();
+
+            Logger.LogConfigurationKeySource(level, ConfigRoot, KeyName, false);
+
+            var logs = GetLogs();
+            logs.Count.ShouldBe(1);
+            var log = logs[0];
+            
+            log.LogLevel.ShouldBe(level);
+            log.FormattedMessage.Count(c => c == '*').ShouldBe(2);
+            log.FormattedMessage.ShouldContain($"{KeyName} not found in any provider.");
+            log.FormattedMessage.Split(Environment.NewLine).ShouldNotContain(string.Empty);
+        }
         
         [Test]
         [TestCaseSource(typeof(LogLevelSource))]
