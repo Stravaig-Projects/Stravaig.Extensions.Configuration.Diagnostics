@@ -44,8 +44,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
 
         private static StringBuilder ReportNoProviders(string key)
         {
-            StringBuilder report;
-            report = new StringBuilder("Cannot track ");
+            var report = new StringBuilder("Cannot track ");
             report.Append(key);
             report.Append(". No configuration providers found.");
             return report;

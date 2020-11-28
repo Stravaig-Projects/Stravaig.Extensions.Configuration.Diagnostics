@@ -108,6 +108,38 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         
         [Test]
         [TestCaseSource(typeof(LogLevelSource))]
+        public void ObfuscateValueWhenSecret(LogLevel level)
+        {
+            SetupConfig(builder =>
+            {
+                builder.AddInMemoryCollection(new Dictionary<string, string>
+                {
+                    {KeyName, "SomeSecretValue"}
+                });
+            });
+            SetupLogger();
+            ConfigurationDiagnosticsOptions options = ConfigurationDiagnosticsOptions.SetupBy
+                .Obfuscating.ByRedacting()
+                .And.MatchingConfigurationKeys.Containing(KeyName)
+                .AndFinally.BuildOptions();
+
+            Logger.LogConfigurationKeySource(level, ConfigRoot, "SomeSection:SomeKey", false, options);
+
+            var logs = GetLogs();
+            logs.Count.ShouldBe(1);
+            var log = logs[0];
+            
+            log.LogLevel.ShouldBe(level);
+            log.FormattedMessage.ShouldContain(KeyName);
+            log.FormattedMessage.ShouldContain("*");
+            log.FormattedMessage.Count(c => c == '*').ShouldBe(1);
+            log.FormattedMessage.ShouldNotContain("SomeSecretValue");
+            log.FormattedMessage.ShouldContain("REDACTED");
+            log.FormattedMessage.Split(Environment.NewLine).ShouldNotContain(string.Empty);
+        }
+        
+        [Test]
+        [TestCaseSource(typeof(LogLevelSource))]
         public void TwoProviders_LogsBothProviders(LogLevel level)
         {
             SetupConfig(builder =>
