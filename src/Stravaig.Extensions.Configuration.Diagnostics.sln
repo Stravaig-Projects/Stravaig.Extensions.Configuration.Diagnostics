@@ -1,4 +1,4 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Extensions.Configuration.Diagnostics", "Stravaig.Extensions.Configuration.Diagnostics\Stravaig.Extensions.Configuration.Diagnostics.csproj", "{E993302C-3E68-4228-9548-7B813F26CB5D}"
 EndProject
@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Documentation", "__Docume
 ProjectSection(SolutionItems) = preProject
 	..\LICENSE = ..\LICENSE
 	..\README.md = ..\README.md
+	..\contributors.md = ..\contributors.md
 	..\release-notes\wip-release-notes.md = ..\release-notes\wip-release-notes.md
 EndProjectSection
 EndProject

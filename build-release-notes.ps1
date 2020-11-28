@@ -34,6 +34,7 @@ $fullReleaseNotes = $preamble + $currentReleaseNotesExtract + $existing
 
 Set-Content "$PSScriptRoot/release-notes/full-release-notes.md" $fullReleaseNotes -Encoding UTF8 -Force
 
-
-
+$contributors = Get-Content "$PSScriptRoot/contributors.md";
+$releaseBody = $currentReleaseNotes + @("", "---", "") + $contributors
+Set-Content "$PSScriptRoot/release-body.md" $releaseBody -Encoding UTF8 -Force
 

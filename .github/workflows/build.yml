@@ -13,6 +13,8 @@ on:
       - 'Example/**'
       - '.vscode/**'
       - '.gitignore'
+      - 'contributors.md'
+      - 'release-notes/**'
 
   pull_request:
     types: [assigned, opened, synchronize, reopened]
@@ -85,21 +87,39 @@ jobs:
         shell: pwsh
         run: ./list-contributors.ps1
 
-      - name: Archive Contriubutors
-        uses: actions/upload-artifact@v2
-        with:
-          name: release-information
-          path: contributors.md
-
       - name: Build Release Notes
         shell: pwsh
         run: ./build-release-notes.ps1
 
+      - name: Archive Simulated Release Notes
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'false' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: simulated-release-information
+          path: |
+            contributors.md
+            release-notes/full-release-notes.md
+            release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
+          retention-days: 7
+
       - name: Archive Release Notes
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
         uses: actions/upload-artifact@v2
         with:
           name: release-information
           path: |
+            contributors.md
             release-notes/full-release-notes.md
             release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
         
+      - name: Mark Release
+        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "./out/*.nupkg,./out/*.snupkg,LICENSE,contributors.md,readme.md,./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          bodyFile: "release-body.md"
+          prerelease: ${{ env.STRAVAIG_PACKAGE_VERSION_SUFFIX != '~' }}
+          commit: ${{ env.GITHUB_SHA }}
+          tag: ${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
+          draft: true
