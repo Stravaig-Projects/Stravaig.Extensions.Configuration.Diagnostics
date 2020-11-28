@@ -55,6 +55,7 @@ jobs:
           echo "Tests: $STRAVAIG_TESTS"
           echo "Package version: $STRAVAIG_PACKAGE_VERSION"
           echo "Version Suffix: $STRAVAIG_PACKAGE_VERSION_SUFFIX"
+          echo "Full Version: $STRAVAIG_PACKAGE_FULL_VERSION"
           echo "Publish To NuGet: $STRAVAIG_PUBLISH_TO_NUGET"
           
       - uses: actions/setup-dotnet@v1
@@ -83,8 +84,22 @@ jobs:
       - name: List Contributors
         shell: pwsh
         run: ./list-contributors.ps1
+
       - name: Archive Contriubutors
         uses: actions/upload-artifact@v2
         with:
           name: release-information
-          path: contributors.md
+          path: contributors.md
+
+      - name: Build Release Notes
+        shell: pwsh
+        run: ./build-release-notes.ps1
+
+      - name: Archive Release Notes
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-information
+          path: |
+            release-notes/full-release-notes.md
+            release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
+        
