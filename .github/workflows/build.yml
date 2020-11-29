@@ -125,9 +125,15 @@ jobs:
           draft: true
           
       - name: Bump version
+        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
         shell: pwsh
         run: ./Bump-Version.ps1 -BumpPatch
-          
+
+      - name: Reset WIP release notes
+        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        shell: pwsh
+        run: ./Reset-WipReleaseNotes.ps1
+        
       - name: Commit post release updates
         #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
         uses: EndBug/add-and-commit@v5
