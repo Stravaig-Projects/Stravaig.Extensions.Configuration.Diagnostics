@@ -1,8 +1,4 @@
 name: Stravaig Configuration Diagnostics
-env:
-  STRAVAIG_SOLUTION: src/Stravaig.Extensions.Configuration.Diagnostics.sln
-  STRAVAIG_TESTS: Stravaig.Extensions.Configuration.Diagnostics.Tests
-  STRAVAIG_PROJECT: Stravaig.Extensions.Configuration.Diagnostics
 on: 
   push:
     branches: 
@@ -39,6 +35,10 @@ jobs:
   build:
     name: Build, Test, and Release
     runs-on: ubuntu-latest
+    env:
+      STRAVAIG_SOLUTION: src/Stravaig.Extensions.Configuration.Diagnostics.sln
+      STRAVAIG_TESTS: Stravaig.Extensions.Configuration.Diagnostics.Tests
+      STRAVAIG_PROJECT: Stravaig.Extensions.Configuration.Diagnostics
     
     steps:
       - name: Check out code
@@ -121,5 +121,16 @@ jobs:
           bodyFile: "release-body.md"
           prerelease: ${{ env.STRAVAIG_PACKAGE_VERSION_SUFFIX != '~' }}
           commit: ${{ env.GITHUB_SHA }}
-          tag: ${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
+          tag: v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
           draft: true
+          
+      - name: Commit post release updates
+        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        uses: EndBug/add-and-commit@v5
+        with:
+          add: .\contributors.md .\release-notes\** .\version.txt
+          author_name: StravaigBot
+          author_email: stravaig@colinmackay.scot
+          message: "[bot] Bump Version & Post v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }} Release updates."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
