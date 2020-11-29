@@ -128,7 +128,7 @@ jobs:
         #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
         uses: EndBug/add-and-commit@v5
         with:
-          add: .\contributors.md .\release-notes\** .\version.txt
+          add: ./contributors.md ./release-notes/** ./version.txt
           author_name: StravaigBot
           author_email: stravaig@colinmackay.scot
           message: "[bot] Bump Version & Post v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }} Release updates."
