@@ -1,4 +1,4 @@
-# Full Release Notes
+# Release Notes
 
 ## Version 0.4.0
 
@@ -15,5 +15,3 @@ Date: Sunday, 29 November, 2020 at 22:52:54 +00:00
 ### Miscellaneous
 
 * Issue #32: Improve the build process to mark a release automatically in the build script.
-
----
