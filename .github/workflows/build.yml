@@ -124,6 +124,10 @@ jobs:
           tag: v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
           draft: true
           
+      - name: Bump version
+        shell: pwsh
+        run: ./Bump-Version.ps1 -BumpPatch
+          
       - name: Commit post release updates
         #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
         uses: EndBug/add-and-commit@v5

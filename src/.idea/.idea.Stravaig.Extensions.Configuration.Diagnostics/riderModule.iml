@@ -15,6 +15,7 @@
     <content url="file://$MODULE_DIR$/../../../README.md" />
     <content url="file://$MODULE_DIR$/../../../Set-Version.ps1" />
     <content url="file://$MODULE_DIR$/../../../build-release-notes.ps1" />
+    <content url="file://$MODULE_DIR$/../../../bump-version.ps1" />
     <content url="file://$MODULE_DIR$/../../../contributors.md" />
     <content url="file://$MODULE_DIR$/../../../list-contributors.ps1" />
     <content url="file://$MODULE_DIR$/../../../release-notes/wip-release-notes.md" />
