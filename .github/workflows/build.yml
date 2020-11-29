@@ -113,7 +113,7 @@ jobs:
             release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
         
       - name: Mark Release
-        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
         uses: ncipollo/release-action@v1
         with:
           artifacts: "./out/*.nupkg,./out/*.snupkg,LICENSE,contributors.md,readme.md,./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md"
@@ -125,17 +125,20 @@ jobs:
           draft: true
           
       - name: Bump version
-        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        #IF Publishing & Stable release
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_PACKAGE_VERSION_SUFFIX == '~' }}
         shell: pwsh
         run: ./Bump-Version.ps1 -BumpPatch
 
       - name: Reset WIP release notes
-        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        #IF Publishing & Stable release
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_PACKAGE_VERSION_SUFFIX == '~' }}
         shell: pwsh
         run: ./Reset-WipReleaseNotes.ps1
         
       - name: Commit post release updates
-        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        #IF Publishing & Stable release
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_PACKAGE_VERSION_SUFFIX == '~' }}
         uses: EndBug/add-and-commit@v5
         with:
           add: ./contributors.md ./release-notes/** ./version.txt
