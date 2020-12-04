@@ -122,7 +122,7 @@ jobs:
           prerelease: ${{ env.STRAVAIG_PACKAGE_VERSION_SUFFIX != '~' }}
           commit: ${{ env.GITHUB_SHA }}
           tag: v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
-          draft: true
+          draft: false
           
       - name: Bump version
         #IF Publishing & Stable release
