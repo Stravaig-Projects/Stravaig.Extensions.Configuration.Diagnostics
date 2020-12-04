@@ -49,6 +49,13 @@ if ($IsPreview)
     $suffix = "preview."
     $suffix += $Env:GITHUB_RUN_NUMBER
     $fullVersion += "-"+$suffix;
+    "STRAVAIG_IS_STABLE=false" | Out-File -FilePath $Env:GITHUB_ENV -Encoding UTF8 -Append
+    "STRAVAIG_IS_PREVIEW=true" | Out-File -FilePath $Env:GITHUB_ENV -Encoding UTF8 -Append
+}
+else
+{
+    "STRAVAIG_IS_STABLE=true" | Out-File -FilePath $Env:GITHUB_ENV -Encoding UTF8 -Append
+    "STRAVAIG_IS_PREVIEW=false" | Out-File -FilePath $Env:GITHUB_ENV -Encoding UTF8 -Append
 }
 "STRAVAIG_PACKAGE_VERSION_SUFFIX=$suffix" | Out-File -FilePath $Env:GITHUB_ENV -Encoding UTF8 -Append
 "STRAVAIG_PACKAGE_FULL_VERSION=$fullVersion" | Out-File -FilePath $Env:GITHUB_ENV -Encoding UTF8 -Append
