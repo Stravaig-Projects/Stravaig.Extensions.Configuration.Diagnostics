@@ -67,7 +67,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
             });
             SetupLogger();
 
-            Logger.LogConfigurationKeySource(level, ConfigRoot, KeyName, false);
+            Logger.LogConfigurationKeySource(level, ConfigRoot, KeyName);
 
             var logs = GetLogs();
             logs.Count.ShouldBe(1);

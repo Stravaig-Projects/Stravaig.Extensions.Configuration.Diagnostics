@@ -4,6 +4,10 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.__fakes
 {
     public class FakeDbConnection : IDbConnection
     {
+        public FakeDbConnection()
+        {
+            State = ConnectionState.Closed;
+        }
         public void Dispose()
         {
         }
@@ -33,12 +37,13 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.__fakes
 
         public void Open()
         {
+            State = ConnectionState.Open;
         }
 
         public string ConnectionString { get; set; }
         public int ConnectionTimeout { get; } = 15;
         public string Database { get; } = string.Empty;
-        public ConnectionState State { get; }
+        public ConnectionState State { get; private set; }
 
         public FakeDbConnection(string connectionString)
         {
