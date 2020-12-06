@@ -1,10 +1,9 @@
 using System;
-using Stravaig.Extensions.Configuration.Diagnostics.Obfuscators;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
 {
     /// <summary>
-    /// Wraps a <see cref="Func&lt;string, string&gt;"/> as a obfuscator.
+    /// Wraps a Func&lt;string, string&gt; as an obfuscator.
     /// </summary>
     public class FuncObfuscator : ISecretObfuscator
     {
