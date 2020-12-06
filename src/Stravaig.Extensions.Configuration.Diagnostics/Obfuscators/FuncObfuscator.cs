@@ -4,7 +4,7 @@ using Stravaig.Extensions.Configuration.Diagnostics.Obfuscators;
 namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
 {
     /// <summary>
-    /// Wraps a <see cref="Func<string, string>"/> as a obfuscator.
+    /// Wraps a <see cref="Func&lt;string, string&gt;"/> as a obfuscator.
     /// </summary>
     public class FuncObfuscator : ISecretObfuscator
     {
