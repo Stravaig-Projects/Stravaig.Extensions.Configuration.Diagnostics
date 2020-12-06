@@ -59,21 +59,42 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
             logger.Log(level, message);
         }
 
+        /// <summary>
+        /// Logs a list of the providers the configuration is using at the Information level.
+        /// </summary>
+        /// <param name="logger">The logger to write the details to.</param>
+        /// <param name="config">The configuration root.</param>
         public static void LogProvidersAsInformation(this ILogger logger, IConfigurationRoot config)
         {
             logger.LogProviders(config, LogLevel.Information);
         }
         
+        /// <summary>
+        /// Logs a list of the providers the configuration is using at the Debug level.
+        /// </summary>
+        /// <param name="logger">The logger to write the details to.</param>
+        /// <param name="config">The configuration root.</param>
         public static void LogProvidersAsDebug(this ILogger logger, IConfigurationRoot config)
         {
             logger.LogProviders(config, LogLevel.Debug);
         }
 
+        /// <summary>
+        /// Logs a list of the providers the configuration is using at the Trace level.
+        /// </summary>
+        /// <param name="logger">The logger to write the details to.</param>
+        /// <param name="config">The configuration root.</param>
         public static void LogProvidersAsTrace(this ILogger logger, IConfigurationRoot config)
         {
             logger.LogProviders(config, LogLevel.Trace);
         }
 
+        /// <summary>
+        /// Logs a list of the providers the configuration is using.
+        /// </summary>
+        /// <param name="logger">The logger to write the details to.</param>
+        /// <param name="config">The configuration root.</param>
+        /// <param name="level">The level to log at.</param>
         public static void LogProviders(this ILogger logger, IConfigurationRoot config, LogLevel level)
         {
             var providers = config.Providers

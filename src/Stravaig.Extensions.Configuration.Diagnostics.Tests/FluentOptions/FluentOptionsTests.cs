@@ -1,11 +1,9 @@
-using System;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
 using Shouldly;
 using Stravaig.Extensions.Configuration.Diagnostics.Matchers;
 using Stravaig.Extensions.Configuration.Diagnostics.Obfuscators;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.FluentOptions.FluentOptions
+namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.FluentOptions
 {
     [TestFixture]
     public class FluentOptionsTests

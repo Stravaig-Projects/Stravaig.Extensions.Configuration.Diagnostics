@@ -21,6 +21,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="name">The name of the connection string to log.</param>
         /// <param name="logger">The logger to send the details to.</param>
         /// <param name="level">The level to log at.</param>
+        /// <param name="options">The options to use, or <see cref="ConfigurationDiagnosticsOptions.GlobalOptions"/> if not specified.</param>
         public static void LogConnectionString(this ILogger logger, IConfiguration config, string name, LogLevel level, ConfigurationDiagnosticsOptions options = null)
         {
             string connectionString = config.GetConnectionString(name);
@@ -43,6 +44,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="config">The configuration that contains the connection strings.</param>
         /// <param name="name">The name of the connection string to log.</param>
         /// <param name="logger">The logger to send the details to.</param>
+        /// <param name="options">The options to use, or <see cref="ConfigurationDiagnosticsOptions.GlobalOptions"/> if not specified.</param>
         public static void LogConnectionStringAsInformation(this ILogger logger, IConfiguration config, string name, ConfigurationDiagnosticsOptions options = null)
         {
             logger.LogConnectionString(config, name, LogLevel.Information, options);
@@ -54,6 +56,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="config">The configuration that contains the connection strings.</param>
         /// <param name="name">The name of the connection string to log.</param>
         /// <param name="logger">The logger to send the details to.</param>
+        /// <param name="options">The options to use, or <see cref="ConfigurationDiagnosticsOptions.GlobalOptions"/> if not specified.</param>
         public static void LogConnectionStringAsDebug(this ILogger logger, IConfiguration config, string name, ConfigurationDiagnosticsOptions options = null)
         {
             logger.LogConnectionString(config, name, LogLevel.Debug, options);
@@ -65,6 +68,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="config">The configuration that contains the connection strings.</param>
         /// <param name="name">The name of the connection string to log.</param>
         /// <param name="logger">The logger to send the details to.</param>
+        /// <param name="options">The options to use, or <see cref="ConfigurationDiagnosticsOptions.GlobalOptions"/> if not specified.</param>
         public static void LogConnectionStringAsTrace(this ILogger logger, IConfiguration config, string name, ConfigurationDiagnosticsOptions options)
         {
             logger.LogConnectionString(config, name, LogLevel.Trace, options);
@@ -75,7 +79,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         /// <param name="logger">The logger to send the details to.</param>
         /// <param name="config">The configuration to pick up the connection strings.</param>
-        /// <param name="options">The options defining what elements get obscured.</param>
+        /// <param name="options">The options to use, or <see cref="ConfigurationDiagnosticsOptions.GlobalOptions"/> if not specified.</param>
         public static void LogAllConnectionStringsAsInformation(this ILogger logger, IConfiguration config,
             ConfigurationDiagnosticsOptions options = null)
         {
@@ -87,7 +91,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         /// <param name="logger">The logger to send the details to.</param>
         /// <param name="config">The configuration to pick up the connection strings.</param>
-        /// <param name="options">The options defining what elements get obscured.</param>
+        /// <param name="options">The options to use, or <see cref="ConfigurationDiagnosticsOptions.GlobalOptions"/> if not specified.</param>
         public static void LogAllConnectionStringsAsDebug(this ILogger logger, IConfiguration config,
             ConfigurationDiagnosticsOptions options = null)
         {
@@ -99,7 +103,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         /// <param name="logger">The logger to send the details to.</param>
         /// <param name="config">The configuration to pick up the connection strings.</param>
-        /// <param name="options">The options defining what elements get obscured.</param>
+        /// <param name="options">The options to use, or <see cref="ConfigurationDiagnosticsOptions.GlobalOptions"/> if not specified.</param>
         public static void LogAllConnectionStringsAsTrace(this ILogger logger, IConfiguration config,
             ConfigurationDiagnosticsOptions options = null)
         {
@@ -112,7 +116,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="logger">The logger to send the details to.</param>
         /// <param name="config">The configuration to pick up the connection strings.</param>
         /// <param name="level">The level to log at.</param>
-        /// <param name="options">The options defining what elements get obscured.</param>
+        /// <param name="options">The options to use, or <see cref="ConfigurationDiagnosticsOptions.GlobalOptions"/> if not specified.</param>
         public static void LogAllConnectionStrings(this ILogger logger, IConfiguration config, LogLevel level,
             ConfigurationDiagnosticsOptions options = null)
         {
@@ -143,6 +147,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="connection">The connection object.</param>
         /// <param name="logger">The logger to send the details to.</param>
         /// <param name="level">The level to log at.</param>
+        /// <param name="options">The options to use, or <see cref="ConfigurationDiagnosticsOptions.GlobalOptions"/> if not specified.</param>
         public static void LogConnectionString(this ILogger logger, IDbConnection connection, LogLevel level, ConfigurationDiagnosticsOptions options = null)
         {
             var connectionString = connection.ConnectionString;
@@ -154,6 +159,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         /// <param name="connection">The connection object.</param>
         /// <param name="logger">The logger to send the details to.</param>
+        /// <param name="options">The options to use, or <see cref="ConfigurationDiagnosticsOptions.GlobalOptions"/> if not specified.</param>
         public static void LogConnectionStringAsInformation(this ILogger logger, IDbConnection connection, ConfigurationDiagnosticsOptions options = null)
         {
             logger.LogConnectionString(connection, LogLevel.Information, options);
@@ -164,6 +170,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         /// <param name="connection">The connection object.</param>
         /// <param name="logger">The logger to send the details to.</param>
+        /// <param name="options">The options to use, or <see cref="ConfigurationDiagnosticsOptions.GlobalOptions"/> if not specified.</param>
         public static void LogConnectionStringAsDebug(this ILogger logger, IDbConnection connection, ConfigurationDiagnosticsOptions options = null)
         {
             logger.LogConnectionString(connection, LogLevel.Debug, options);
@@ -174,6 +181,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// </summary>
         /// <param name="connection">The connection object.</param>
         /// <param name="logger">The logger to send the details to.</param>
+        /// <param name="options">The options to use, or <see cref="ConfigurationDiagnosticsOptions.GlobalOptions"/> if not specified.</param>
         public static void LogConnectionStringAsTrace(this ILogger logger, IDbConnection connection, ConfigurationDiagnosticsOptions options = null)
         {
             logger.LogConnectionString(connection, LogLevel.Trace, options);
@@ -186,6 +194,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="level">The level to log at.</param>
         /// <param name="connectionString">The connection string to be deconstructed.</param>
         /// <param name="connectionStringName">The name of the connection string, or null if there is no name or it is not known.</param>
+        /// <param name="options">The options to use, or <see cref="ConfigurationDiagnosticsOptions.GlobalOptions"/> if not specified.</param>
         public static void LogConnectionString(this ILogger logger, LogLevel level, string connectionString, string connectionStringName = null, ConfigurationDiagnosticsOptions options = null)
         {
             if (string.IsNullOrWhiteSpace(connectionString))
