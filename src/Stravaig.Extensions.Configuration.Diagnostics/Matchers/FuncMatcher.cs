@@ -7,22 +7,22 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Matchers
     /// </summary>
     public class FuncMatcher : IMatcher
     {
-        private readonly Func<string, bool> _matchingFunction;
+        private readonly Func<string, bool> _predicate;
 
         /// <summary>
-        /// Initialises the object with the given matching function.
+        /// Initialises the object with the given matching predicate function.
         /// </summary>
-        /// <param name="matchingFunction"></param>
-        public FuncMatcher(Func<string, bool> matchingFunction)
+        /// <param name="predicate">The function predicate that matches the key.</param>
+        public FuncMatcher(Func<string, bool> predicate)
         {
-            _matchingFunction = matchingFunction
-                                ?? throw new ArgumentNullException(nameof(matchingFunction));
+            _predicate = predicate
+                                ?? throw new ArgumentNullException(nameof(predicate));
         }
 
         /// <inheritdoc />
         public bool IsMatch(string key)
         {
-            return _matchingFunction(key);
+            return _predicate(key);
         }
     }
 }
