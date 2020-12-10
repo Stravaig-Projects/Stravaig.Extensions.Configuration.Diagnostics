@@ -8,22 +8,19 @@ Provides logged diagnostics for the app configuration.
 
 ## Usage
 
-The library consists of a number of extension methods on the following interfaces:
-- `IConfigurationRoot`
-- `IConfiguration`
-- `IDbConnection` (for convenience when dealing with connection strings)
+### Logging Provider Type Names
 
-### IConfigurationRoot
+- `ILogger.LogProviderNames(IConfigurationRoot, LogLevel)`
+  - `ILogger.LogProviderNamesAsInformation(IConfigurationRoot)`
+  - `ILogger.LogProviderNamesAsDebug(IConfigurationRoot)`
+  - `ILogger.LogProviderNamesAsTrace(IConfigurationRoot)`
 
-- `LogProviderNames` will list the config providers in the log at the desired log level.
-  - `LogProviderNamesAsInformation` variant that logs at the Information level.
-  - `LogProviderNamesAsDebug` variant that logs at the Debug level.
-  - `LogProviderNamesAsTrace` variant that logs at the Trace level.
+Logs the provider type names that are in the `IConfigurationRoot` at the requested level.
 
 e.g.
 
 ```csharp
-    configRoot.LogProviderNames(logger, LogLevel.Information);
+    logger.LogProviderNames(configRoot, LogLevel.Information);
 ```
 
 will produce a log entry that looks like this from the standard console logger:
@@ -37,9 +34,45 @@ info: Stravaig.Extensions.Configuration.Diagnostics.Tests.MultipleProviderNameTe
       Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider
 ```
 
-#### Tracking where a value came from
+### Logging Providers
 
-You can track where a value came from with the `LogConfigurationKeySource` based methods. It will output the providers that have the given key, the last of which will be the provider that was used for the final answer.
+- `ILogger.LogProviders(IConfigurationRoot, LogLevel)`
+  - `ILogger.LogProvidersAsInformation(IConfigurationRoot)`
+  - `ILogger.LogProvidersAsDebug(IConfigurationRoot)`
+  - `ILogger.LogProvidersAsTrace(IConfigurationRoot)`
+
+e.g.
+
+```csharp
+    logger.LogProviders(configRoot, LogLevel.Information);
+```
+
+will produce a log entry that looks like this from the standard console logger:
+
+```
+info: Stravaig.Extensions.Configuration.Diagnostics.Tests.MultipleProvidersTests[0]
+      The following configuration providers were registered:
+      MemoryConfigurationProvider
+      JsonConfigurationProvider for 'appsettings.json' (Optional)
+      JsonConfigurationProvider for 'appsettings.test.json' (Optional)
+      EnvironmentVariablesConfigurationProvider
+      CommandLineConfigurationProvider
+```
+
+### Tracking where a value came from
+
+- `ILogger.LogConfigurationKeySource(LogLevel, IConfigurationRoot, string key, bool compressed = false, ConfigurationDiagnosticsOptions options = null)`
+  - `ILogger.LogConfigurationKeySourceAsInformation(IConfigurationRoot, string key, bool compressed  = false, ConfigurationDiagnosticsOptions options = null)`
+  - `ILogger.LogConfigurationKeySourceAsDebug(IConfigurationRoot, string key, bool compressed  = false, ConfigurationDiagnosticsOptions options = null)`
+  - `ILogger.LogConfigurationKeySourceAsTrace(IConfigurationRoot, string key, bool compressed  = false, ConfigurationDiagnosticsOptions options = null)`
+
+You can track where a value came from with the `LogConfigurationKeySource` based methods. It will output the providers that have the given key, the last of which will be the provider that was used for the final value that is picked up by your application.
+
+The parameters are: 
+- `LogLevel level` : The level to log at.
+- `string key` : The key to look up.
+- `bool compressed` : Whether to log providers that did not have a value for that key. If false then all providers are logged, but indicate `null` where no value was present. If true then providers that did not provide a value are ignored.
+- `options`: The options for obfuscating and key matching secrets so that values that are secrets are not inadvertently rendered to the log. If no options are specified then the `ConfigurationDiagnosticsOptions.GlobalOptions` are used.
 
 e.g.
 
@@ -51,19 +84,23 @@ info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConfigurationProviderT
       * JsonStreamConfigurationProvider ==> "SomeNewValue"
 ```
 
-### IConfiguration
+### Log Configuration Values
 
 As the `IConfigurationRoot` interface is derived from the `IConfiguration` interface, that the extension methods here will work with an `IConfigurationRoot` reference too.
 
-- `LogConfigurationValues` will list the configuration keys and values at the desired log level.
-  - `LogConfigurationValuesAsInformation` variant that logs at the information level.
-  - `LogConfigurationValuesAsDebug` variant that logs at the debug level.
-  - `LogConfigurationValuesAsTrace` variant that logs at the trace level.
-      
+- `ILogger.LogConfigurationValues(IConfiguration config, LogLevel level, ConfigurationDiagnosticsOptions options = null)`
+  - `ILogger.LogConfigurationValuesAsInformation(IConfiguration config, ConfigurationDiagnosticsOptions options = null)`
+  - `ILogger.LogConfigurationValuesAsDebug(IConfiguration config, ConfigurationDiagnosticsOptions options = null)`
+  - `ILogger.LogConfigurationValuesAsTrace(IConfiguration config, ConfigurationDiagnosticsOptions options = null)`
+
+The parameters are: 
+- `LogLevel level` : The level to log at.
+- `options`: The options for obfuscating and key matching secrets so that values that are secrets are not inadvertently rendered to the log. If no options are specified then the `ConfigurationDiagnosticsOptions.GlobalOptions` are used.
+
 e.g.
 
 ```csharp 
-config.LogConfigurationValues(logger, LogLevel.Information);
+logger.LogConfigurationValues(config, LogLevel.Information);
 ```
 
 will produce a log entry that looks something like this:
