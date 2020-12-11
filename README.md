@@ -162,17 +162,17 @@ info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConnectionStringLogTes
 You can build the options up using a fluent interface, for example:
 
 ```csharp
-ConfigurationDiagnosticsOptions.GlobalOptions = ConfigurationDiagnosticsOptions
+ConfigurationDiagnosticsOptions
   .SetUpBy.Obfuscating.WithAsterisks()
   .And.MatchingConfigurationKeys.Containing(/*string*/)
   .And.MatchingConnectionStringKeys.MatchingPattern(/*regExPattern*/)
-  .AndFinally.BuildOptions();
+  .AndFinally.ApplyOptions(ConfigurationDiagnosticsOptions.GlobalOptions);
 ```
 
 or
 
 ```csharp
-ConfigurationDiagnosticsOptions
+var options = ConfigurationDiagnosticsOptions
   .SetUpBy.Obfuscating.ByRedacting()
   .And.MatchingConfigurationKeys.Where
     .KeyContains(/*string*/)
@@ -181,5 +181,27 @@ ConfigurationDiagnosticsOptions
   .And.ConnectionStringKeys.Where
     .KeyMatchesPattern(/*regExPattern*/)
     .OrContains(/*string*/)
-  .AndFinally.ApplyOptions(ConfigurationDiagnosticsOptions.GlobalOptions);
+  .AndFinally.BuildOptions();
 ```
+
+#### Obfuscators
+
+Obfuscators are ways in which to hide a secret. 
+
+Available obfuscators are:
+* Fixed Asterisk : Replaces a secret with a fixed number of asterisks.
+* Fixed String : Replaces a secret with a fixed string.
+* Func : You provide a function that takes a secret and obfuscates it.
+* Matched Length Asterisks : Replaces a secret with an equivalent length of asterisks.
+* Plain Text : Just passes the secret through without modifying it.
+* Redacted : Replaces the secret with a "REDACTED" marker.
+
+#### Key Matchers
+
+Key Matchers are ways to match the key in an element of the configuration or connection string to identify them as secrets.
+
+Available matchers are:
+* Contains : The key contains the value.
+* Regex : The key can be matched by a regular expression pattern.
+* Function Predicate : The key can be matched by applying it to a function predicate.
+* Aggregate matcher: A matcher of matchers, the fluent options builder will automatically create an aggregate matcher if you specify two or more conditions for matching a key as having an associated secret value.
