@@ -75,7 +75,7 @@ The parameters are:
 - `options`: The options for obfuscating and key matching secrets so that values that are secrets are not inadvertently rendered to the log. If no options are specified then the `ConfigurationDiagnosticsOptions.GlobalOptions` are used.
 
 e.g.
-
+I'
 ```
 info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConfigurationProviderTrackingExtensionsTests[0]
       Provider sources for value of SomeSection:SomeKey
@@ -113,22 +113,38 @@ info: Stravaig.Extensions.Configuration.Diagnostics.Tests.LogValuesTests[0]
       ConfigTwo : Dos
 ```
 
-### Connection Strings
 
-There are three main variants to this. First is an extension method on IConfiguration, Second, an extension method on the logger, and third an extension method on IDbConnection
 
-- `IConfiguration.LogConnectionString` will deconstruct and log at the given level the connection string with the given name that was found in the configuration.
-  - `IConfiguration.LogConnectionStringAsInformation` is a variant that will log at the information level.
-  - `IConfiguration.LogConnectionStringAsDebug` is a variant that will log at the debug level.
-  - `IConfiguration.LogConnectionStringAsTrace` is a variant that will log at the trace level.
-- `ILogger.LogConnectionString` will deconstruct the given connection string at the desired log level.
-  - `ILogger.LogConnectionStringAsInformation` is a variant that will log at the information level.
-  - `ILogger.LogConnectionStringAsDebug` is a variant that will log at the debug level.
-  - `ILogger.LogConnectionStringAsTrace` is a variant that will log at the trace level.
-- `IDbConnection.LogConnectionString` will deconstruct the connection's connection string and log at the desired level.
-  - `IDbConnection.LogConnectionStringAsInformation` is a variant that will log at the information level.
-  - `IDbConnection.LogConnectionStringAsDebug` is a variant that will log at the debug level.
-  - `IDbConnection.LogConnectionStringAsTrace` is a variant that will log at the trace level.
+### Log Connection Strings
+
+This will deconstruct the connection string into its component parts.
+
+There are a few variants to this. You can specify the name of a connection string in the configuration and it will pick out the value from the `ConnectionStrings` section for you. You can pass in a connection string directly. Or, you can pass an `IDbConnection` object and the connection string will be extracted from that.
+ 
+- `ILogger.LogConnectionString(IConfiguration config, LogLevel level, string name, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogConnectionStringAsInformation(IConfiguration config, string name, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogConnectionStringAsDebug(IConfiguration config, string name, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogConnectionStringAsTrace(IConfiguration config, string name, ConfigurationDiagnosticOptions = null)`
+- `ILogger.LogConnectionString(IDbConnection connection, LogLevel level, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogConnectionStringAsInformation(IDbConnection connection, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogConnectionStringAsDebug(IDbConnection connection, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogConnectionStringAsTrace(IDbConnection connection, ConfigurationDiagnosticOptions = null)`
+- `ILogger.LogAllConnectionStrings(IConfiguration config, LogLevel level, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogAllConnectionStringsAsInformation(IConfiguration config, LogLevel level, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogAllConnectionStringsAsDebug(IConfiguration config, LogLevel level, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogAllConnectionStringsAsTrace(IConfiguration config, LogLevel level, ConfigurationDiagnosticOptions = null)`
+- `ILogger.LogConnectionString(LogLevel level, string connectionString, string name = null, ConfigurationDiagnosticOptions options = null)`
+  - `ILogger.LogConnectionStringAsInformation(string connectionString, string name = null, ConfigurationDiagnosticOptions options = null)`
+  - `ILogger.LogConnectionStringAsDebug(string connectionString, string name = null, ConfigurationDiagnosticOptions options = null)`
+  - `ILogger.LogConnectionStringAsTrace(string connectionString, string name = null, ConfigurationDiagnosticOptions options = null)`
+
+The parameters are:
+* `IConfiguration config` : The configuration containing a `ConnectionStrings` section.
+* `IDbConnection connection` : A connection object, which contains a connection string.
+* `LogLevel level` : The level at which to log.
+* `string name` : The name of the connection string element.
+* `string connectionString` : The connection string itself.
+* `ConfigurationDiagnosticOptions options` : An optional parameter that defines the options for obfuscation and secret key matching. If not give uses `ConfigurationDiagnosticOptions.GlobalOptions`
 
 For all of these the deconstructed connection string log message will look something like this:
 
