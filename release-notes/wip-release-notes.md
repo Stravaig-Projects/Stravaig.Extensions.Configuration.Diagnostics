@@ -10,3 +10,4 @@ Date: ???
 
 ### Miscellaneous
 
+Issue #44: Updated the documentation
