@@ -8,22 +8,19 @@ Provides logged diagnostics for the app configuration.
 
 ## Usage
 
-The library consists of a number of extension methods on the following interfaces:
-- `IConfigurationRoot`
-- `IConfiguration`
-- `IDbConnection` (for convenience when dealing with connection strings)
+### Logging Provider Type Names
 
-### IConfigurationRoot
+- `ILogger.LogProviderNames(IConfigurationRoot, LogLevel)`
+  - `ILogger.LogProviderNamesAsInformation(IConfigurationRoot)`
+  - `ILogger.LogProviderNamesAsDebug(IConfigurationRoot)`
+  - `ILogger.LogProviderNamesAsTrace(IConfigurationRoot)`
 
-- `LogProviderNames` will list the config providers in the log at the desired log level.
-  - `LogProviderNamesAsInformation` variant that logs at the Information level.
-  - `LogProviderNamesAsDebug` variant that logs at the Debug level.
-  - `LogProviderNamesAsTrace` variant that logs at the Trace level.
+Logs the provider type names that are in the `IConfigurationRoot` at the requested level.
 
 e.g.
 
 ```csharp
-    configRoot.LogProviderNames(logger, LogLevel.Information);
+    logger.LogProviderNames(configRoot, LogLevel.Information);
 ```
 
 will produce a log entry that looks like this from the standard console logger:
@@ -37,12 +34,48 @@ info: Stravaig.Extensions.Configuration.Diagnostics.Tests.MultipleProviderNameTe
       Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider
 ```
 
-#### Tracking where a value came from
+### Logging Providers
 
-You can track where a value came from with the `LogConfigurationKeySource` based methods. It will output the providers that have the given key, the last of which will be the provider that was used for the final answer.
+- `ILogger.LogProviders(IConfigurationRoot, LogLevel)`
+  - `ILogger.LogProvidersAsInformation(IConfigurationRoot)`
+  - `ILogger.LogProvidersAsDebug(IConfigurationRoot)`
+  - `ILogger.LogProvidersAsTrace(IConfigurationRoot)`
 
 e.g.
 
+```csharp
+    logger.LogProviders(configRoot, LogLevel.Information);
+```
+
+will produce a log entry that looks like this from the standard console logger:
+
+```
+info: Stravaig.Extensions.Configuration.Diagnostics.Tests.MultipleProvidersTests[0]
+      The following configuration providers were registered:
+      MemoryConfigurationProvider
+      JsonConfigurationProvider for 'appsettings.json' (Optional)
+      JsonConfigurationProvider for 'appsettings.test.json' (Optional)
+      EnvironmentVariablesConfigurationProvider
+      CommandLineConfigurationProvider
+```
+
+### Tracking where a value came from
+
+- `ILogger.LogConfigurationKeySource(LogLevel, IConfigurationRoot, string key, bool compressed = false, ConfigurationDiagnosticsOptions options = null)`
+  - `ILogger.LogConfigurationKeySourceAsInformation(IConfigurationRoot, string key, bool compressed  = false, ConfigurationDiagnosticsOptions options = null)`
+  - `ILogger.LogConfigurationKeySourceAsDebug(IConfigurationRoot, string key, bool compressed  = false, ConfigurationDiagnosticsOptions options = null)`
+  - `ILogger.LogConfigurationKeySourceAsTrace(IConfigurationRoot, string key, bool compressed  = false, ConfigurationDiagnosticsOptions options = null)`
+
+You can track where a value came from with the `LogConfigurationKeySource` based methods. It will output the providers that have the given key, the last of which will be the provider that was used for the final value that is picked up by your application.
+
+The parameters are: 
+- `LogLevel level` : The level to log at.
+- `string key` : The key to look up.
+- `bool compressed` : Whether to log providers that did not have a value for that key. If false then all providers are logged, but indicate `null` where no value was present. If true then providers that did not provide a value are ignored.
+- `options`: The options for obfuscating and key matching secrets so that values that are secrets are not inadvertently rendered to the log. If no options are specified then the `ConfigurationDiagnosticsOptions.GlobalOptions` are used.
+
+e.g.
+I'
 ```
 info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConfigurationProviderTrackingExtensionsTests[0]
       Provider sources for value of SomeSection:SomeKey
@@ -51,19 +84,23 @@ info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConfigurationProviderT
       * JsonStreamConfigurationProvider ==> "SomeNewValue"
 ```
 
-### IConfiguration
+### Log Configuration Values
 
 As the `IConfigurationRoot` interface is derived from the `IConfiguration` interface, that the extension methods here will work with an `IConfigurationRoot` reference too.
 
-- `LogConfigurationValues` will list the configuration keys and values at the desired log level.
-  - `LogConfigurationValuesAsInformation` variant that logs at the information level.
-  - `LogConfigurationValuesAsDebug` variant that logs at the debug level.
-  - `LogConfigurationValuesAsTrace` variant that logs at the trace level.
-      
+- `ILogger.LogConfigurationValues(IConfiguration config, LogLevel level, ConfigurationDiagnosticsOptions options = null)`
+  - `ILogger.LogConfigurationValuesAsInformation(IConfiguration config, ConfigurationDiagnosticsOptions options = null)`
+  - `ILogger.LogConfigurationValuesAsDebug(IConfiguration config, ConfigurationDiagnosticsOptions options = null)`
+  - `ILogger.LogConfigurationValuesAsTrace(IConfiguration config, ConfigurationDiagnosticsOptions options = null)`
+
+The parameters are: 
+- `LogLevel level` : The level to log at.
+- `options`: The options for obfuscating and key matching secrets so that values that are secrets are not inadvertently rendered to the log. If no options are specified then the `ConfigurationDiagnosticsOptions.GlobalOptions` are used.
+
 e.g.
 
 ```csharp 
-config.LogConfigurationValues(logger, LogLevel.Information);
+logger.LogConfigurationValues(config, LogLevel.Information);
 ```
 
 will produce a log entry that looks something like this:
@@ -76,22 +113,38 @@ info: Stravaig.Extensions.Configuration.Diagnostics.Tests.LogValuesTests[0]
       ConfigTwo : Dos
 ```
 
-### Connection Strings
 
-There are three main variants to this. First is an extension method on IConfiguration, Second, an extension method on the logger, and third an extension method on IDbConnection
 
-- `IConfiguration.LogConnectionString` will deconstruct and log at the given level the connection string with the given name that was found in the configuration.
-  - `IConfiguration.LogConnectionStringAsInformation` is a variant that will log at the information level.
-  - `IConfiguration.LogConnectionStringAsDebug` is a variant that will log at the debug level.
-  - `IConfiguration.LogConnectionStringAsTrace` is a variant that will log at the trace level.
-- `ILogger.LogConnectionString` will deconstruct the given connection string at the desired log level.
-  - `ILogger.LogConnectionStringAsInformation` is a variant that will log at the information level.
-  - `ILogger.LogConnectionStringAsDebug` is a variant that will log at the debug level.
-  - `ILogger.LogConnectionStringAsTrace` is a variant that will log at the trace level.
-- `IDbConnection.LogConnectionString` will deconstruct the connection's connection string and log at the desired level.
-  - `IDbConnection.LogConnectionStringAsInformation` is a variant that will log at the information level.
-  - `IDbConnection.LogConnectionStringAsDebug` is a variant that will log at the debug level.
-  - `IDbConnection.LogConnectionStringAsTrace` is a variant that will log at the trace level.
+### Log Connection Strings
+
+This will deconstruct the connection string into its component parts.
+
+There are a few variants to this. You can specify the name of a connection string in the configuration and it will pick out the value from the `ConnectionStrings` section for you. You can pass in a connection string directly. Or, you can pass an `IDbConnection` object and the connection string will be extracted from that.
+ 
+- `ILogger.LogConnectionString(IConfiguration config, LogLevel level, string name, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogConnectionStringAsInformation(IConfiguration config, string name, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogConnectionStringAsDebug(IConfiguration config, string name, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogConnectionStringAsTrace(IConfiguration config, string name, ConfigurationDiagnosticOptions = null)`
+- `ILogger.LogConnectionString(IDbConnection connection, LogLevel level, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogConnectionStringAsInformation(IDbConnection connection, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogConnectionStringAsDebug(IDbConnection connection, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogConnectionStringAsTrace(IDbConnection connection, ConfigurationDiagnosticOptions = null)`
+- `ILogger.LogAllConnectionStrings(IConfiguration config, LogLevel level, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogAllConnectionStringsAsInformation(IConfiguration config, LogLevel level, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogAllConnectionStringsAsDebug(IConfiguration config, LogLevel level, ConfigurationDiagnosticOptions = null)`
+  - `ILogger.LogAllConnectionStringsAsTrace(IConfiguration config, LogLevel level, ConfigurationDiagnosticOptions = null)`
+- `ILogger.LogConnectionString(LogLevel level, string connectionString, string name = null, ConfigurationDiagnosticOptions options = null)`
+  - `ILogger.LogConnectionStringAsInformation(string connectionString, string name = null, ConfigurationDiagnosticOptions options = null)`
+  - `ILogger.LogConnectionStringAsDebug(string connectionString, string name = null, ConfigurationDiagnosticOptions options = null)`
+  - `ILogger.LogConnectionStringAsTrace(string connectionString, string name = null, ConfigurationDiagnosticOptions options = null)`
+
+The parameters are:
+* `IConfiguration config` : The configuration containing a `ConnectionStrings` section.
+* `IDbConnection connection` : A connection object, which contains a connection string.
+* `LogLevel level` : The level at which to log.
+* `string name` : The name of the connection string element.
+* `string connectionString` : The connection string itself.
+* `ConfigurationDiagnosticOptions options` : An optional parameter that defines the options for obfuscation and secret key matching. If not give uses `ConfigurationDiagnosticOptions.GlobalOptions`
 
 For all of these the deconstructed connection string log message will look something like this:
 
@@ -109,17 +162,17 @@ info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConnectionStringLogTes
 You can build the options up using a fluent interface, for example:
 
 ```csharp
-ConfigurationDiagnosticsOptions.GlobalOptions = ConfigurationDiagnosticsOptions
+ConfigurationDiagnosticsOptions
   .SetUpBy.Obfuscating.WithAsterisks()
   .And.MatchingConfigurationKeys.Containing(/*string*/)
   .And.MatchingConnectionStringKeys.MatchingPattern(/*regExPattern*/)
-  .AndFinally.BuildOptions();
+  .AndFinally.ApplyOptions(ConfigurationDiagnosticsOptions.GlobalOptions);
 ```
 
 or
 
 ```csharp
-ConfigurationDiagnosticsOptions
+var options = ConfigurationDiagnosticsOptions
   .SetUpBy.Obfuscating.ByRedacting()
   .And.MatchingConfigurationKeys.Where
     .KeyContains(/*string*/)
@@ -128,5 +181,27 @@ ConfigurationDiagnosticsOptions
   .And.ConnectionStringKeys.Where
     .KeyMatchesPattern(/*regExPattern*/)
     .OrContains(/*string*/)
-  .AndFinally.ApplyOptions(ConfigurationDiagnosticsOptions.GlobalOptions);
+  .AndFinally.BuildOptions();
 ```
+
+#### Obfuscators
+
+Obfuscators are ways in which to hide a secret. 
+
+Available obfuscators are:
+* Fixed Asterisk : Replaces a secret with a fixed number of asterisks.
+* Fixed String : Replaces a secret with a fixed string.
+* Func : You provide a function that takes a secret and obfuscates it.
+* Matched Length Asterisks : Replaces a secret with an equivalent length of asterisks.
+* Plain Text : Just passes the secret through without modifying it.
+* Redacted : Replaces the secret with a "REDACTED" marker.
+
+#### Key Matchers
+
+Key Matchers are ways to match the key in an element of the configuration or connection string to identify them as secrets.
+
+Available matchers are:
+* Contains : The key contains the value.
+* Regex : The key can be matched by a regular expression pattern.
+* Function Predicate : The key can be matched by applying it to a function predicate.
+* Aggregate matcher: A matcher of matchers, the fluent options builder will automatically create an aggregate matcher if you specify two or more conditions for matching a key as having an associated secret value.
