@@ -104,8 +104,10 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
             var options = SetupOptions();
             Logger.LogAllConnectionStrings(ConfigRoot, level, options);
             var logs = GetLogs();
-            logs.Count.ShouldBe(3);
+            logs.Count.ShouldBe(1);
             logs[0].FormattedMessage.ShouldContain("The following connection strings were found");
+            logs[0].FormattedMessage.ShouldContain(DodgySecurityKey);
+            logs[0].FormattedMessage.ShouldContain(SqlServerStandardSecurityKey);
         }
         
         [Test]

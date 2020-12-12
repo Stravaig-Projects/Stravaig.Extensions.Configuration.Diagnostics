@@ -15,6 +15,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         private IMatcher _configurationKeyMatcher = NullMatcher.Instance;
         private IMatcher _connectionStringElementMatcher = NullMatcher.Instance;
         private IConnectionStringRenderer _connectionStringRenderer = StructuredConnectionStringRenderer.Instance;
+        private IAllConnectionStringsRenderer _allConnectionStringRenderer = StructuredAllConnectionStringsRenderer.Instance;
         
         /// <summary>
         /// Global options used if no specific options are set.
@@ -58,6 +59,13 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
             get => _connectionStringRenderer;
             set => _connectionStringRenderer = value ?? StructuredConnectionStringRenderer.Instance;
         }
+
+        public IAllConnectionStringsRenderer AllConnectionStringsRenderer
+        {
+            get => _allConnectionStringRenderer;
+            set => _allConnectionStringRenderer = value ?? StructuredAllConnectionStringsRenderer.Instance;
+        }
+        
 
         /// <summary>
         /// Assists the creation of the <see cref="ConfigurationKeyMatcher"/>.

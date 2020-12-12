@@ -121,25 +121,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         public static void LogAllConnectionStrings(this ILogger logger, IConfiguration config, LogLevel level,
             ConfigurationDiagnosticsOptions options = null)
         {
-            var connectionStringSection = config.GetSection("ConnectionStrings");
-            var names = connectionStringSection
-                .GetChildren()
-                .Select(s => s.Key)
-                .OrderBy(k => k)
-                .ToArray();
-
-            if (names.Length == 0)
-            {
-                logger.Log(level, "No connections strings found in the configuration.");
-                return;
-            }
-
-            logger.Log(level, "The following connection strings were found "+string.Join(", ", names));
-            
-            foreach (string key in names)
-            {
-                logger.LogConnectionString(config, key, level, options);
-            }
+            options = options ?? ConfigurationDiagnosticsOptions.GlobalOptions;
+            var message = options.AllConnectionStringsRenderer.Render(config, options);
+            logger.Log(message.GetLogLevel(level), message.Exception, message.MessageTemplate, message.Properties);
         }
         
         /// <summary>
