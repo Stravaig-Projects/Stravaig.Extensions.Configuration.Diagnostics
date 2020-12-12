@@ -6,10 +6,17 @@ using Microsoft.Extensions.Configuration;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
 {
+    /// <summary>
+    /// A Structured renderer that renders all the connection strings in a configuration.
+    /// </summary>
     public class StructuredAllConnectionStringsRenderer: Renderer, IAllConnectionStringsRenderer
     {
+        /// <summary>
+        /// The single instance of this class.
+        /// </summary>
         public static readonly StructuredAllConnectionStringsRenderer Instance = new StructuredAllConnectionStringsRenderer();
-        
+
+        /// <inheritdoc />
         public MessageEntry Render(IConfiguration config, ConfigurationDiagnosticsOptions options)
         {
             var connectionStringSection = config.GetSection("ConnectionStrings");

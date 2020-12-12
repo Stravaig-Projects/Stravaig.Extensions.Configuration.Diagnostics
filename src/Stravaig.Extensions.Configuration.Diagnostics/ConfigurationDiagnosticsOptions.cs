@@ -54,12 +54,18 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
             set => _connectionStringElementMatcher = value ?? NullMatcher.Instance;
         }
 
+        /// <summary>
+        /// The renderer that creates the log message for a deconstructed connection string
+        /// </summary>
         public IConnectionStringRenderer ConnectionStringRenderer
         {
             get => _connectionStringRenderer;
             set => _connectionStringRenderer = value ?? StructuredConnectionStringRenderer.Instance;
         }
 
+        /// <summary>
+        /// The renderer that creates the log message for all deconstructed connection strings in a configuration
+        /// </summary>
         public IAllConnectionStringsRenderer AllConnectionStringsRenderer
         {
             get => _allConnectionStringRenderer;

@@ -2,10 +2,18 @@ using System.Text;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
 {
+    /// <summary>
+    /// Renders an aspect of the configuration system.
+    /// </summary>
     public abstract class Renderer
     {
         private const string PlaceholderPartJoin = "_";
         
+        /// <summary>
+        /// Creates a safely named placeholder for use in structured renderers.
+        /// </summary>
+        /// <param name="parts">The parts that make up the placeholder name.</param>
+        /// <returns>A placeholder, including the braces.</returns>
         protected string Placeholder(params string[] parts)
         {
             StringBuilder placeholderBuilder = new StringBuilder();

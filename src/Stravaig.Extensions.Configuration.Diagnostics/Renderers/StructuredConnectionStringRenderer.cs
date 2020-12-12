@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Globalization;
 using System.Text;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
@@ -11,8 +10,12 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
     /// </summary>
     public class StructuredConnectionStringRenderer : Renderer, IConnectionStringRenderer
     {
+        /// <summary>
+        /// The single instance of this class
+        /// </summary>
         public static readonly StructuredConnectionStringRenderer Instance = new StructuredConnectionStringRenderer();
-        
+
+        /// <inheritdoc />
         public MessageEntry Render(string connectionString, string name, ConfigurationDiagnosticsOptions options)
         {
             if (string.IsNullOrWhiteSpace(connectionString))
@@ -55,7 +58,6 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
             if (name != null)
                 sb.Append($"\"{Placeholder(name, nameof(name))}\" ");
             sb.Append("connection string value could not be interpreted as a connection string.");
-            string message = sb.ToString();
             return new MessageEntry(exception, sb.ToString(), name);
         }
         
@@ -82,7 +84,6 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
             ConfigurationDiagnosticsOptions options)
         {
             var keys = builder.Keys ?? Array.Empty<string>();
-            int index = 0;
             foreach (var keyObj in keys)
             {
                 string key = (string) keyObj;
@@ -91,12 +92,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
                         ? options.Obfuscator.Obfuscate((string) builder[key])
                         : (string) builder[key];
  
-                var indexString = index.ToString(CultureInfo.InvariantCulture);
                 messageTemplate.AppendLine($" * {Placeholder(name, key, nameof(key))} = {Placeholder(name, key, nameof(value))}");
                 args.Add(key);
                 args.Add(value);
-
-                index++;
             }
         }
     }
