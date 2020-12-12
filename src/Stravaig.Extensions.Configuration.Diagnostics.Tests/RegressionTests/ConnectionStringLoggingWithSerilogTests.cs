@@ -36,11 +36,12 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.RegressionTests
             var renderedMessage = logObject["RenderedMessage"];
             Console.WriteLine(renderedMessage);
 
+            
             var properties = (JObject) logObject["Properties"];
-            properties.ShouldContainKey("key0");
-            properties.ShouldContainKey("value0");
-            properties.ShouldContainKey("key1");
-            properties.ShouldContainKey("value1");
+            properties.ShouldContainKey("Simple_database_key");
+            properties.ShouldContainKey("Simple_database_value");
+            properties.ShouldContainKey("Simple_server_key");
+            properties.ShouldContainKey("Simple_server_value");
         }
 
         private static ILogger<ConnectionStringLoggingWithSerilogTests> SetupLogger(StringWriter writer)

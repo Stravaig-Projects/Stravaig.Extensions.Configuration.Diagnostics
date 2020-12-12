@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Stravaig.Extensions.Configuration.Diagnostics.Renderers;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics
 {
@@ -197,48 +198,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="options">The options to use, or <see cref="ConfigurationDiagnosticsOptions.GlobalOptions"/> if not specified.</param>
         public static void LogConnectionString(this ILogger logger, LogLevel level, string connectionString, string name = null, ConfigurationDiagnosticsOptions options = null)
         {
-            if (string.IsNullOrWhiteSpace(connectionString))
-            {
-                logger.Log(level, "No connection string to log.");
-                return;
-            }
-
             options = options ?? ConfigurationDiagnosticsOptions.GlobalOptions;
-
-            DbConnectionStringBuilder builder;
-            try
-            {
-                builder = new DbConnectionStringBuilder
-                {
-                    ConnectionString = connectionString
-                };
-            }
-            catch (Exception ex)
-            {
-                LogNotAValidConnectionString(logger, level, name, ex);
-                return;
-            }
-
-            List<object> args = new List<object>();
-            StringBuilder messageTemplate = new StringBuilder(connectionString.Length);
-            BuildStartOfMessage(messageTemplate, name, args);
-            AddConnectionStringKeysAndValues(messageTemplate, builder, args, options);
-
-            var objArgs = args.ToArray();
-            logger.Log(level, messageTemplate.ToString(), objArgs);
-        }
-
-        private static void LogNotAValidConnectionString(ILogger logger, LogLevel level, string connectionStringName,
-            Exception ex)
-        {
-            var warningOrGreater = (LogLevel) Math.Max((int) level, (int) LogLevel.Warning);
-            StringBuilder sb = new StringBuilder();
-            sb.Append("The ");
-            if (connectionStringName != null)
-                sb.Append($"\"{connectionStringName}\" ");
-            sb.Append("connection string value could not be interpreted as a connection string.");
-            string message = sb.ToString();
-            logger.Log(warningOrGreater, ex, message);
+            MessageEntry message = options.ConnectionStringRenderer.Render(connectionString, name, options);
+            logger.Log(message.GetLogLevel(level), message.Exception, message.MessageTemplate, message.Properties);
         }
 
         /// <summary>
@@ -275,43 +237,6 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         public static void LogConnectionStringAsTrace(this ILogger logger, string connectionString, string name = null, ConfigurationDiagnosticsOptions options = null)
         {
             logger.LogConnectionString(LogLevel.Trace, connectionString, name, options);
-        }
-
-        private static void AddConnectionStringKeysAndValues(
-            StringBuilder messageTemplate,
-            DbConnectionStringBuilder builder,
-            List<object> args,
-            ConfigurationDiagnosticsOptions options)
-        {
-            var keys = builder.Keys ?? Array.Empty<string>();
-            int index = 0;
-            foreach (var keyObj in keys)
-            {
-                string key = (string) keyObj;
-                messageTemplate.AppendLine(" * {key" + index + "} = {value" + index + "}");
-                args.Add(keyObj);
-                var value =
-                    options.ConnectionStringElementMatcher.IsMatch(key)
-                        ? options.Obfuscator.Obfuscate((string) builder[key])
-                        : (string) builder[key];
-                args.Add(value);
-                index++;
-            }
-        }
-
-        private static void BuildStartOfMessage(
-            StringBuilder messageTemplate,
-            string connectionStringName,
-            List<object> args)
-        {
-            messageTemplate.Append("Connection string ");
-            if (connectionStringName != null)
-            {
-                messageTemplate.Append("({name}) ");
-                args.Add(connectionStringName);
-            }
-
-            messageTemplate.AppendLine("parameters:");
         }
     }
 }
