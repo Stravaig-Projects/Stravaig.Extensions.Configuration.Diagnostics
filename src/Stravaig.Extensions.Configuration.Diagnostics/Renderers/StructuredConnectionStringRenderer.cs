@@ -69,7 +69,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
             messageTemplate.Append("Connection string ");
             if (name != null)
             {
-                messageTemplate.Append($"named ({Placeholder(name, nameof(name))}) ");
+                messageTemplate.Append($"(named {Placeholder(name, nameof(name))}) ");
                 args.Add(name);
             }
 

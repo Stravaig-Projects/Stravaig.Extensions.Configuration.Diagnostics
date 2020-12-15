@@ -34,7 +34,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
             StringBuilder messageTemplate = new StringBuilder();
             messageTemplate.Append("The following connection strings were found: ");
             messageTemplate.Append(string.Join(", ", names
-                .Select(name => Placeholder(name, nameof(name)))));
+                .Select(name => Placeholder("preamble", name, nameof(name)))));
             messageTemplate.AppendLine(".");
             
             foreach (string name in names)

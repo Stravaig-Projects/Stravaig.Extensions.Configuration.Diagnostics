@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
@@ -16,7 +18,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         private const string SqlServerStandardSecurityValue = "Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;";
         private const string DodgySecurityKey = "DodgyConnection";
         private const string DodgyConnectionString = "*** Comes from Secrets ***";
-        
+        private const string SqlServerTrustedSecurityKey = "SqlServerTrustedSecurity";
+        private const string SqlServerTrustedSecurityValue = "Server=myServerAddress;Database=myDataBase;Trusted_Connection=True;";
+
         [SetUp]
         public void SetUp()
         {
@@ -99,17 +103,57 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         
         [Test]
         [TestCaseSource(typeof(LogLevelSource))]
-        public void LogAllConnectionStrings(LogLevel level)
+        public void LogAllConnectionStringsWithOneDodgyConnectionString(LogLevel level)
         {
             var options = SetupOptions();
             Logger.LogAllConnectionStrings(ConfigRoot, level, options);
             var logs = GetLogs();
             logs.Count.ShouldBe(1);
+            Console.WriteLine(logs[0].OriginalMessage);
+            ((int)logs[0].LogLevel).ShouldBeGreaterThanOrEqualTo((int)LogLevel.Warning);
             logs[0].FormattedMessage.ShouldContain("The following connection strings were found");
             logs[0].FormattedMessage.ShouldContain(DodgySecurityKey);
             logs[0].FormattedMessage.ShouldContain(SqlServerStandardSecurityKey);
+            
+            logs[0].OriginalMessage.ShouldContain("The following connection strings were found: {preamble_DodgyConnection_name}, {preamble_SqlServerStandardSecurity_name}.");
+            logs[0].OriginalMessage.ShouldContain("The \"{DodgyConnection_name}\" connection string value could not be interpreted as a connection string.");
+            logs[0].OriginalMessage.ShouldContain("Connection string (named {SqlServerStandardSecurity_name}) parameters:");
+            logs[0].Properties.Select(p => p.Key).ShouldBeUnique();
         }
         
+        [Test]
+        [TestCaseSource(typeof(LogLevelSource))]
+        public void LogAllConnectionStringsGoodConnectionString(LogLevel level)
+        {
+            SetupConfig(builder =>
+            {
+                builder.AddInMemoryCollection(new Dictionary<string, string>
+                {
+                    {
+                        $"{BaseConfigKey}:{SqlServerStandardSecurityKey}",
+                        SqlServerStandardSecurityValue
+                    },
+                    {
+                        $"{BaseConfigKey}:{SqlServerTrustedSecurityKey}",
+                        SqlServerTrustedSecurityValue
+                    }
+                });
+            });
+            var options = SetupOptions();
+            Logger.LogAllConnectionStrings(ConfigRoot, level, options);
+            var logs = GetLogs();
+            logs.Count.ShouldBe(1);
+            Console.WriteLine(logs[0].OriginalMessage);
+            logs[0].LogLevel.ShouldBe(level);
+            logs[0].FormattedMessage.ShouldContain("The following connection strings were found");
+            logs[0].FormattedMessage.ShouldContain(SqlServerTrustedSecurityKey);
+            logs[0].FormattedMessage.ShouldContain(SqlServerStandardSecurityKey);
+            
+            logs[0].OriginalMessage.ShouldContain("The following connection strings were found: {preamble_SqlServerStandardSecurity_name}, {preamble_SqlServerTrustedSecurity_name}.");
+            logs[0].OriginalMessage.ShouldContain("Connection string (named {SqlServerTrustedSecurity_name}) parameters:");
+            logs[0].OriginalMessage.ShouldContain("Connection string (named {SqlServerStandardSecurity_name}) parameters:");
+        }
+
         [Test]
         [TestCaseSource(typeof(LogLevelSource))]
         public void LogAllConnectionStringsWhenThereAreNone(LogLevel level)
