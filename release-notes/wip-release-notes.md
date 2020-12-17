@@ -10,6 +10,7 @@ Date: ???
 
 * #34: Create Func obfuscator Can now obfuscate based on a user defined function. 
 * #35: Create Func matcher. Can now specify a predicate function that matches the key of secrets.
+* #42: Logging all connection strings now does so in a single log message.
 
 ### Miscellaneous
 
