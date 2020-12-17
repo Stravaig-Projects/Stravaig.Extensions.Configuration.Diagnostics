@@ -16,8 +16,11 @@ This PR adddresses Issue #<issue-number>.
 
 - [ ] I have updated `release-notes/wip-release-notes.md` file
 - [ ] I have adressed style warnings given by Visual Studio/ReSharper/Rider
+- [ ] I have checked that all tests pass.
 
 ### Optional
 
-- [ ] I have updated the `readme.md` file (if necessary)
-- [ ] I have bumped the version number in the `version.txt` (if necessary)
+- [ ] I have updated the `readme.md` file
+- [ ] I have bumped the version number in the `version.txt`
+- [ ] I have added or updated any necessary tests.
+- [ ] I have ensured that any new code is covered by tests where reasonably possible.
