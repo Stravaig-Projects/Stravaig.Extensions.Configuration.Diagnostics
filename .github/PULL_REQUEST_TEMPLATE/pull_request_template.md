@@ -15,7 +15,7 @@ This PR addresses Issue #<issue-number>.
 ### Required
 
 - [ ] I have updated `release-notes/wip-release-notes.md` file
-- [ ] I have adressed style warnings given by Visual Studio/ReSharper/Rider
+- [ ] I have addressed style warnings given by Visual Studio/ReSharper/Rider
 - [ ] I have checked that all tests pass.
 
 ### Optional
