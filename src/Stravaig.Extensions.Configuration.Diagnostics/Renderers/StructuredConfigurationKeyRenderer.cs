@@ -24,7 +24,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
             {
                 var configurationKeyParts = kvp.Key.Split(':');
                 var configurationKeyPlaceholder = Placeholder(configurationKeyParts);
-                messageTemplate.AppendLine($"{kvp.Key} = {configurationKeyPlaceholder}");
+                messageTemplate.AppendLine($"{kvp.Key} : {configurationKeyPlaceholder}");
                 args.Add(kvp.Value);
             }
             
