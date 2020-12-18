@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -53,10 +53,11 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         {
             var providerNames = config.Providers
                 .Select(p => p.GetType().FullName);
-            string message = "The following configuration providers were registered:" +
-                             Environment.NewLine +
-                             string.Join(Environment.NewLine, providerNames);
-            logger.Log(level, message);
+            
+            logger.Log(
+                level,
+                "The following configuration providers were registered: {ProviderNames}",
+                Environment.NewLine + string.Join(Environment.NewLine, providerNames));
         }
 
         /// <summary>
@@ -99,10 +100,11 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         {
             var providers = config.Providers
                 .Select(p => p.ToString());
-            string message = "The following configuration providers were registered:" +
-                             Environment.NewLine +
-                             string.Join(Environment.NewLine, providers);
-            logger.Log(level, message);
+            
+            logger.Log(
+                level,
+                "The following configuration providers were registered: {Providers}",
+                Environment.NewLine + string.Join(Environment.NewLine, providers));
         }
     }
 }
