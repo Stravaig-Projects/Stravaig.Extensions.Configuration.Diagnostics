@@ -40,6 +40,55 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
                 });
             });
         }
+
+        [Test]
+        [TestCaseSource(typeof(LogLevelSource))]
+        public void NullConnectionStringLogsNoConnectionString(LogLevel level)
+        {
+            Logger.LogConnectionString(level, null);
+            var logs = GetLogs();
+            logs.Count.ShouldBe(1);
+            logs[0].FormattedMessage.ShouldBe("No connection string to log.");
+        }
+
+        [Test]
+        [TestCaseSource(typeof(LogLevelSource))]
+        public void NullNamedConnectionStringLogsNoConnectionString(LogLevel level)
+        {
+            Logger.LogConnectionString(level, null, "NotAConnectionString");
+            var logs = GetLogs();
+            logs.Count.ShouldBe(1);
+            logs[0].FormattedMessage.ShouldBe("No connection string to log for NotAConnectionString.");
+            logs[0].Properties.Count.ShouldBe(2);
+            logs[0].Properties[0].Key.ShouldBe("NotAConnectionString_name");
+            logs[0].Properties[0].Value.ShouldBe("NotAConnectionString");
+        }
+
+        [Test]
+        [TestCaseSource(typeof(LogLevelSource))]
+        public void NamedConnectionStringWithNonAlphaNumericCharactersPropertiesRenderSafely(LogLevel level)
+        {
+            Logger.LogConnectionString(level, SqlServerStandardSecurityValue, "$My-Connection-String");
+            var logs = GetLogs();
+            logs.Count.ShouldBe(1);
+            logs[0].FormattedMessage.ShouldContain("Connection string (named $My-Connection-String) parameters");
+            logs[0].Properties.Count.ShouldBeGreaterThan(2);
+            logs[0].Properties[0].Key.ShouldBe("_My_Connection_String_name");
+            logs[0].Properties[0].Value.ShouldBe("$My-Connection-String");
+        }
+
+        [Test]
+        [TestCaseSource(typeof(LogLevelSource))]
+        public void NamedConnectionStringStartingWithNumberCharactersPropertiesRenderSafely(LogLevel level)
+        {
+            Logger.LogConnectionString(level, SqlServerStandardSecurityValue, "0My-Connection-String");
+            var logs = GetLogs();
+            logs.Count.ShouldBe(1);
+            logs[0].FormattedMessage.ShouldContain("Connection string (named 0My-Connection-String) parameters");
+            logs[0].Properties.Count.ShouldBeGreaterThan(2);
+            logs[0].Properties[0].Key.ShouldBe("_0My_Connection_String_name");
+            logs[0].Properties[0].Value.ShouldBe("0My-Connection-String");
+        }
         
         [Test]
         [TestCaseSource(typeof(LogLevelSource))]
