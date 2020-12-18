@@ -1,7 +1,10 @@
 # <title>
 
 <!--
-Fill in all the sections. Replace items surrounded by chevrons appropriately.
+Thank you for taking the time to contribute to this project.
+
+Please, fill in all the sections. 
+Replace items surrounded by chevrons appropriately.
 -->
 
 ## Issue
