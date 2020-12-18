@@ -1,6 +1,5 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Stravaig.Extensions.Configuration.Diagnostics.Renderers;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics
 {
@@ -93,7 +92,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="options">The options to use to obfuscate secrets.</param>
         public static void LogConfigurationValues(this ILogger logger, IConfiguration config, LogLevel level, ConfigurationDiagnosticsOptions options)
         {
-            var message = StructuredConfigurationKeyRenderer.Instance.Render(config, options);
+            var message = options.ConfigurationKeyRenderer.Render(config, options);
             logger.Log(message.GetLogLevel(level), message.Exception, message.MessageTemplate, message.Properties);
         }
     }

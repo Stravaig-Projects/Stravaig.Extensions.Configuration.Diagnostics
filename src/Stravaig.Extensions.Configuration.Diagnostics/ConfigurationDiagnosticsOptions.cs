@@ -14,9 +14,10 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         private ISecretObfuscator _obfuscator = PlainTextObfuscator.Instance;
         private IMatcher _configurationKeyMatcher = NullMatcher.Instance;
         private IMatcher _connectionStringElementMatcher = NullMatcher.Instance;
+        private IConfigurationKeyRenderer _configurationKeyRenderer = StructuredConfigurationKeyRenderer.Instance;
         private IConnectionStringRenderer _connectionStringRenderer = StructuredConnectionStringRenderer.Instance;
         private IAllConnectionStringsRenderer _allConnectionStringRenderer = StructuredAllConnectionStringsRenderer.Instance;
-        
+
         /// <summary>
         /// Global options used if no specific options are set.
         /// </summary>
@@ -53,9 +54,18 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
             get => _connectionStringElementMatcher;
             set => _connectionStringElementMatcher = value ?? NullMatcher.Instance;
         }
+        
+        /// <summary>
+        /// The renderer that creates the log message for all configuration keys in a configuration.
+        /// </summary>
+        public IConfigurationKeyRenderer ConfigurationKeyRenderer
+        {
+            get => _configurationKeyRenderer;
+            set => _configurationKeyRenderer = value ?? StructuredConfigurationKeyRenderer.Instance;
+        }
 
         /// <summary>
-        /// The renderer that creates the log message for a deconstructed connection string
+        /// The renderer that creates the log message for a deconstructed connection string.
         /// </summary>
         public IConnectionStringRenderer ConnectionStringRenderer
         {
@@ -64,7 +74,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         }
 
         /// <summary>
-        /// The renderer that creates the log message for all deconstructed connection strings in a configuration
+        /// The renderer that creates the log message for all deconstructed connection strings in a configuration.
         /// </summary>
         public IAllConnectionStringsRenderer AllConnectionStringsRenderer
         {
