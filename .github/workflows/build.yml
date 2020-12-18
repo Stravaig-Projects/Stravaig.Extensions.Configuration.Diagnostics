@@ -11,6 +11,8 @@ on:
       - '.gitignore'
       - 'contributors.md'
       - 'release-notes/**'
+      - '.github/PULL_REQUEST_TEMPLATE/**'
+      - 'src/.idea/**'
 
   pull_request:
     types: [assigned, opened, synchronize, reopened]
