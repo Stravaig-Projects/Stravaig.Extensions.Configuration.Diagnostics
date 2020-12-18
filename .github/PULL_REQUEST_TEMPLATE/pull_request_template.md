@@ -6,7 +6,7 @@ Fill in all the sections. Replace items surrounded by chevrons appropriately.
 
 ## Issue
 
-This PR adddresses Issue #<issue-number>.
+This PR addresses Issue #<issue-number>.
 
 <!-- Fill in any additional notes about the PR here -->
 
