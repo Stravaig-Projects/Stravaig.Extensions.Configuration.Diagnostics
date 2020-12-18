@@ -20,6 +20,11 @@ This PR addresses Issue #<issue-number>.
 
 ### Optional
 
+<!-- 
+Depending on what the PR is for these may not be needed.
+If any of these items are not needed, then they can be removed.
+-->
+
 - [ ] I have updated the `readme.md` file
 - [ ] I have bumped the version number in the `version.txt`
 - [ ] I have added or updated any necessary tests.
