@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Extensions.Configuration.Diagnostics", "Stravaig.Extensions.Configuration.Diagnostics\Stravaig.Extensions.Configuration.Diagnostics.csproj", "{E993302C-3E68-4228-9548-7B813F26CB5D}"
 EndProject
@@ -30,8 +30,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Repository_Configuration", "__Repository_Configuration", "{492723FE-2E1C-41AB-AB72-E37151DE0CB6}"
 ProjectSection(SolutionItems) = preProject
 	..\.gitignore = ..\.gitignore
-	..\.github\PULL_REQUEST_TEMPLATE\pull_request_template.md = ..\.github\PULL_REQUEST_TEMPLATE\pull_request_template.md
-	..\.github\ISSUE_TEMPLATE\bug-issue-template.md = ..\.github\ISSUE_TEMPLATE\bug-issue-template.md
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Solution_Configuration", "__Solution_Configuration", "{39174DBA-7A56-43D3-96C2-81BA0CDFE950}"
@@ -41,6 +39,13 @@ ProjectSection(SolutionItems) = preProject
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Extensions.Configuration.Diagnostics.AdHocTests", "Stravaig.Extensions.Configuration.Diagnostics.AdHocTests\Stravaig.Extensions.Configuration.Diagnostics.AdHocTests.csproj", "{F63C62F9-BA30-411E-AABF-8E38067000D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{4EC6DC08-D209-465A-AD5C-2F30DA170D7F}"
+ProjectSection(SolutionItems) = preProject
+	..\.github\PULL_REQUEST_TEMPLATE\pull_request_template.md = ..\.github\PULL_REQUEST_TEMPLATE\pull_request_template.md
+	..\.github\ISSUE_TEMPLATE\bug-issue-template.md = ..\.github\ISSUE_TEMPLATE\bug-issue-template.md
+	..\.github\ISSUE_TEMPLATE\enhancement-issue-template.md = ..\.github\ISSUE_TEMPLATE\enhancement-issue-template.md
+EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,5 +65,8 @@ Global
 		{F63C62F9-BA30-411E-AABF-8E38067000D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F63C62F9-BA30-411E-AABF-8E38067000D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F63C62F9-BA30-411E-AABF-8E38067000D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4EC6DC08-D209-465A-AD5C-2F30DA170D7F} = {492723FE-2E1C-41AB-AB72-E37151DE0CB6}
 	EndGlobalSection
 EndGlobal
