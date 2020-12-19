@@ -20,3 +20,4 @@ Date: ???
 * #40: Add missing XML docs.
 * #44: Updated the documentation.
 * #47: Add a Pull Request Template.
+* #60: Tidy Dependabot configuration & make easily available as solution item.
