@@ -24,6 +24,7 @@ ProjectSection(SolutionItems) = preProject
 	..\release-notes\wip-release-notes.md = ..\release-notes\wip-release-notes.md
 	..\release-notes\full-release-notes.md = ..\release-notes\full-release-notes.md
 	..\CODE_OF_CONDUCT.md = ..\CODE_OF_CONDUCT.md
+	..\CONTRIBUTING.md = ..\CONTRIBUTING.md
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Repository_Configuration", "__Repository_Configuration", "{492723FE-2E1C-41AB-AB72-E37151DE0CB6}"
