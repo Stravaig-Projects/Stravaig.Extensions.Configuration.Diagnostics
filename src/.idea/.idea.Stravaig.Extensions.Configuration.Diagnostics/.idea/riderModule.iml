@@ -17,6 +17,7 @@
     <content url="file://$USER_HOME$/.nuget/packages/nunit3testadapter/3.17.0/build/netcoreapp2.1/nunit.engine.api.dll" />
     <content url="file://$USER_HOME$/.nuget/packages/nunit3testadapter/3.17.0/build/netcoreapp2.1/nunit.engine.core.dll" />
     <content url="file://$USER_HOME$/.nuget/packages/nunit3testadapter/3.17.0/build/netcoreapp2.1/nunit.engine.dll" />
+    <content url="file://$MODULE_DIR$/../../../.github/ISSUE_TEMPLATE/bug-issue-template.md" />
     <content url="file://$MODULE_DIR$/../../../.github/PULL_REQUEST_TEMPLATE/pull_request_template.md" />
     <content url="file://$MODULE_DIR$/../../../.github/dependabot.yml" />
     <content url="file://$MODULE_DIR$/../../../.github/workflows/build.yml" />
