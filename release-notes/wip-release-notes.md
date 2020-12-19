@@ -24,6 +24,7 @@ Date: ???
 * #40: Add missing XML docs.
 * #44: Updated the documentation.
 * #47: Add a Pull Request Template.
+* #53: Add initial contributing guidelines.
 * #60: Tidy Dependabot configuration & make easily available as solution item.
 * #71: Update the build process from the template.
 
