@@ -9,7 +9,9 @@ Replace items surrounded by chevrons appropriately.
 
 ## Issue
 
-This PR addresses Issue #<issue-number>.
+<!-- Please do not create a PR without creating an issue first. -->
+
+This PR <!-- Delete as appropriate--> addresses part of/closes #<issue-number>.
 
 <!-- Fill in any additional notes about the PR here -->
 
@@ -17,8 +19,8 @@ This PR addresses Issue #<issue-number>.
 
 ### Required
 
-- [ ] I have updated `release-notes/wip-release-notes.md` file
-- [ ] I have addressed style warnings given by Visual Studio/ReSharper/Rider
+- [ ] I have updated `release-notes/wip-release-notes.md` file.
+- [ ] I have addressed style warnings given by Visual Studio/ReSharper/Rider.
 - [ ] I have checked that all tests pass.
 
 ### Optional
@@ -28,7 +30,7 @@ Depending on what the PR is for these may not be needed.
 If any of these items are not needed, then they can be removed.
 -->
 
-- [ ] I have updated the `readme.md` file
-- [ ] I have bumped the version number in the `version.txt`
+- [ ] I have updated the `readme.md` file.
+- [ ] I have bumped the version number in the `version.txt`.
 - [ ] I have added or updated any necessary tests.
 - [ ] I have ensured that any new code is covered by tests where reasonably possible.
