@@ -56,7 +56,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         }
         
         /// <summary>
-        /// The renderer that creates the log message for all configuration keys in a configuration.
+        /// The renderer that creates the log message for all configuration values in a configuration.
         /// </summary>
         public IConfigurationKeyRenderer ConfigurationKeyRenderer
         {
