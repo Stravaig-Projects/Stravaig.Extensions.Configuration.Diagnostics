@@ -6,5 +6,6 @@
         "nunit",
         "nupkg",
         "snupkg"
-    ]
+    ],
+    "restructuredtext.confPath": "${workspaceFolder}\\docs\\source"
 }
