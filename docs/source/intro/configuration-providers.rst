@@ -1,5 +1,5 @@
-Logging Provider Information
-============================
+Configuration Provider Information
+==================================
 
 Configuration Providers are the sources of configuration
 information. These are things such as ``appsetting.json``
@@ -20,7 +20,9 @@ Where:
 * ``configRoot`` is the ``IConfigurationRoot`` that contains the provider information.
 * ``level`` is the ``LogLevel`` at which you wish the information to be logged.
 
-Example output:
+
+Example output
+~~~~~~~~~~~~~~
 
 ::
 
@@ -30,6 +32,17 @@ Example output:
         Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider
         Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider
         Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider
+
+Alternative calls
+~~~~~~~~~~~~~~~~~
+
+::
+
+    logger.LogProviderNamesAsInformation(IConfigurationRoot configRoot)
+    logger.LogProviderNamesAsDebug(IConfigurationRoot configRoot)
+    logger.LogProviderNamesAsTrace(IConfigurationRoot configRoot)
+
+These operate the same as before but the log level is indicated in the method name.
 
 Log Providers
 -------------
@@ -46,7 +59,8 @@ Where:
 * ``configRoot`` is the ``IConfigurationRoot`` that contains the provider information.
 * ``level`` is the ``LogLevel`` at which you wish the information to be logged.
 
-Example output:
+Example output
+~~~~~~~~~~~~~~
 
 ::
 
@@ -57,3 +71,14 @@ Example output:
         JsonConfigurationProvider for 'appsettings.test.json' (Optional)
         EnvironmentVariablesConfigurationProvider
         CommandLineConfigurationProvider
+
+Alternative calls
+~~~~~~~~~~~~~~~~~
+
+::
+
+    logger.LogProvidersAsInformation(IConfigurationRoot configRoot)
+    logger.LogProvidersAsDebug(IConfigurationRoot configRoot)
+    logger.LogProvidersAsTrace(IConfigurationRoot configRoot)
+
+These operate the same as before but the log level is indicated in the method name.

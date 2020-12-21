@@ -13,7 +13,8 @@ Stravaig Projects: Configuration Diagnostics documentation!
    :caption: Introduction:
 
    intro/installing-the-package
-   intro/logging-providers
+   intro/configuration-providers
+   intro/track-value-source
 
 
 
