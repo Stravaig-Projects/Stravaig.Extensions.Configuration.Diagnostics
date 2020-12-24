@@ -6,7 +6,12 @@
 Stravaig Projects: Configuration Diagnostics documentation!
 ===========================================================
 
-`Stravaig.Extensions.Configuration.Diagnostics` is a set of extensions to assist diagnosing configuration settings issues by logging the current state which allows them to be examined.
+`Stravaig.Extensions.Configuration.Diagnostics` is a set 
+of extensions to assist diagnosing configuration setting 
+issues by logging the current state which allows them to 
+be examined. It also provides options for obfuscating 
+secret values so that they are not exposed in application 
+logs.
 
 .. toctree::
    :maxdepth: 2
@@ -15,6 +20,7 @@ Stravaig Projects: Configuration Diagnostics documentation!
    intro/installing-the-package
    intro/configuration-providers
    intro/track-value-source
+   intro/connection-strings
 
 
 
