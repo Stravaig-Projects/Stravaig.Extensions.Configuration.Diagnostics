@@ -18,6 +18,7 @@ logs.
    :caption: Introduction:
 
    intro/installing-the-package
+   intro/configuration-values
    intro/configuration-providers
    intro/track-value-source
    intro/connection-strings
