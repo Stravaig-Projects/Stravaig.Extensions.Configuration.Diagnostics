@@ -22,6 +22,13 @@ logs.
    intro/configuration-providers
    intro/track-value-source
    intro/connection-strings
+   intro/diagnostics-options
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Advanced:
+
+   advanced/creating-obfuscators
 
 
 
