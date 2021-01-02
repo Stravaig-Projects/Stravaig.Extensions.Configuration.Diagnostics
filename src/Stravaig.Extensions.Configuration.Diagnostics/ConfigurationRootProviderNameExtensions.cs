@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -23,6 +21,18 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
 
         /// <summary>
         /// Logs the provider names in the given <see cref="T:Microsoft.Extensions.Configuration.IConfigurationRoot"/>
+        /// at the Information log level.
+        /// </summary>
+        /// <param name="config">The configuration root to examine.</param>
+        /// <param name="logger">The logger to write the results to.</param>
+        /// <param name="options">The options to use for rendering the provider names.</param>
+        public static void LogProviderNamesAsInformation(this ILogger logger, IConfigurationRoot config, ConfigurationDiagnosticsOptions options)
+        {
+            logger.LogProviderNames(config, LogLevel.Information, options);
+        }
+
+        /// <summary>
+        /// Logs the provider names in the given <see cref="T:Microsoft.Extensions.Configuration.IConfigurationRoot"/>
         /// at the Debug log level.
         /// </summary>
         /// <param name="config">The configuration root to examine.</param>
@@ -30,6 +40,18 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         public static void LogProviderNamesAsDebug(this ILogger logger, IConfigurationRoot config)
         {
             logger.LogProviderNames(config, LogLevel.Debug);
+        }
+
+        /// <summary>
+        /// Logs the provider names in the given <see cref="T:Microsoft.Extensions.Configuration.IConfigurationRoot"/>
+        /// at the Debug log level.
+        /// </summary>
+        /// <param name="config">The configuration root to examine.</param>
+        /// <param name="logger">The logger to write the results to.</param>
+        /// <param name="options">The options to use for rendering the provider names.</param>
+        public static void LogProviderNamesAsDebug(this ILogger logger, IConfigurationRoot config, ConfigurationDiagnosticsOptions options)
+        {
+            logger.LogProviderNames(config, LogLevel.Debug, options);
         }
 
         /// <summary>
@@ -45,19 +67,42 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
 
         /// <summary>
         /// Logs the provider names in the given <see cref="T:Microsoft.Extensions.Configuration.IConfigurationRoot"/>
+        /// at the Trace log level.
+        /// </summary>
+        /// <param name="config">The configuration root to examine.</param>
+        /// <param name="logger">The logger to write the results to.</param>
+        /// <param name="options">The options to use for rendering the provider names.</param>
+        public static void LogProviderNamesAsTrace(this ILogger logger, IConfigurationRoot config, ConfigurationDiagnosticsOptions options)
+        {
+            logger.LogProviderNames(config, LogLevel.Trace, options);
+        }
+
+        /// <summary>
+        /// Logs the provider names in the given <see cref="T:Microsoft.Extensions.Configuration.IConfigurationRoot"/>
         /// </summary>
         /// <param name="config">The configuration root to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
         /// <param name="level">The log level to use.</param>
         public static void LogProviderNames(this ILogger logger, IConfigurationRoot config, LogLevel level)
         {
-            var providerNames = config.Providers
-                .Select(p => p.GetType().FullName);
-            
-            logger.Log(
-                level,
-                "The following configuration providers were registered: {ProviderNames}",
-                Environment.NewLine + string.Join(Environment.NewLine, providerNames));
+            logger.LogProviderNames(config, level, ConfigurationDiagnosticsOptions.GlobalOptions);
+        }
+
+        /// <summary>
+        /// Logs the provider names in the given <see cref="T:Microsoft.Extensions.Configuration.IConfigurationRoot"/>
+        /// </summary>
+        /// <param name="config">The configuration root to examine.</param>
+        /// <param name="logger">The logger to write the results to.</param>
+        /// <param name="level">The log level to use.</param>
+        /// <param name="options">The options to use for rendering the provider names.</param>
+        public static void LogProviderNames(
+            this ILogger logger,
+            IConfigurationRoot config,
+            LogLevel level,
+            ConfigurationDiagnosticsOptions options)
+        {
+            var message = options.ConfigurationProviderNameRenderer.Render(config);
+            logger.Log(message.GetLogLevel(level), message.Exception, message.MessageTemplate, message.Properties);
         }
 
         /// <summary>
@@ -68,6 +113,17 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         public static void LogProvidersAsInformation(this ILogger logger, IConfigurationRoot config)
         {
             logger.LogProviders(config, LogLevel.Information);
+        }
+
+        /// <summary>
+        /// Logs a list of the providers the configuration is using at the Information level.
+        /// </summary>
+        /// <param name="logger">The logger to write the details to.</param>
+        /// <param name="config">The configuration root.</param>
+        /// <param name="options">The options to use for rendering the providers.</param>
+        public static void LogProvidersAsInformation(this ILogger logger, IConfigurationRoot config, ConfigurationDiagnosticsOptions options)
+        {
+            logger.LogProviders(config, LogLevel.Information, options);
         }
         
         /// <summary>
@@ -81,6 +137,17 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         }
 
         /// <summary>
+        /// Logs a list of the providers the configuration is using at the Debug level.
+        /// </summary>
+        /// <param name="logger">The logger to write the details to.</param>
+        /// <param name="config">The configuration root.</param>
+        /// <param name="options">The options to use for rendering the providers.</param>
+        public static void LogProvidersAsDebug(this ILogger logger, IConfigurationRoot config, ConfigurationDiagnosticsOptions options)
+        {
+            logger.LogProviders(config, LogLevel.Debug, options);
+        }
+
+        /// <summary>
         /// Logs a list of the providers the configuration is using at the Trace level.
         /// </summary>
         /// <param name="logger">The logger to write the details to.</param>
@@ -91,6 +158,17 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         }
 
         /// <summary>
+        /// Logs a list of the providers the configuration is using at the Trace level.
+        /// </summary>
+        /// <param name="logger">The logger to write the details to.</param>
+        /// <param name="config">The configuration root.</param>
+        /// <param name="options">The options to use for rendering the providers.</param>
+        public static void LogProvidersAsTrace(this ILogger logger, IConfigurationRoot config, ConfigurationDiagnosticsOptions options)
+        {
+            logger.LogProviders(config, LogLevel.Trace, options);
+        }
+
+        /// <summary>
         /// Logs a list of the providers the configuration is using.
         /// </summary>
         /// <param name="logger">The logger to write the details to.</param>
@@ -98,13 +176,24 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="level">The level to log at.</param>
         public static void LogProviders(this ILogger logger, IConfigurationRoot config, LogLevel level)
         {
-            var providers = config.Providers
-                .Select(p => p.ToString());
-            
-            logger.Log(
-                level,
-                "The following configuration providers were registered: {Providers}",
-                Environment.NewLine + string.Join(Environment.NewLine, providers));
+            logger.LogProviders(config, level, ConfigurationDiagnosticsOptions.GlobalOptions);
+        }
+
+        /// <summary>
+        /// Logs a list of the providers the configuration is using.
+        /// </summary>
+        /// <param name="logger">The logger to write the details to.</param>
+        /// <param name="config">The configuration root.</param>
+        /// <param name="level">The level to log at.</param>
+        /// <param name="options">The options to use for rendering the providers.</param>
+        public static void LogProviders(
+            this ILogger logger,
+            IConfigurationRoot config,
+            LogLevel level,
+            ConfigurationDiagnosticsOptions options)
+        {
+            var message = options.ConfigurationProviderRenderer.Render(config);
+            logger.Log(message.GetLogLevel(level), message.Exception, message.MessageTemplate, message.Properties);
         }
     }
 }
