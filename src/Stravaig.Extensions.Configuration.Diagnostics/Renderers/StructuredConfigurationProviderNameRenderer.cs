@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +27,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
 
             foreach (var (index, provider) in indexedProviders)
             {
-                messageTemplate.AppendLine(Placeholder("Provider", index.ToString()));
+                messageTemplate.AppendLine(Placeholder("Provider", index.ToString(CultureInfo.InvariantCulture)));
                 args.Add(provider.GetType().FullName);
             }
             
