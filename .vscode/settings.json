@@ -7,5 +7,5 @@
         "nupkg",
         "snupkg"
     ],
-    "restructuredtext.confPath": "${workspaceFolder}\\docs\\source"
+    "restructuredtext.confPath": "${workspaceFolder}\\docs"
 }

@@ -1,5 +1,5 @@
 .. Stravaig Configuration Diagnostics documentation master file, created by
-   sphinx-quickstart on Sun Dec 20 22:24:25 2020.
+   sphinx-quickstart on Tue Jan  5 16:04:48 2021.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
@@ -24,16 +24,6 @@ logs.
    intro/track-value-source
    intro/connection-strings
    intro/diagnostics-options
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Advanced:
-
-   advanced/creating-obfuscators
-   advanced/creating-matchers
-   advanced/creating-renderers
-
-
 
 Indices and tables
 ==================

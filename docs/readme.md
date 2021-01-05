@@ -28,3 +28,7 @@ In a separate terminal, navigate to the newly created `docs/_build/html` folder,
 ```powershell
 python -m http.server 8000
 ```
+
+## More information
+
+For more information see: https://www.sphinx-doc.org/en/1.5.1/tutorial.html
