@@ -22,7 +22,7 @@ copyright = '2020-2021, Stravaig Projects'
 author = 'Stravaig Projects'
 
 # The full version, including alpha/beta/rc tags
-release = '0.4.0'
+release = '0.5.0-preview'
 
 
 # -- General configuration ---------------------------------------------------

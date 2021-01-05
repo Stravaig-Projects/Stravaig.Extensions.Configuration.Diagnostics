@@ -31,7 +31,7 @@ logs.
 
    advanced/creating-obfuscators
    advanced/creating-matchers
-   advances/creating-renderers
+   advanced/creating-renderers
 
 
 

@@ -75,13 +75,12 @@ Replaces the secret with a fixed number of asterisks.
 
 There are two variants:
 
-* ``WithFixedAsterisks()`` replaces the secret with "****".
+* ``WithFixedAsterisks()`` replaces the secret with ``****``.
 * ``WithFixedAsterisks(int)`` replaces the secret with the given number of asterisks.
 
 e.g.
 
 ::
-
 
     // Secret == "****"
     ConfigurationDiagnosticsOptions.SetupBy
