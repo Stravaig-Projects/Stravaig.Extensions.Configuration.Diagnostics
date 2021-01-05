@@ -25,6 +25,14 @@ logs.
    intro/connection-strings
    intro/diagnostics-options
 
+.. toctree::
+   :maxdepth: 2
+   :caption: advanced
+
+   advanced/creating-obfuscators
+   advanced/creating-matchers
+   advanced/creating-renderers
+
 Indices and tables
 ==================
 
