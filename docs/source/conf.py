@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Stravaig Configuration Diagnostics'
-copyright = '2020, Stravaig Projects'
+copyright = '2020-2021, Stravaig Projects'
 author = 'Stravaig Projects'
 
 # The full version, including alpha/beta/rc tags

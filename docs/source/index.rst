@@ -17,6 +17,7 @@ logs.
    :maxdepth: 2
    :caption: Introduction:
 
+   intro/quick-start
    intro/installing-the-package
    intro/configuration-values
    intro/configuration-providers
@@ -29,6 +30,8 @@ logs.
    :caption: Advanced:
 
    advanced/creating-obfuscators
+   advanced/creating-matchers
+   advances/creating-renderers
 
 
 

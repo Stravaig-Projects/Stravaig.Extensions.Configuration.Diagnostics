@@ -1,3 +1,5 @@
+.. _refInstalling:
+
 Installing
 ==========
 
@@ -25,7 +27,9 @@ You can install the package into your project from a PowerShell prompt. Navigate
 Installing using the .NET CLI
 -----------------------------
 
-You can install the package into your project with the .NET CLI command. Navigate to the folder your project file is in and type: ::
+You can install the package into your project with the .NET CLI command. Navigate to the folder your project file is in and type:
+
+::
 
     dotnet add package Stravaig.Extensions.Configuration.Diagnostics
 

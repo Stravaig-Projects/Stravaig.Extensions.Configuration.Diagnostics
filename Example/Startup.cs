@@ -36,8 +36,18 @@ namespace Example
         {
             var logFactory = app.ApplicationServices.GetRequiredService<ILoggerFactory>();
             var logger = logFactory.CreateLogger<Startup>();
+            ConfigurationDiagnosticsOptions.SetupBy
+                .Obfuscating.WithAsterisks()
+                .And.MatchingConfigurationKeys.Where
+                .KeyContains("AccessToken")
+                .OrContains("ConnectionString")
+                .And.MatchingConnectionStringKeys
+                .Containing("Password")
+                .AndFinally.ApplyOptions(ConfigurationDiagnosticsOptions.GlobalOptions);
             logger.LogProvidersAsInformation(Configuration);
             logger.LogConfigurationValuesAsInformation(Configuration);
+            logger.LogConfigurationKeySourceAsInformation(Configuration, "ExtenalSystem:AccessToken");
+            logger.LogAllConnectionStringsAsInformation(Configuration);
             
             
             if (env.IsDevelopment())
