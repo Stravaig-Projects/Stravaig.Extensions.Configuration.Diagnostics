@@ -24,7 +24,7 @@ Example Class Implementation
 
 ::
 
-    public class MatchedLengthAsteriskObfuscator : ISecretObfuscator
+    public class MyCustomObfuscator : ISecretObfuscator
     {
         public string Obfuscate(string secret)
         {
@@ -35,6 +35,16 @@ Example Class Implementation
         }
     }
 
+Adding your custom obfuscator to the ConfigurationDiagnosticsOptions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When configuring the obfuscators, the ``When(...)``` method takes an ``IObfuscator``
+
+::
+
+    ConfigurationDiagnosticsOptions.SetupBy
+        .Obfuscating.With(new MyCustomObfuscator())
+        ...
 
 Func<string, string>
 --------------------
@@ -52,3 +62,13 @@ Example Function Implementation
 
     Func<string, string> obfuscator = s => new string('*', s?.Length ?? 0)
 
+Adding your obfuscator function to the ConfigurationDiagnosticsOptions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When configuring the obfuscators, the ``When(...)``` method takes the ``Func<string, string>``
+
+::
+
+    ConfigurationDiagnosticsOptions.SetupBy
+        .Obfuscating.With(s => new string('*', s?.Length ?? 0))
+        ...
