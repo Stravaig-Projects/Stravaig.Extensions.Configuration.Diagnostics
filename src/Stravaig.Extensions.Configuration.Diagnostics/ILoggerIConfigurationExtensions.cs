@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -95,28 +92,8 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         /// <param name="options">The options to use to obfuscate secrets.</param>
         public static void LogConfigurationValues(this ILogger logger, IConfiguration config, LogLevel level, ConfigurationDiagnosticsOptions options)
         {
-            
-            var valueMap = config.AsEnumerable()
-                .OrderBy(kvp => kvp.Key)
-                .Select(kvp => Obfuscate(kvp, options))
-                .Select(Render);
-            string message = "The following values are available:" +
-                             Environment.NewLine +
-                             string.Join(Environment.NewLine, valueMap);
-            
-            logger.Log(level, message);
-        }
-
-        private static string Render(KeyValuePair<string, string> kvp)
-        {
-            return $"{kvp.Key} : {kvp.Value}";
-        }
-
-        private static KeyValuePair<string, string> Obfuscate(KeyValuePair<string, string> kvp, ConfigurationDiagnosticsOptions options)
-        {
-            return options.ConfigurationKeyMatcher.IsMatch(kvp.Key)
-                ? new KeyValuePair<string, string>(kvp.Key, options.Obfuscator.Obfuscate(kvp.Value))
-                : kvp;
+            var message = options.ConfigurationKeyRenderer.Render(config, options);
+            logger.Log(message.GetLogLevel(level), message.Exception, message.MessageTemplate, message.Properties);
         }
     }
 }
