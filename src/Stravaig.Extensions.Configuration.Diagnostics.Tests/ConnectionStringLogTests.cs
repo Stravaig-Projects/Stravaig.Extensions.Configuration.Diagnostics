@@ -174,6 +174,37 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         [TestCaseSource(typeof(LogLevelSource))]
         public void LogAllConnectionStringsGoodConnectionString(LogLevel level)
         {
+            var options = SetupGoodConnectionStringTest();
+            Logger.LogAllConnectionStrings(ConfigRoot, level, options);
+            ValidateGoodConnectionStringTest(level);
+        }
+        
+        [Test]
+        public void LogAllConnectionStringsAsInformationGoodConnectionString()
+        {
+            var options = SetupGoodConnectionStringTest();
+            Logger.LogAllConnectionStringsAsInformation(ConfigRoot, options);
+            ValidateGoodConnectionStringTest(LogLevel.Information);
+        }
+
+        [Test]
+        public void LogAllConnectionStringsAsDebugGoodConnectionString()
+        {
+            var options = SetupGoodConnectionStringTest();
+            Logger.LogAllConnectionStringsAsDebug(ConfigRoot, options);
+            ValidateGoodConnectionStringTest(LogLevel.Debug);
+        }
+
+        [Test]
+        public void LogAllConnectionStringsAsTraceGoodConnectionString()
+        {
+            var options = SetupGoodConnectionStringTest();
+            Logger.LogAllConnectionStringsAsTrace(ConfigRoot, options);
+            ValidateGoodConnectionStringTest(LogLevel.Trace);
+        }
+        
+        private ConfigurationDiagnosticsOptions SetupGoodConnectionStringTest()
+        {
             SetupConfig(builder =>
             {
                 builder.AddInMemoryCollection(new Dictionary<string, string>
@@ -189,7 +220,11 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
                 });
             });
             var options = SetupOptions();
-            Logger.LogAllConnectionStrings(ConfigRoot, level, options);
+            return options;
+        }
+
+        private void ValidateGoodConnectionStringTest(LogLevel level)
+        {
             var logs = GetLogs();
             logs.Count.ShouldBe(1);
             Console.WriteLine(logs[0].OriginalMessage);
@@ -197,12 +232,14 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
             logs[0].FormattedMessage.ShouldContain("The following connection strings were found");
             logs[0].FormattedMessage.ShouldContain(SqlServerTrustedSecurityKey);
             logs[0].FormattedMessage.ShouldContain(SqlServerStandardSecurityKey);
-            
-            logs[0].OriginalMessage.ShouldContain("The following connection strings were found: {preamble_SqlServerStandardSecurity_name}, {preamble_SqlServerTrustedSecurity_name}.");
+
+            logs[0].OriginalMessage
+                .ShouldContain(
+                    "The following connection strings were found: {preamble_SqlServerStandardSecurity_name}, {preamble_SqlServerTrustedSecurity_name}.");
             logs[0].OriginalMessage.ShouldContain("Connection string (named {SqlServerTrustedSecurity_name}) parameters:");
             logs[0].OriginalMessage.ShouldContain("Connection string (named {SqlServerStandardSecurity_name}) parameters:");
         }
-
+        
         [Test]
         [TestCaseSource(typeof(LogLevelSource))]
         public void LogAllConnectionStringsWhenThereAreNone(LogLevel level)
