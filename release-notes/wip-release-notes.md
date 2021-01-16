@@ -26,18 +26,18 @@ Date: ???
 ### Dependabot
 
 * #73 Aggregate of 
-  * Bump Microsoft.Extensions.Configuration.Binder from 3.1.10 to 3.1.11
-  * Bump Microsoft.Extensions.Configuration.Json from 3.1.10 to 3.1.11
-  * Bump Microsoft.Extensions.Configuration.UserSecrets from 3.1.10 to 3.1.11
-  * Bump Microsoft.Extensions.Logging from 3.1.10 to 3.1.11
-  * Bump Microsoft.Extensions.Logging.Console from 3.1.10 to 3.1.11
-* Bump Microsoft.Extensions.Configuration from 3.1.10 to 3.1.11
-* Bump Microsoft.Extensions.DependencyInjection from 3.1.10 to 3.1.11
-* Bump Microsoft.Extensions.Logging.Abstractions from 3.1.10 to 3.1.11
-* Bump Microsoft.NET.Test.Sdk from 16.8.0 to 16.8.3
-* Bump nunit from 3.12.0 to 3.13.0
-* Bump Shouldly from 4.0.1 to 4.0.3
-* Bump Stravaig.Extensions.Logging.Diagnostics
+  * Bump `Microsoft.Extensions.Configuration.Binder` from 3.1.10 to 3.1.11
+  * Bump `Microsoft.Extensions.Configuration.Json` from 3.1.10 to 3.1.11
+  * Bump `Microsoft.Extensions.Configuration.UserSecrets` from 3.1.10 to 3.1.11
+  * Bump `Microsoft.Extensions.Logging` from 3.1.10 to 3.1.11
+  * Bump `Microsoft.Extensions.Logging.Console` from 3.1.10 to 3.1.11
+* Bump `Microsoft.Extensions.Configuration` from 3.1.10 to 3.1.11
+* Bump `Microsoft.Extensions.DependencyInjection` from 3.1.10 to 3.1.11
+* Bump `Microsoft.Extensions.Logging.Abstractions` from 3.1.10 to 3.1.11
+* Bump `Microsoft.NET.Test.Sdk` from 16.8.0 to 16.8.3
+* Bump `nunit` from 3.12.0 to 3.13.0
+* Bump `Shouldly` from 4.0.1 to 4.0.3
+* Bump `Stravaig.Extensions.Logging.Diagnostics`
   * from 0.2.2 to 0.3.0
   * from 0.3.0 to 0.3.1
 
