@@ -12,6 +12,7 @@ Date: ???
 * #35: Create Func matcher. Can now specify a predicate function that matches the key of secrets.
 * #42: Logging all connection strings now does so in a single log message.
 * #43: All logging is now using structured renderers.
+* #75: Make the connection string structured renderer keys more concise.
 
 ### Miscellaneous
 
