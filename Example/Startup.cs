@@ -40,7 +40,7 @@ namespace Example
                 .AndFinally.ApplyOptions(ConfigurationDiagnosticsOptions.GlobalOptions);
             logger.LogProvidersAsInformation(Configuration);
             logger.LogConfigurationValuesAsInformation(Configuration);
-            logger.LogConfigurationKeySourceAsInformation(Configuration, "ExtenalSystem:AccessToken");
+            logger.LogConfigurationKeySourceAsInformation(Configuration, "ExtenalSystem:AccessToken"); // This is deliberately misspelled.
             logger.LogAllConnectionStringsAsInformation(Configuration);
             
             

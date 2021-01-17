@@ -18,6 +18,10 @@ namespace Example
                     log.ClearProviders();
                     log.AddConsole();
                     log.AddDebug();
+
+                    // If you have Seq configured, you can add the details here,
+                    // otherwise you can uncomment this line.
+                    log.AddSeq();
                 })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
