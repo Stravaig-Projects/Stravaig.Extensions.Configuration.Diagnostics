@@ -36,11 +36,11 @@ Example Output
 ::
 
     info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConnectionStringLogTests[0]
-        Connection string parameters:
-        * server = db0.my-host.com
-        * database = myDatabase
-        * user id = myUsername
-        * password = [REDACTED]
+      Connection string parameters:
+      * server = db0.my-host.com
+      * database = myDatabase
+      * user id = myUsername
+      * password = [REDACTED]
 
 Alternative calls
 ~~~~~~~~~~~~~~~~~
@@ -71,20 +71,34 @@ Where
 Example Output
 ~~~~~~~~~~~~~~
 
+This is what it looks like with a console logger.
+
 ::
 
-    info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConnectionStringLogTests[0]
-        The following connection strings were found: SqlServerStandardSecurity, SqlServerTrustedSecurity.
-        Connection string (named SqlServerStandardSecurity) parameters:
-        * server = db0.my-host.com
-        * database = myDataBase
-        * user id = myUsername
-        * password = **********
-        
-        Connection string (named SqlServerTrustedSecurity) parameters:
-        * server = db0.my-host.com
-        * database = myDataBase
-        * trusted_connection = True
+    info: Example.Startup[0]
+      The following connection strings were found: MainDatabase, PostCodeLookupDatabase.
+      Connection string (named MainDatabase) parameters:
+       * [MainDatabase].[server] = dev.my-database-server.my-company.com
+       * [MainDatabase].[database] = myDataBase
+       * [MainDatabase].[user id] = myUsername
+       * [MainDatabase].[password] = **********
+
+      Connection string (named PostCodeLookupDatabase) parameters:
+       * [PostCodeLookupDatabase].[provider] = MSOLEDBSQL
+       * [PostCodeLookupDatabase].[server] = tcp:AvailabilityGroupListenerDnsName,1433
+       * [PostCodeLookupDatabase].[multisubnetfailover] = Yes
+       * [PostCodeLookupDatabase].[applicationintent] = ReadOnly
+       * [PostCodeLookupDatabase].[database] = MyDB
+       * [PostCodeLookupDatabase].[integrated security] = SSPI
+       * [PostCodeLookupDatabase].[connect timeout] = 30
+
+The same output in Seq looks like this:
+
+.. image :: images/all-connection-strings-seq.png
+   :alt: An example of the log output using Seq.
+
+Note that Seq does not render the newlines in the message, however, it does a good job of rendering the structure values.
+
 
 Alternative calls
 ~~~~~~~~~~~~~~~~~
@@ -114,11 +128,11 @@ Example Output
 ~~~~~~~~~~~~~~
 
     info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConnectionStringLogTests[0]
-        Connection string parameters:
-        * server = db0.my-host.com
-        * database = myDatabase
-        * user id = myUsername
-        * password = [REDACTED]
+      Connection string parameters:
+      * server = db0.my-host.com
+      * database = myDatabase
+      * user id = myUsername
+      * password = [REDACTED]
 
 Alternative calls
 ~~~~~~~~~~~~~~~~~
@@ -151,11 +165,11 @@ Example output
 ~~~~~~~~~~~~~~
 
     info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConnectionStringLogTests[0]
-        Connection string parameters:
-        * server = db0.my-host.com
-        * database = myDatabase
-        * user id = myUsername
-        * password = [REDACTED]
+      Connection string parameters:
+      * server = db0.my-host.com
+      * database = myDatabase
+      * user id = myUsername
+      * password = [REDACTED]
 
 Alternative calls
 ~~~~~~~~~~~~~~~~~
