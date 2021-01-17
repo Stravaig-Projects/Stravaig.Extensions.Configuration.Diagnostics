@@ -4,12 +4,16 @@ $content = @(
 "## Version X",
 "",
 "Date: ???",
-""
-"### Bugs"
+"",
+"### Bugs",
 "",
 "### Features",
 "",
 "### Miscellaneous",
+"",
+"### Dependabot",
+"",
+"",
 ""
 )
 

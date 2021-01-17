@@ -54,6 +54,7 @@ jobs:
 
       - name: Display workflow state
         run: |
+          echo "GITHUB_SHA: $GITHUB_SHA" 
           echo "Solution: $STRAVAIG_SOLUTION"
           echo "Project: $STRAVAIG_PROJECT"
           echo "Tests: $STRAVAIG_TESTS"
@@ -67,7 +68,7 @@ jobs:
       - uses: actions/setup-dotnet@v1
         name: Setup .NET Core
         with:
-          dotnet-version: 3.1.404
+          dotnet-version: 3.1.x # Always the latest patch version.
 
       - name: Build Solution
         run: dotnet build $STRAVAIG_SOLUTION --configuration Release
@@ -85,7 +86,13 @@ jobs:
 
       - name: Push package to NuGet
         if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
-        run: dotnet nuget push ./out/*.nupkg --api-key ${{ secrets.STRAVAIG_NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        shell: pwsh
+        run: |
+          Get-ChildItem ./out/*.nupkg | ForEach-Object { 
+            $name = $_.FullName; 
+            Write-Output "Pushing $name"; 
+            dotnet nuget push "$name" --api-key ${{ secrets.STRAVAIG_NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+          }
 
       - name: List Contributors
         shell: pwsh
@@ -115,19 +122,22 @@ jobs:
             contributors.md
             release-notes/full-release-notes.md
             release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
-        
-      - name: Mark Release
+
+      - name: Create Release
         if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "./out/*.nupkg,./out/*.snupkg,LICENSE,contributors.md,readme.md,./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          bodyFile: "release-body.md"
-          prerelease: ${{ env.STRAVAIG_IS_PREVIEW }}
-          commit: ${{ env.GITHUB_SHA }}
-          tag: v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
-          draft: false
-          
+        shell: pwsh 
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        run: | 
+          $assets = @(); 
+          $assets += "./out/*.nupkg" 
+          $assets += "./out/*.snupkg" 
+          $assets += "LICENSE" 
+          $assets += "contributors.md" 
+          $assets += "README.md" 
+          $assets += "./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md" 
+          ./Create-Release.ps1 -NotesFile "./release-body.md" -Assets $assets 
+
       - name: Bump version
         #IF Publishing & Stable release
         if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
