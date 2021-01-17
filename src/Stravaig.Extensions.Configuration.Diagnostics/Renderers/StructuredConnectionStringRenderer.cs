@@ -92,8 +92,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
                         ? options.Obfuscator.Obfuscate((string) builder[key])
                         : (string) builder[key];
  
-                messageTemplate.AppendLine($" * {Placeholder(name, key, nameof(key))} = {Placeholder(name, key, nameof(value))}");
-                args.Add(key);
+                messageTemplate.AppendLine($" * [{name}].[{key}] = {Placeholder(name, key)}");
                 args.Add(value);
             }
         }
