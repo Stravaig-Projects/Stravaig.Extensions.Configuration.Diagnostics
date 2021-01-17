@@ -52,7 +52,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
             var log = logs[0];
             
             log.LogLevel.ShouldBe(level);
-            log.FormattedMessage.ShouldContain($"Provider sources for value of {KeyName} were not found.");
+            log.FormattedMessage.ShouldContain($"Provider sources for value of configuration key {KeyName} were not found.");
             log.FormattedMessage.Split(Environment.NewLine).ShouldNotContain(string.Empty);
         }
 
@@ -75,7 +75,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
             
             log.LogLevel.ShouldBe(level);
             log.FormattedMessage.Count(c => c == '*').ShouldBe(2);
-            log.FormattedMessage.ShouldContain($"{KeyName} not found in any provider.");
+            log.FormattedMessage.ShouldEndWith($"Key not found in any provider.");
             log.FormattedMessage.Split(Environment.NewLine).ShouldNotContain(string.Empty);
         }
         
@@ -151,12 +151,12 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
                 var stream = new MemoryStream();
                 var writer = new StreamWriter(stream, Encoding.UTF8);
                 writer.WriteLine(@"
-{
-  ""SomeSection"" : {
-    ""SomeKey"" : ""SomeNewValue""
-  }
-}
-");
+                {
+                  ""SomeSection"" : {
+                    ""SomeKey"" : ""SomeNewValue""
+                  }
+                }
+                ");
                 writer.Flush();
                 stream.Position = 0;
                 builder.AddJsonStream(stream);
@@ -174,8 +174,8 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
             log.FormattedMessage.ShouldContain("SomeValue");
             log.FormattedMessage.ShouldContain("*");
             log.FormattedMessage.Count(c => c == '*').ShouldBe(2);
-            log.FormattedMessage.ShouldContain("MemoryConfigurationProvider ==> \"SomeValue\"");
-            log.FormattedMessage.ShouldContain("JsonStreamConfigurationProvider ==> \"SomeNewValue\"");
+            log.FormattedMessage.ShouldContain("MemoryConfigurationProvider ==> SomeValue");
+            log.FormattedMessage.ShouldContain("JsonStreamConfigurationProvider ==> SomeNewValue");
             log.FormattedMessage.Split(Environment.NewLine).ShouldNotContain(string.Empty);
         }
 
@@ -216,9 +216,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
             log.FormattedMessage.ShouldContain("SomeValue");
             log.FormattedMessage.ShouldContain("*");
             log.FormattedMessage.Count(c => c == '*').ShouldBe(3);
-            log.FormattedMessage.ShouldContain("MemoryConfigurationProvider ==> \"SomeValue\"");
-            log.FormattedMessage.ShouldContain("MemoryConfigurationProvider ==> null");
-            log.FormattedMessage.ShouldContain("JsonStreamConfigurationProvider ==> \"SomeNewValue\"");
+            log.FormattedMessage.ShouldContain("MemoryConfigurationProvider ==> SomeValue");
+            log.FormattedMessage.ShouldContain("MemoryConfigurationProvider ==> (null)");
+            log.FormattedMessage.ShouldContain("JsonStreamConfigurationProvider ==> SomeNewValue");
             log.FormattedMessage.Split(Environment.NewLine).ShouldNotContain(string.Empty);
         }
         
@@ -236,12 +236,12 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
                 var stream = new MemoryStream();
                 var writer = new StreamWriter(stream, Encoding.UTF8);
                 writer.WriteLine(@"
-{
-  ""SomeSection"" : {
-    ""SomeKey"" : ""SomeNewValue""
-  }
-}
-");
+                {
+                  ""SomeSection"" : {
+                    ""SomeKey"" : ""SomeNewValue""
+                  }
+                }
+                ");
                 writer.Flush();
                 stream.Position = 0;
                 builder.AddJsonStream(stream);
@@ -259,9 +259,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
             log.FormattedMessage.ShouldContain("SomeValue");
             log.FormattedMessage.ShouldContain("*");
             log.FormattedMessage.Count(c => c == '*').ShouldBe(2);
-            log.FormattedMessage.ShouldContain("MemoryConfigurationProvider ==> \"SomeValue\"");
-            log.FormattedMessage.ShouldNotContain("MemoryConfigurationProvider ==> null");
-            log.FormattedMessage.ShouldContain("JsonStreamConfigurationProvider ==> \"SomeNewValue\"");
+            log.FormattedMessage.ShouldContain("MemoryConfigurationProvider ==> SomeValue");
+            log.FormattedMessage.ShouldNotContain("MemoryConfigurationProvider ==> (null)");
+            log.FormattedMessage.ShouldContain("JsonStreamConfigurationProvider ==> SomeNewValue");
             log.FormattedMessage.Split(Environment.NewLine).ShouldNotContain(string.Empty);
         }
 
