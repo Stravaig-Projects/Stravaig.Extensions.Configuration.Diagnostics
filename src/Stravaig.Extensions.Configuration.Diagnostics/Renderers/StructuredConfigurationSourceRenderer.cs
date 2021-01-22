@@ -52,7 +52,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
             bool found = false;
             bool obfuscate = options.ConfigurationKeyMatcher.IsMatch(configKey);
             var report = new StringBuilder();
-            report.Append($"Provider sources for value of configuration key {Placeholder(configKey)}");
+            report.Append($"Provider sources for value of configuration key {Placeholder("ConfigKey")}");
             values.Add(configKey);
             int index = 0;
             foreach (IConfigurationProvider provider in configRoot.Providers)
