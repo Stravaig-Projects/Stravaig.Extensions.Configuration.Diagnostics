@@ -85,6 +85,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
             set => _configurationProviderNameRenderer = value ?? StructuredConfigurationProviderNameRenderer.Instance;
         }
 
+        /// <summary>
+        /// The renderer that creates the log message for the source of a configuration key.
+        /// </summary>
         public IConfigurationSourceRenderer ConfigurationSourceRenderer
         {
             get => _configurationSourceRenderer;
