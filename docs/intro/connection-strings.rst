@@ -97,7 +97,7 @@ The same output in Seq looks like this:
 .. image :: images/all-connection-strings-seq.png
    :alt: An example of the log output using Seq.
 
-Note that Seq does not render the newlines in the message, however, it does a good job of rendering the structure values.
+Note that Seq does not render the newlines in the message, however, it does render the structure values.
 
 
 Alternative calls
@@ -126,6 +126,8 @@ Where:
 
 Example Output
 ~~~~~~~~~~~~~~
+
+::
 
     info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConnectionStringLogTests[0]
       Connection string parameters:
@@ -163,6 +165,8 @@ Where
 
 Example output
 ~~~~~~~~~~~~~~
+
+::
 
     info: Stravaig.Extensions.Configuration.Diagnostics.Tests.ConnectionStringLogTests[0]
       Connection string parameters:

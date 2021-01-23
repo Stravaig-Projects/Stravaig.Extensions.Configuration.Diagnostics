@@ -22,6 +22,8 @@ Installing from a PowerShell prompt
 
 You can install the package into your project from a PowerShell prompt. Navigate to the folder your project file is in and type: ::
 
+::
+
     Install-Package Stravaig.Extensions.Configuration.Diagnostics
 
 Installing using the .NET CLI

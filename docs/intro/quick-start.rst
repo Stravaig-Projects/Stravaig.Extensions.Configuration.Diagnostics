@@ -7,30 +7,30 @@ In your ``Startup`` class in the ``Configure`` method add the following:
 
 ::
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            // Get the logger
-            var logFactory = app.ApplicationServices.GetRequiredService<ILoggerFactory>();
-            var logger = logFactory.CreateLogger<Startup>();
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        // Get the logger
+        var logFactory = app.ApplicationServices.GetRequiredService<ILoggerFactory>();
+        var logger = logFactory.CreateLogger<Startup>();
 
-            // Define which keys contain secrets
-            ConfigurationDiagnosticsOptions.SetupBy
-                .Obfuscating.WithAsterisks()
-                .And.MatchingConfigurationKeys.Where
-                .KeyContains("AccessToken")
-                .OrContains("ConnectionString")
-                .And.MatchingConnectionStringKeys
-                .Containing("Password")
-                .AndFinally.ApplyOptions(ConfigurationDiagnosticsOptions.GlobalOptions);
-            
-            // Log the state of the configuration
-            logger.LogProvidersAsInformation(Configuration);
-            logger.LogConfigurationValuesAsInformation(Configuration);
-            logger.LogConfigurationKeySourceAsInformation(Configuration, "ExtenalSystem:AccessToken");
-            logger.LogAllConnectionStringsAsInformation(Configuration);
+        // Define which keys contain secrets
+        ConfigurationDiagnosticsOptions.SetupBy
+            .Obfuscating.WithAsterisks()
+            .And.MatchingConfigurationKeys.Where
+            .KeyContains("AccessToken")
+            .OrContains("ConnectionString")
+            .And.MatchingConnectionStringKeys
+            .Containing("Password")
+            .AndFinally.ApplyOptions(ConfigurationDiagnosticsOptions.GlobalOptions);
+        
+        // Log the state of the configuration
+        logger.LogProvidersAsInformation(Configuration);
+        logger.LogConfigurationValuesAsInformation(Configuration);
+        logger.LogConfigurationKeySourceAsInformation(Configuration, "ExtenalSystem:AccessToken");
+        logger.LogAllConnectionStringsAsInformation(Configuration);
 
-            // Set up other things...
-        }
+        // Set up other things...
+    }
 
 The above setup up the diagnostics as follows
 
