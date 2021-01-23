@@ -19,7 +19,8 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         private IConfigurationProviderNameRenderer _configurationProviderNameRenderer = StructuredConfigurationProviderNameRenderer.Instance;
         private IConnectionStringRenderer _connectionStringRenderer = StructuredConnectionStringRenderer.Instance;
         private IAllConnectionStringsRenderer _allConnectionStringRenderer = StructuredAllConnectionStringsRenderer.Instance;
-
+        private IConfigurationSourceRenderer _configurationSourceRenderer = StructuredConfigurationSourceRenderer.Instance;
+        
         /// <summary>
         /// Global options used if no specific options are set.
         /// </summary>
@@ -82,6 +83,15 @@ namespace Stravaig.Extensions.Configuration.Diagnostics
         {
             get => _configurationProviderNameRenderer;
             set => _configurationProviderNameRenderer = value ?? StructuredConfigurationProviderNameRenderer.Instance;
+        }
+
+        /// <summary>
+        /// The renderer that creates the log message for the source of a configuration key.
+        /// </summary>
+        public IConfigurationSourceRenderer ConfigurationSourceRenderer
+        {
+            get => _configurationSourceRenderer;
+            set => _configurationSourceRenderer = value ?? StructuredConfigurationSourceRenderer.Instance;
         }
 
         /// <summary>

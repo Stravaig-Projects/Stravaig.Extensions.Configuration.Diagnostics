@@ -40,7 +40,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
         /// </summary>
         /// <param name="exception">The exception that occurred during the rendering process.</param>
         /// <param name="messageTemplate">The message(template).</param>
-        /// <param name="properties">The optional properties to be applied to the tempate.</param>
+        /// <param name="properties">The optional properties to be applied to the template.</param>
         public MessageEntry(Exception exception, string messageTemplate, params object[] properties)
         {
             MessageTemplate = messageTemplate;

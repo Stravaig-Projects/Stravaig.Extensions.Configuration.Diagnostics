@@ -37,6 +37,8 @@ ProjectSection(SolutionItems) = preProject
 	.editorconfig = .editorconfig
 EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Extensions.Configuration.Diagnostics.AdHocTests", "Stravaig.Extensions.Configuration.Diagnostics.AdHocTests\Stravaig.Extensions.Configuration.Diagnostics.AdHocTests.csproj", "{F63C62F9-BA30-411E-AABF-8E38067000D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,5 +53,9 @@ Global
 		{A76A4159-91DA-4984-8C81-8C3EBE4E24FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A76A4159-91DA-4984-8C81-8C3EBE4E24FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A76A4159-91DA-4984-8C81-8C3EBE4E24FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F63C62F9-BA30-411E-AABF-8E38067000D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F63C62F9-BA30-411E-AABF-8E38067000D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F63C62F9-BA30-411E-AABF-8E38067000D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F63C62F9-BA30-411E-AABF-8E38067000D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
