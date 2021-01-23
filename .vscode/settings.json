@@ -1,10 +1,13 @@
 {
     "cSpell.words": [
         "Dependabot",
+        "Mackay",
+        "NUGET",
         "Shouldly",
         "Stravaig",
         "nunit",
         "nupkg",
+        "pwsh",
         "snupkg"
     ],
     "restructuredtext.confPath": "${workspaceFolder}\\docs"

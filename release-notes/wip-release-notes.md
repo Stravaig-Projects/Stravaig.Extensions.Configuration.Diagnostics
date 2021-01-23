@@ -10,6 +10,8 @@ Date: ???
 
 ### Miscellaneous
 
+* #84 Update List-Contributors script
+
 ### Dependabot
 
 
