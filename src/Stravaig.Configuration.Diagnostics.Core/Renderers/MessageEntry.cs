@@ -1,5 +1,4 @@
 using System;
-using Microsoft.Extensions.Logging;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
 {
@@ -53,10 +52,10 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
         /// </summary>
         /// <param name="requestedLevel">The user requested level.</param>
         /// <returns>The log level, which may be elevated in the event that an exception exists.</returns>
-        public LogLevel GetLogLevel(LogLevel requestedLevel)
+        public MessageLevel GetMessageLevel(MessageLevel requestedLevel)
         {
             if (HasException)
-                return (LogLevel) Math.Max((int) requestedLevel, (int) LogLevel.Warning);
+                return (MessageLevel) Math.Max((int) requestedLevel, (int) MessageLevel.Warning);
             return requestedLevel;
         }
 

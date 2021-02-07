@@ -39,6 +39,8 @@ EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Extensions.Configuration.Diagnostics.AdHocTests", "Stravaig.Extensions.Configuration.Diagnostics.AdHocTests\Stravaig.Extensions.Configuration.Diagnostics.AdHocTests.csproj", "{F63C62F9-BA30-411E-AABF-8E38067000D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Configuration.Diagnostics.Core", "Stravaig.Configuration.Diagnostics.Core\Stravaig.Configuration.Diagnostics.Core.csproj", "{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,5 +59,9 @@ Global
 		{F63C62F9-BA30-411E-AABF-8E38067000D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F63C62F9-BA30-411E-AABF-8E38067000D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F63C62F9-BA30-411E-AABF-8E38067000D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

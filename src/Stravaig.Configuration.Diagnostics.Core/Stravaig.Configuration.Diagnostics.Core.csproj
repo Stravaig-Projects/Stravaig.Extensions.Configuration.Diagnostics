@@ -2,9 +2,9 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <Title>Stravaig Configuration Diagnostics</Title>
+        <Title>Stravaig Configuration Diagnostics Core</Title>
         <Authors>Stravaig Projects</Authors>
-        <Description>A set of diagnostics extensions for enumerating details of the app's configuration.</Description>
+        <Description>The core functionality of a set of diagnostics extensions for enumerating details of the app's configuration.</Description>
         <Copyright>©2020-2021 Stravaig Projects. See licence for more information.</Copyright>
         <PackageProjectUrl>https://github.com/Stravaig-Projects/Stravaig.Extensions.Configuration.Diagnostics/blob/main/README.md</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -12,21 +12,17 @@
         <PackageIcon>stravaig-icon.png</PackageIcon>
         <PackageTags>logging configuration</PackageTags>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <RootNamespace>Stravaig.Configuration.Diagnostics</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Update="stravaig-icon.png">
-            <Pack>true</Pack>
-        </None>
-    </ItemGroup>
-    
-    <ItemGroup>
-      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.12" />
-      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.12" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <ProjectReference Include="..\Stravaig.Configuration.Diagnostics.Core\Stravaig.Configuration.Diagnostics.Core.csproj" />
+      <None Update="stravaig-icon.png">
+        <Pack>true</Pack>
+      </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.11" />
+    </ItemGroup>
+    
 </Project>
