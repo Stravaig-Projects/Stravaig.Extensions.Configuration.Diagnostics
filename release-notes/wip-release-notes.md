@@ -4,13 +4,17 @@
 
 Date: ???
 
+**THIS RELEASE CONTAINS BREAKING CHANGES**
+
+
 ### Bugs
 
 ### Features
 
 ### Miscellaneous
 
-- #84 Update List-Contributors script
+* #84 Update List-Contributors script
+* #88 Refactor internal structure to support different logging frameworks by creating a new "Core" package, with the specifics for various logging frameworks ultimately residing in various satellite packages.
 
 ### Dependabot
 
