@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Extensions.Configuration.Diagnostics", "Stravaig.Extensions.Configuration.Diagnostics\Stravaig.Extensions.Configuration.Diagnostics.csproj", "{E993302C-3E68-4228-9548-7B813F26CB5D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Configuration.Diagnostics.Logging", "Stravaig.Configuration.Diagnostics.Logging\Stravaig.Configuration.Diagnostics.Logging.csproj", "{E993302C-3E68-4228-9548-7B813F26CB5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Extensions.Configuration.Diagnostics.Tests", "Stravaig.Extensions.Configuration.Diagnostics.Tests\Stravaig.Extensions.Configuration.Diagnostics.Tests.csproj", "{A76A4159-91DA-4984-8C81-8C3EBE4E24FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Configuration.Diagnostics.Tests", "Stravaig.Configuration.Diagnostics.Tests\Stravaig.Configuration.Diagnostics.Tests.csproj", "{A76A4159-91DA-4984-8C81-8C3EBE4E24FC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Build_and_Deploy", "__Build_and_Deploy", "{84568C56-176A-4180-BEA2-E309208F8269}"
 ProjectSection(SolutionItems) = preProject
@@ -37,9 +37,13 @@ ProjectSection(SolutionItems) = preProject
 	.editorconfig = .editorconfig
 EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Extensions.Configuration.Diagnostics.AdHocTests", "Stravaig.Extensions.Configuration.Diagnostics.AdHocTests\Stravaig.Extensions.Configuration.Diagnostics.AdHocTests.csproj", "{F63C62F9-BA30-411E-AABF-8E38067000D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Configuration.Diagnostics.AdHocTests", "Stravaig.Configuration.Diagnostics.AdHocTests\Stravaig.Configuration.Diagnostics.AdHocTests.csproj", "{F63C62F9-BA30-411E-AABF-8E38067000D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Configuration.Diagnostics.Core", "Stravaig.Configuration.Diagnostics.Core\Stravaig.Configuration.Diagnostics.Core.csproj", "{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{FB4D1524-A3E8-4D38-A32F-AA7B6739C3EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{357AACBA-349B-448A-8BC8-9FB72E3DD0FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,5 +67,11 @@ Global
 		{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A} = {FB4D1524-A3E8-4D38-A32F-AA7B6739C3EA}
+		{E993302C-3E68-4228-9548-7B813F26CB5D} = {FB4D1524-A3E8-4D38-A32F-AA7B6739C3EA}
+		{A76A4159-91DA-4984-8C81-8C3EBE4E24FC} = {357AACBA-349B-448A-8BC8-9FB72E3DD0FE}
+		{F63C62F9-BA30-411E-AABF-8E38067000D0} = {357AACBA-349B-448A-8BC8-9FB72E3DD0FE}
 	EndGlobalSection
 EndGlobal

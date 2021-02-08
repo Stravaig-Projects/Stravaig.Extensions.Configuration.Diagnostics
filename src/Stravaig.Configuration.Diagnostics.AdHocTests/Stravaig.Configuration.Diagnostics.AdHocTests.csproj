@@ -4,6 +4,8 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
 
         <IsPackable>false</IsPackable>
+
+        <RootNamespace>Stravaig.Extensions.Configuration.Diagnostics.AdHocTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Stravaig.Extensions.Configuration.Diagnostics\Stravaig.Extensions.Configuration.Diagnostics.csproj" />
+      <ProjectReference Include="..\Stravaig.Configuration.Diagnostics.Logging\Stravaig.Configuration.Diagnostics.Logging.csproj" />
     </ItemGroup>
 
 </Project>

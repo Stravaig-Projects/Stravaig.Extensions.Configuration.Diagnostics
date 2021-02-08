@@ -9,6 +9,7 @@ using NUnit.Framework;
 using Serilog;
 using Serilog.Formatting.Json;
 using Shouldly;
+using Stravaig.Configuration.Diagnostics.Logging;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.RegressionTests
 {

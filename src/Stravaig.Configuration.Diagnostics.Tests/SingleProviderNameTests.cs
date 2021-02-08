@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration.Memory;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Shouldly;
+using Stravaig.Configuration.Diagnostics.Logging;
 using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests

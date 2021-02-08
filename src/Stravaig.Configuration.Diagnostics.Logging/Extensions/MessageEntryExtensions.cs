@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Stravaig.Configuration.Diagnostics.Renderers;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics
+namespace Stravaig.Configuration.Diagnostics.Logging
 {
     internal static class MessageEntryExtensions
     {
