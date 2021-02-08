@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
-using Stravaig.Extensions.Configuration.Diagnostics.FluentOptions;
-using Stravaig.Extensions.Configuration.Diagnostics.Matchers;
+using Stravaig.Configuration.Diagnostics.FluentOptions;
+using Stravaig.Configuration.Diagnostics.Matchers;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics
+namespace Stravaig.Configuration.Diagnostics.Extensions
 {
     /// <summary>
     /// Extension methods for adding Regex key matchers to the configuration.

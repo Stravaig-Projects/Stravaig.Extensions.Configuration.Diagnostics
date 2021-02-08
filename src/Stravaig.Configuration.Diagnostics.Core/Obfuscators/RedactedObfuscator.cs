@@ -1,4 +1,4 @@
-namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
+namespace Stravaig.Configuration.Diagnostics.Obfuscators
 {
     /// <summary>
     /// Initialises an obfuscator that replaces the secret with REDACTED.

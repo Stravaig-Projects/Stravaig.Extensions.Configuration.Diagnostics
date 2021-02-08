@@ -1,4 +1,4 @@
-namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
+namespace Stravaig.Configuration.Diagnostics.Renderers
 {
     /// <summary>
     /// The virtual log level of a message.

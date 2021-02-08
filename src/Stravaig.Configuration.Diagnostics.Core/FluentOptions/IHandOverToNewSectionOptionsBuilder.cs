@@ -1,4 +1,4 @@
-namespace Stravaig.Extensions.Configuration.Diagnostics.FluentOptions
+namespace Stravaig.Configuration.Diagnostics.FluentOptions
 {
     /// <summary>
     /// The part of the fluent interface that hands over to a new section.

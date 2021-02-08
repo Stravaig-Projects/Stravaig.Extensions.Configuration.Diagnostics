@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Matchers
+namespace Stravaig.Configuration.Diagnostics.Matchers
 {
     /// <summary>
     /// A matcher that contains other matchers.

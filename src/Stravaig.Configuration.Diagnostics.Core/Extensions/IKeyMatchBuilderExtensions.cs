@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Stravaig.Extensions.Configuration.Diagnostics.Matchers;
+using Stravaig.Configuration.Diagnostics.Matchers;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics
+namespace Stravaig.Configuration.Diagnostics.Extensions
 {
     /// <summary>
     /// Extensions methods for the key matcher builder.

@@ -1,6 +1,6 @@
 using System;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Matchers
+namespace Stravaig.Configuration.Diagnostics.Matchers
 {
     /// <summary>
     /// A matcher that uses a given function to perform the match.

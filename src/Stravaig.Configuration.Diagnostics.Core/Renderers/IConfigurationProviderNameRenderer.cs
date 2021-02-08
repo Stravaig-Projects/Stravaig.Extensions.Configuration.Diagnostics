@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
+namespace Stravaig.Configuration.Diagnostics.Renderers
 {
     /// <summary>
     /// The renderer that renders the log messages for the names of the providers of a configuration.

@@ -1,10 +1,10 @@
 using System;
-using Stravaig.Extensions.Configuration.Diagnostics.FluentOptions;
-using Stravaig.Extensions.Configuration.Diagnostics.Matchers;
-using Stravaig.Extensions.Configuration.Diagnostics.Obfuscators;
-using Stravaig.Extensions.Configuration.Diagnostics.Renderers;
+using Stravaig.Configuration.Diagnostics.FluentOptions;
+using Stravaig.Configuration.Diagnostics.Matchers;
+using Stravaig.Configuration.Diagnostics.Obfuscators;
+using Stravaig.Configuration.Diagnostics.Renderers;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics
+namespace Stravaig.Configuration.Diagnostics
 {
     /// <summary>
     /// A container for options for the configuration diagnostics.

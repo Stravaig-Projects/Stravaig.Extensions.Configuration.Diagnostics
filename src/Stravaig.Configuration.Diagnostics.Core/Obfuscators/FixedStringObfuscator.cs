@@ -1,4 +1,4 @@
-namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
+namespace Stravaig.Configuration.Diagnostics.Obfuscators
 {
     /// <summary>
     /// Obfuscates a secret by replacing it with a fixed string.

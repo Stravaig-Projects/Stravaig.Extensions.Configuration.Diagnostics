@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
+namespace Stravaig.Configuration.Diagnostics.Renderers
 {
     /// <summary>
     /// A structured renderer that renders the names of the providers of a configuration.

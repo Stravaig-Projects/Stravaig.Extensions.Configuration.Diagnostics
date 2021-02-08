@@ -1,6 +1,6 @@
-using Stravaig.Extensions.Configuration.Diagnostics.Obfuscators;
+using Stravaig.Configuration.Diagnostics.Obfuscators;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.FluentOptions
+namespace Stravaig.Configuration.Diagnostics.FluentOptions
 {
     /// <summary>
     /// The part of the fluent interface that adds the obfuscator to the configuration options.

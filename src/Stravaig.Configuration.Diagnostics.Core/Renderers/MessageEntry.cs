@@ -1,6 +1,6 @@
 using System;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
+namespace Stravaig.Configuration.Diagnostics.Renderers
 {
     /// <summary>
     /// A message entry that will be send to the logger.

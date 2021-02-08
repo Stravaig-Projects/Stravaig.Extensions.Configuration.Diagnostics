@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
+namespace Stravaig.Configuration.Diagnostics.Renderers
 {
     /// <summary>
     /// The interface for rendering the configuration source information.

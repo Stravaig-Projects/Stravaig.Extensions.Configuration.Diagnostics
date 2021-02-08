@@ -3,7 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Shouldly;
-using Stravaig.Extensions.Configuration.Diagnostics.Obfuscators;
+using Stravaig.Configuration.Diagnostics;
+using Stravaig.Configuration.Diagnostics.Extensions;
+using Stravaig.Configuration.Diagnostics.Obfuscators;
 using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests

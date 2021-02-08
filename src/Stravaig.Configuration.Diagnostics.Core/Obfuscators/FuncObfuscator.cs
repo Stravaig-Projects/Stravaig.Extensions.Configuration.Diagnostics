@@ -1,6 +1,6 @@
 using System;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
+namespace Stravaig.Configuration.Diagnostics.Obfuscators
 {
     /// <summary>
     /// Wraps a Func&lt;string, string&gt; as an obfuscator.

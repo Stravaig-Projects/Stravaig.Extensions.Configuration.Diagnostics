@@ -1,4 +1,4 @@
-namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
+namespace Stravaig.Configuration.Diagnostics.Obfuscators
 {
     /// <summary>
     /// An interface for strategies to obfuscate secrets.

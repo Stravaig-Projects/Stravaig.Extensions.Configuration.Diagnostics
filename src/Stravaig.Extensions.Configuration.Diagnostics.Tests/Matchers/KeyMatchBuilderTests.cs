@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using Shouldly;
-using Stravaig.Extensions.Configuration.Diagnostics.Matchers;
+using Stravaig.Configuration.Diagnostics.Matchers;
 using Stravaig.Extensions.Configuration.Diagnostics.Tests.__helpers;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Matchers

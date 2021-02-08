@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using Shouldly;
-using Stravaig.Extensions.Configuration.Diagnostics.Matchers;
+using Stravaig.Configuration.Diagnostics.Matchers;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Matchers
 {

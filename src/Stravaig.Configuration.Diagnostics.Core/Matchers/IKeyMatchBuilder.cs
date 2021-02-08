@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Matchers
+namespace Stravaig.Configuration.Diagnostics.Matchers
 {
     /// <summary>
     /// A builder for combining many key matchers together.

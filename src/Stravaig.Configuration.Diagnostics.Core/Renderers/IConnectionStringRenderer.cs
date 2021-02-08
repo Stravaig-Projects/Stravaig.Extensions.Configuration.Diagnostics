@@ -1,4 +1,4 @@
-namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
+namespace Stravaig.Configuration.Diagnostics.Renderers
 {
     /// <summary>
     /// The renderer that renders the log messages for a deconstructed connection string.

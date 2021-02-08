@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
+namespace Stravaig.Configuration.Diagnostics.Renderers
 {
     /// <summary>
     /// Renders an aspect of the configuration system.

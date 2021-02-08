@@ -1,4 +1,4 @@
-namespace Stravaig.Extensions.Configuration.Diagnostics.FluentOptions
+namespace Stravaig.Configuration.Diagnostics.FluentOptions
 {
     public partial class ConfigurationDiagnosticsOptionsBuilder
     {

@@ -1,7 +1,7 @@
 using System;
 using NUnit.Framework;
 using Shouldly;
-using Stravaig.Extensions.Configuration.Diagnostics.Obfuscators;
+using Stravaig.Configuration.Diagnostics.Obfuscators;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Obfuscators
 {

@@ -1,4 +1,4 @@
-namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
+namespace Stravaig.Configuration.Diagnostics.Obfuscators
 {
     /// <summary>
     /// An obfuscator that just returns the plain text representation back.
@@ -6,7 +6,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Obfuscators
     public class PlainTextObfuscator : ISecretObfuscator
     {
         /// <summary>
-        /// The default instance of the <see cref="T:Stravaig.Extensions.Configuration.Diagnostics.Obfuscators.PlainTextObfuscator"/>.
+        /// The default instance of the <see cref="T:Stravaig.Configuration.Diagnostics.Obfuscators.PlainTextObfuscator"/>.
         /// </summary>
         public static PlainTextObfuscator Instance { get; } = new PlainTextObfuscator();
         

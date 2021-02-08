@@ -1,6 +1,6 @@
-using Stravaig.Extensions.Configuration.Diagnostics.Matchers;
+using Stravaig.Configuration.Diagnostics.Matchers;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.FluentOptions
+namespace Stravaig.Configuration.Diagnostics.FluentOptions
 {
     /// <summary>
     /// The fluent interface for setting up additional key matchers, or moving on to another part of the fluent configuration.

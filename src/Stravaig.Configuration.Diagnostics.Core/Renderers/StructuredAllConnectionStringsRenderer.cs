@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Renderers
+namespace Stravaig.Configuration.Diagnostics.Renderers
 {
     /// <summary>
     /// A Structured renderer that renders all the connection strings in a configuration.

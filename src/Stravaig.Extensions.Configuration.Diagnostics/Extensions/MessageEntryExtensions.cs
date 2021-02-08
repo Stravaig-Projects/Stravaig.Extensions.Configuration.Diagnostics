@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Logging;
-using Stravaig.Extensions.Configuration.Diagnostics.Renderers;
+using Stravaig.Configuration.Diagnostics.Renderers;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics
 {

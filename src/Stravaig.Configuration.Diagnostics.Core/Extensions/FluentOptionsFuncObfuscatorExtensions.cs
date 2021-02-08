@@ -1,8 +1,8 @@
 using System;
-using Stravaig.Extensions.Configuration.Diagnostics.FluentOptions;
-using Stravaig.Extensions.Configuration.Diagnostics.Obfuscators;
+using Stravaig.Configuration.Diagnostics.FluentOptions;
+using Stravaig.Configuration.Diagnostics.Obfuscators;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics
+namespace Stravaig.Configuration.Diagnostics.Extensions
 {
     /// <summary>
     /// Extensions for the fluent configuration builder to add function based obfuscators

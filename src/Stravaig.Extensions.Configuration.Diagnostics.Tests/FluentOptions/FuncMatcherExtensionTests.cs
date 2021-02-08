@@ -1,7 +1,9 @@
 using NUnit.Framework;
 using Shouldly;
-using Stravaig.Extensions.Configuration.Diagnostics.FluentOptions;
-using Stravaig.Extensions.Configuration.Diagnostics.Matchers;
+using Stravaig.Configuration.Diagnostics;
+using Stravaig.Configuration.Diagnostics.Extensions;
+using Stravaig.Configuration.Diagnostics.FluentOptions;
+using Stravaig.Configuration.Diagnostics.Matchers;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.FluentOptions
 {

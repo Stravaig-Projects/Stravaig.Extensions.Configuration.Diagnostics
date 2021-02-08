@@ -1,4 +1,4 @@
-namespace Stravaig.Extensions.Configuration.Diagnostics.FluentOptions
+namespace Stravaig.Configuration.Diagnostics.FluentOptions
 {
     /// <summary>
     /// Interface providing options for completing the fluent build process.
