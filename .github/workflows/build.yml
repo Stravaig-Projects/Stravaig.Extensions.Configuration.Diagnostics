@@ -3,6 +3,7 @@ on:
   push:
     branches: 
       - main
+      - '#88-refactor'
 
     paths-ignore:
       - 'README.md'
