@@ -10,9 +10,10 @@ Date: ???
 
 ### Miscellaneous
 
-* #84 Update List-Contributors script
+- #84 Update List-Contributors script
 
 ### Dependabot
 
-* Bump nunit from 3.13.0 to 3.13.1
+- Bump Microsoft.Extensions.DependencyInjection from 3.1.11 to 3.1.12
+- Bump nunit from 3.13.0 to 3.13.1
 
