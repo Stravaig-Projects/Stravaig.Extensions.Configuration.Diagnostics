@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Shouldly;
 using Stravaig.Configuration.Diagnostics.Matchers;
-using Stravaig.Extensions.Configuration.Diagnostics.Tests.__helpers;
+using Stravaig.Jailbreak;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Matchers
 {
@@ -68,7 +68,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Matchers
 
             aggregateMatcher.Add(NullMatcher.Instance);
 
-            dynamic jailBrokenMatcher = new Jailbreak<AggregateMatcher>(aggregateMatcher);
+            dynamic jailBrokenMatcher = aggregateMatcher.Jailbreak();
             var count = (int)jailBrokenMatcher._matchers.Count;
             count.ShouldBe(0);
         }
@@ -80,7 +80,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Matchers
 
             aggregateMatcher.Add(new ContainsMatcher("abc"));
 
-            dynamic jailBrokenMatcher = new Jailbreak<AggregateMatcher>(aggregateMatcher);
+            dynamic jailBrokenMatcher = aggregateMatcher.Jailbreak();
             var count = (int)jailBrokenMatcher._matchers.Count;
             count.ShouldBe(1);
         }
@@ -96,7 +96,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Matchers
                 new RegexMatcher("def"),
             });
 
-            dynamic jailBrokenMatcher = new Jailbreak<AggregateMatcher>(aggregateMatcher);
+            dynamic jailBrokenMatcher = aggregateMatcher.Jailbreak();
             var count = (int)jailBrokenMatcher._matchers.Count;
             count.ShouldBe(2);
         }

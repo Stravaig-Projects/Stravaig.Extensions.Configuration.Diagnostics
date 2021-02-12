@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Shouldly;
 using Stravaig.Configuration.Diagnostics.Matchers;
-using Stravaig.Extensions.Configuration.Diagnostics.Tests.__helpers;
+using Stravaig.Jailbreak;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Matchers
 {
@@ -60,7 +60,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Matchers
             matcher.ShouldNotBeNull();
             matcher.ShouldBeOfType<AggregateMatcher>();
             
-            dynamic aggregateMatcher = new Jailbreak<AggregateMatcher>((AggregateMatcher)matcher);
+            dynamic aggregateMatcher = ((AggregateMatcher)matcher).Jailbreak();
             List<IMatcher> matchers = aggregateMatcher._matchers;
             matchers.Count.ShouldBe(2);
             matchers.ShouldContain(m => m.GetType() == typeof(ContainsMatcher));

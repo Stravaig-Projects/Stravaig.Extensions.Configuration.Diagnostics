@@ -14,6 +14,7 @@ ProjectSection(SolutionItems) = preProject
 	..\bump-version.ps1 = ..\bump-version.ps1
 	..\Reset-WipReleaseNotes.ps1 = ..\Reset-WipReleaseNotes.ps1
 	..\.github\dependabot.yml = ..\.github\dependabot.yml
+	..\Create-Release.ps1 = ..\Create-Release.ps1
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Documentation", "__Documentation", "{65B9E25D-BDB6-4FE4-AB8D-5DD5826658CD}"
