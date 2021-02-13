@@ -21,6 +21,7 @@
     <content url="file://$MODULE_DIR$/../../../.github/dependabot.yml" />
     <content url="file://$MODULE_DIR$/../../../.github/workflows/build.yml" />
     <content url="file://$MODULE_DIR$/../../../.gitignore" />
+    <content url="file://$MODULE_DIR$/../../../Build-LocalPackages.ps1" />
     <content url="file://$MODULE_DIR$/../../../Bump-Version.ps1" />
     <content url="file://$MODULE_DIR$/../../../Create-Release.ps1" />
     <content url="file://$MODULE_DIR$/../../../LICENSE" />
