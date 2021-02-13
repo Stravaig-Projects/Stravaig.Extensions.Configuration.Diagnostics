@@ -5,7 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Stravaig.Extensions.Configuration.Diagnostics;
+using Stravaig.Configuration.Diagnostics;
+using Stravaig.Configuration.Diagnostics.Extensions;
+using Stravaig.Configuration.Diagnostics.Logging;
 
 namespace Example
 {
