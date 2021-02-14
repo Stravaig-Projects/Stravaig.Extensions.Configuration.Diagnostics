@@ -3,6 +3,7 @@ on:
   push:
     branches: 
       - main
+      - '#88-refactor'
 
     paths-ignore:
       - 'README.md'
@@ -38,9 +39,8 @@ jobs:
     name: Build, Test, and Release
     runs-on: ubuntu-latest
     env:
-      STRAVAIG_SOLUTION: src/Stravaig.Extensions.Configuration.Diagnostics.sln
-      STRAVAIG_TESTS: Stravaig.Extensions.Configuration.Diagnostics.Tests
-      STRAVAIG_PROJECT: Stravaig.Extensions.Configuration.Diagnostics
+      STRAVAIG_SOLUTION: src/Stravaig.Configuration.Diagnostics.sln
+      STRAVAIG_TESTS: Stravaig.Configuration.Diagnostics.Tests
     
     steps:
       - name: Check out code
@@ -56,7 +56,6 @@ jobs:
         run: |
           echo "GITHUB_SHA: $GITHUB_SHA" 
           echo "Solution: $STRAVAIG_SOLUTION"
-          echo "Project: $STRAVAIG_PROJECT"
           echo "Tests: $STRAVAIG_TESTS"
           echo "Package version: $STRAVAIG_PACKAGE_VERSION"
           echo "Version Suffix: $STRAVAIG_PACKAGE_VERSION_SUFFIX"
@@ -78,11 +77,11 @@ jobs:
        
       - name: Package Preview Release
         if: ${{ env.STRAVAIG_IS_PREVIEW == 'true' }}
-        run: dotnet pack ./src/$STRAVAIG_PROJECT/$STRAVAIG_PROJECT.csproj --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" --version-suffix "$STRAVAIG_PACKAGE_VERSION_SUFFIX" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+        run: dotnet pack $STRAVAIG_SOLUTION --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" --version-suffix "$STRAVAIG_PACKAGE_VERSION_SUFFIX" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
        
       - name: Package Stable Release
         if: ${{ env.STRAVAIG_IS_STABLE == 'true' }}
-        run: dotnet pack ./src/$STRAVAIG_PROJECT/$STRAVAIG_PROJECT.csproj --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+        run: dotnet pack $STRAVAIG_SOLUTION --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
 
       - name: Push package to NuGet
         if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}

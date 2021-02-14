@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Configuration.Diagnostics.Logging", "Stravaig.Configuration.Diagnostics.Logging\Stravaig.Configuration.Diagnostics.Logging.csproj", "{E993302C-3E68-4228-9548-7B813F26CB5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Configuration.Diagnostics.Tests", "Stravaig.Configuration.Diagnostics.Tests\Stravaig.Configuration.Diagnostics.Tests.csproj", "{A76A4159-91DA-4984-8C81-8C3EBE4E24FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Build_and_Deploy", "__Build_and_Deploy", "{84568C56-176A-4180-BEA2-E309208F8269}"
+ProjectSection(SolutionItems) = preProject
+	..\Set-Version.ps1 = ..\Set-Version.ps1
+	..\version.txt = ..\version.txt
+	..\.github\workflows\build.yml = ..\.github\workflows\build.yml
+	..\list-contributors.ps1 = ..\list-contributors.ps1
+	..\build-release-notes.ps1 = ..\build-release-notes.ps1
+	..\bump-version.ps1 = ..\bump-version.ps1
+	..\Reset-WipReleaseNotes.ps1 = ..\Reset-WipReleaseNotes.ps1
+	..\.github\dependabot.yml = ..\.github\dependabot.yml
+	..\Create-Release.ps1 = ..\Create-Release.ps1
+	..\Build-LocalPackages.ps1 = ..\Build-LocalPackages.ps1
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Documentation", "__Documentation", "{65B9E25D-BDB6-4FE4-AB8D-5DD5826658CD}"
+ProjectSection(SolutionItems) = preProject
+	..\LICENSE = ..\LICENSE
+	..\README.md = ..\README.md
+	..\contributors.md = ..\contributors.md
+	..\release-notes\wip-release-notes.md = ..\release-notes\wip-release-notes.md
+	..\release-notes\full-release-notes.md = ..\release-notes\full-release-notes.md
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Repository_Configuration", "__Repository_Configuration", "{492723FE-2E1C-41AB-AB72-E37151DE0CB6}"
+ProjectSection(SolutionItems) = preProject
+	..\.gitignore = ..\.gitignore
+	..\.github\PULL_REQUEST_TEMPLATE\pull_request_template.md = ..\.github\PULL_REQUEST_TEMPLATE\pull_request_template.md
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Solution_Configuration", "__Solution_Configuration", "{39174DBA-7A56-43D3-96C2-81BA0CDFE950}"
+ProjectSection(SolutionItems) = preProject
+	Stravaig.Configuration.Diagnostics.sln.DotSettings = Stravaig.Configuration.Diagnostics.sln.DotSettings
+	.editorconfig = .editorconfig
+EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Configuration.Diagnostics.AdHocTests", "Stravaig.Configuration.Diagnostics.AdHocTests\Stravaig.Configuration.Diagnostics.AdHocTests.csproj", "{F63C62F9-BA30-411E-AABF-8E38067000D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Configuration.Diagnostics.Core", "Stravaig.Configuration.Diagnostics.Core\Stravaig.Configuration.Diagnostics.Core.csproj", "{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{FB4D1524-A3E8-4D38-A32F-AA7B6739C3EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{357AACBA-349B-448A-8BC8-9FB72E3DD0FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E993302C-3E68-4228-9548-7B813F26CB5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E993302C-3E68-4228-9548-7B813F26CB5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E993302C-3E68-4228-9548-7B813F26CB5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E993302C-3E68-4228-9548-7B813F26CB5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A76A4159-91DA-4984-8C81-8C3EBE4E24FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A76A4159-91DA-4984-8C81-8C3EBE4E24FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A76A4159-91DA-4984-8C81-8C3EBE4E24FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A76A4159-91DA-4984-8C81-8C3EBE4E24FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F63C62F9-BA30-411E-AABF-8E38067000D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F63C62F9-BA30-411E-AABF-8E38067000D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F63C62F9-BA30-411E-AABF-8E38067000D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F63C62F9-BA30-411E-AABF-8E38067000D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{904AE2E3-39E5-4221-A0A5-D62BECEC2D5A} = {FB4D1524-A3E8-4D38-A32F-AA7B6739C3EA}
+		{E993302C-3E68-4228-9548-7B813F26CB5D} = {FB4D1524-A3E8-4D38-A32F-AA7B6739C3EA}
+		{A76A4159-91DA-4984-8C81-8C3EBE4E24FC} = {357AACBA-349B-448A-8BC8-9FB72E3DD0FE}
+		{F63C62F9-BA30-411E-AABF-8E38067000D0} = {357AACBA-349B-448A-8BC8-9FB72E3DD0FE}
+	EndGlobalSection
+EndGlobal

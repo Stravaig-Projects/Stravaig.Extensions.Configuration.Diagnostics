@@ -3,28 +3,35 @@
 Installing
 ==========
 
-The latest package is available on `NuGet`_. 
+This library is made up of several packages. The core functionality is contained in a package called ``Stravaig.Configuration.Diagnostics.Core``, the Logger extensions are in ``Stravaig.Configuration.Diagnostics.Logging``.
 
-.. _NuGet: https://www.nuget.org/packages/Stravaig.Extensions.Configuration.Diagnostics
+All the packages that contain the final output form (e.g. Logging) also reference the Core package, so there is no need to include that separately. It also means that you only have one package 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+
-| Badge                                                                                                                                    | Notes                     |
-+------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+
-| .. image:: https://img.shields.io/nuget/v/Stravaig.Extensions.Configuration.Diagnostics?color=004880&label=nuget%20stable&logo=nuget     | Latest stable             |
-+------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+
-| .. image:: https://img.shields.io/nuget/vpre/Stravaig.Extensions.Configuration.Diagnostics?color=ffffff&label=nuget%20latest&logo=nuget) | Latest, including preview |
-+------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+
+The latest packages are available on `NuGet`_. 
 
-Latest, including preview
+.. _NuGet: https://www.nuget.org/packages?q=Stravaig.Configuration.Diagnostics
+
+.. list-table:: packages
+   :header-rows: 1
+
+   * - Package
+     - Stable Version
+     - Preview Version
+   * - Stravaig.Configuration.Diagnostics.Core
+     - .. image:: https://img.shields.io/nuget/v/Stravaig.Configuration.Diagnostics.Core?color=004880&label=nuget%20stable&logo=nuget
+     - .. image:: https://img.shields.io/nuget/vpre/Stravaig.Configuration.Diagnostics.Core?color=ffffff&label=nuget%20latest&logo=nuget)
+   * - Stravaig.Configuration.Diagnostics.Logging
+     - .. image:: https://img.shields.io/nuget/v/Stravaig.Configuration.Diagnostics.Logging?color=004880&label=nuget%20stable&logo=nuget
+     - .. image:: https://img.shields.io/nuget/vpre/Stravaig.Configuration.Diagnostics.Logging?color=ffffff&label=nuget%20latest&logo=nuget)
 
 Installing from a PowerShell prompt
 -----------------------------------
 
-You can install the package into your project from a PowerShell prompt. Navigate to the folder your project file is in and type: ::
+You can install the package into your project from a PowerShell prompt. Navigate to the folder your project file is in and type:
 
 ::
 
-    Install-Package Stravaig.Extensions.Configuration.Diagnostics
+    Install-Package Stravaig.Configuration.Diagnostics.Logging
 
 Installing using the .NET CLI
 -----------------------------
@@ -33,5 +40,5 @@ You can install the package into your project with the .NET CLI command. Navigat
 
 ::
 
-    dotnet add package Stravaig.Extensions.Configuration.Diagnostics
+    dotnet add package Stravaig.Configuration.Diagnostics.Logging
 
