@@ -35,7 +35,7 @@ EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Solution_Configuration", "__Solution_Configuration", "{39174DBA-7A56-43D3-96C2-81BA0CDFE950}"
 ProjectSection(SolutionItems) = preProject
-	Stravaig.Extensions.Configuration.Diagnostics.sln.DotSettings = Stravaig.Extensions.Configuration.Diagnostics.sln.DotSettings
+	Stravaig.Configuration.Diagnostics.sln.DotSettings = Stravaig.Configuration.Diagnostics.sln.DotSettings
 	.editorconfig = .editorconfig
 EndProjectSection
 EndProject
