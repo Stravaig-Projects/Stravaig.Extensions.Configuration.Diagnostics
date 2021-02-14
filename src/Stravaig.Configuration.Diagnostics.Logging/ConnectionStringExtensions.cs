@@ -1,7 +1,7 @@
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Stravaig.Configuration.Diagnostics;
 using Stravaig.Configuration.Diagnostics.Renderers;
 
 namespace Stravaig.Configuration.Diagnostics.Logging
@@ -9,6 +9,7 @@ namespace Stravaig.Configuration.Diagnostics.Logging
     /// <summary>
     /// Extension methods for deconstructing and logging the components of connection strings.
     /// </summary>
+    [SuppressMessage("ReSharper", "TemplateIsNotCompileTimeConstantProblem")]
     public static class ConnectionStringExtensions
     {
         /// <summary>
@@ -26,7 +27,7 @@ namespace Stravaig.Configuration.Diagnostics.Logging
             {
                 logger.Log(
                     level,
-                    "There is no connection string in the configuration with the name {name}",
+                    "There is no connection string in the configuration with the name {Name}.",
                     name);
             }
             else

@@ -1,6 +1,6 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Stravaig.Configuration.Diagnostics;
 
 namespace Stravaig.Configuration.Diagnostics.Logging
 {
@@ -8,7 +8,8 @@ namespace Stravaig.Configuration.Diagnostics.Logging
     /// Extension method for the IConfiguration interface
     /// </summary>
     // ReSharper disable once InconsistentNaming
-    public static class ILoggerIConfigurationExtensions
+    [SuppressMessage("ReSharper", "TemplateIsNotCompileTimeConstantProblem")]
+    public static class LoggerIConfigurationExtensions
     {
         /// <summary>
         /// Logs the keys and values in the given configuration object at the information level.

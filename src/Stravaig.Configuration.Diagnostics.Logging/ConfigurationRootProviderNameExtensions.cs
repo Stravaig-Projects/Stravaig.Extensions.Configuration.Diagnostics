@@ -1,12 +1,13 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Stravaig.Configuration.Diagnostics;
 
 namespace Stravaig.Configuration.Diagnostics.Logging
 {
     /// <summary>
     /// Extensions that log information about the configuration root.
     /// </summary>
+    [SuppressMessage("ReSharper", "TemplateIsNotCompileTimeConstantProblem")]
     public static class ConfigurationRootProviderNameExtensions
     {
         /// <summary>
