@@ -9,7 +9,7 @@ using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
 {
-    public class SingleProviderNameTests : TestBase
+    public class SingleProviderNameTests : LoggerExtensionsBase
     {
         [SetUp]
         public void Setup()

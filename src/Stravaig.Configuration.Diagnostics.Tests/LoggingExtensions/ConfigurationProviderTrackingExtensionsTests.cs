@@ -15,7 +15,7 @@ using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
 {
     [TestFixture]
-    public class ConfigurationProviderTrackingExtensionsTests : TestBase
+    public class ConfigurationProviderTrackingExtensionsTests : LoggerExtensionsBase
     {
         private const string KeyName = "SomeSection:SomeKey";
         

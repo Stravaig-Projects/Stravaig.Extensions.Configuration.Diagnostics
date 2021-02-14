@@ -2,16 +2,15 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using NUnit.Framework.Internal;
 using Stravaig.Extensions.Logging.Diagnostics;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
 {
-    public class TestBase
+    public class LoggerExtensionsBase : TestBase
     {
-        protected TestCaptureLoggerProvider CaptureLoggerProvider;
         protected ILogger Logger;
-        protected IConfigurationRoot ConfigRoot;
-
         protected void SetupLogger()
         {
             CaptureLoggerProvider = new TestCaptureLoggerProvider();
@@ -26,6 +25,13 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
             });
             Logger = loggerFactory.CreateLogger(GetType());
         }
+        
+    }
+    public class TestBase
+    {
+        protected TestCaptureLoggerProvider CaptureLoggerProvider;
+        protected IConfigurationRoot ConfigRoot;
+
 
         protected void SetupConfig(Action<IConfigurationBuilder> configure)
         {

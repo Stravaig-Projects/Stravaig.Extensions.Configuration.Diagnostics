@@ -14,7 +14,7 @@ using Stravaig.Extensions.Configuration.Diagnostics.Tests.__fakes;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
 {
-    public class ConnectionStringLogTests : TestBase
+    public class ConnectionStringLogTests : LoggerExtensionsBase
     {
         private const string BaseConfigKey = "ConnectionStrings";
         private const string SqlServerStandardSecurityKey = "SqlServerStandardSecurity";
