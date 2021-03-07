@@ -33,6 +33,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Stravaig.Configuration.Diagnostics.Logging\Stravaig.Configuration.Diagnostics.Logging.csproj" />
+      <ProjectReference Include="..\Stravaig.Configuration.Diagnostics.Serilog\Stravaig.Configuration.Diagnostics.Serilog.csproj" />
     </ItemGroup>
 
 </Project>
