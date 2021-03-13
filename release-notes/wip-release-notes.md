@@ -13,7 +13,6 @@ Date: ???
 
 - #87 Serilog extensions.
 
-
 ### Miscellaneous
 
 - #84 Update List-Contributors script
