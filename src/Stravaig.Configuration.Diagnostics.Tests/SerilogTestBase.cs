@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using Serilog;
-using Serilog.Formatting.Compact;
 using Serilog.Formatting.Json;
 using ILogger = Serilog.ILogger;
 
