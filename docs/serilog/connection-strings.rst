@@ -92,14 +92,6 @@ This is what it looks like with a console logger.
        * [PostCodeLookupDatabase].[integrated security] = SSPI
        * [PostCodeLookupDatabase].[connect timeout] = 30
 
-The same output in Seq looks like this:
-
-.. image :: images/all-connection-strings-seq.png
-   :alt: An example of the log output using Seq.
-
-Note that Seq does not render the newlines in the message, however, it does render the structure values.
-
-
 Alternative calls
 ~~~~~~~~~~~~~~~~~
 
