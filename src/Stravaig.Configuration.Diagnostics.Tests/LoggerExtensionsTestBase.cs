@@ -5,7 +5,7 @@ using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
 {
-    public abstract class LoggerExtensionsBase : TestBase
+    public abstract class LoggerExtensionsTestBase : TestBase
     {
         protected TestCaptureLoggerProvider CaptureLoggerProvider;
         protected ILogger Logger;

@@ -11,10 +11,10 @@ using Shouldly;
 using Stravaig.Configuration.Diagnostics.Logging;
 using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
+namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.LoggingExtensions
 {
     [TestFixture]
-    public class MultipleProviderNameTests : LoggerExtensionsBase
+    public class MultipleProviderNameTests : LoggerExtensionsTestBase
     {
         [SetUp]
         public void SetUp()

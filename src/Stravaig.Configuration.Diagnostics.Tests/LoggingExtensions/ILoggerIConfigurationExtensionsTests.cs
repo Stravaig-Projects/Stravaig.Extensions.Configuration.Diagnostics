@@ -9,10 +9,10 @@ using Stravaig.Configuration.Diagnostics.Logging;
 using Stravaig.Configuration.Diagnostics.Obfuscators;
 using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
+namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.LoggingExtensions
 {
     // ReSharper disable once InconsistentNaming
-    public class ILoggerIConfigurationExtensionsTests : LoggerExtensionsBase
+    public class ILoggerIConfigurationExtensionsTests : LoggerExtensionsTestBase
     {
         [SetUp]
         public void SetUp()

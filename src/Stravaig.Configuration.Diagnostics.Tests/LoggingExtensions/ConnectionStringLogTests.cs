@@ -12,9 +12,9 @@ using Stravaig.Configuration.Diagnostics.Obfuscators;
 using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;
 using Stravaig.Extensions.Configuration.Diagnostics.Tests.__fakes;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
+namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.LoggingExtensions
 {
-    public class ConnectionStringLogTests : LoggerExtensionsBase
+    public class ConnectionStringLogTests : LoggerExtensionsTestBase
     {
         private const string BaseConfigKey = "ConnectionStrings";
         private const string SqlServerStandardSecurityKey = "SqlServerStandardSecurity";

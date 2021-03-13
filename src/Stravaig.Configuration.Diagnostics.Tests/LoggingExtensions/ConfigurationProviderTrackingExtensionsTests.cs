@@ -12,10 +12,10 @@ using Stravaig.Configuration.Diagnostics.Extensions;
 using Stravaig.Configuration.Diagnostics.Logging;
 using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
+namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.LoggingExtensions
 {
     [TestFixture]
-    public class ConfigurationProviderTrackingExtensionsTests : LoggerExtensionsBase
+    public class ConfigurationProviderTrackingExtensionsTests : LoggerExtensionsTestBase
     {
         private const string KeyName = "SomeSection:SomeKey";
         

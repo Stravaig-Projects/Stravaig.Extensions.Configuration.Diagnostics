@@ -7,9 +7,9 @@ using Shouldly;
 using Stravaig.Configuration.Diagnostics.Logging;
 using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
+namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.LoggingExtensions
 {
-    public class SingleProviderNameTests : LoggerExtensionsBase
+    public class SingleProviderNameTests : LoggerExtensionsTestBase
     {
         [SetUp]
         public void Setup()

@@ -21,6 +21,7 @@ namespace Stravaig.Configuration.Diagnostics.Serilog.Extensions
                     return LogEventLevel.Debug;
                 case MessageLevel.Trace:
                     return LogEventLevel.Verbose;
+                // ReSharper disable once RedundantCaseLabel
                 case MessageLevel.None: // No available mapping.
                 default:
                     return (LogEventLevel) int.MaxValue;
