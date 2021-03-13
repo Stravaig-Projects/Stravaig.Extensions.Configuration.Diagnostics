@@ -23,22 +23,39 @@ The latest packages are available on `NuGet`_.
    * - Stravaig.Configuration.Diagnostics.Logging
      - .. image:: https://img.shields.io/nuget/v/Stravaig.Configuration.Diagnostics.Logging?color=004880&label=nuget%20stable&logo=nuget
      - .. image:: https://img.shields.io/nuget/vpre/Stravaig.Configuration.Diagnostics.Logging?color=ffffff&label=nuget%20latest&logo=nuget)
+   * - Stravaig.Configuration.Diagnostics.Serilog
+     - .. image:: https://img.shields.io/nuget/v/Stravaig.Configuration.Diagnostics.Serilog?color=004880&label=nuget%20stable&logo=nuget
+     - .. image:: https://img.shields.io/nuget/vpre/Stravaig.Configuration.Diagnostics.Serilog?color=ffffff&label=nuget%20latest&logo=nuget)
 
 Installing from a PowerShell prompt
 -----------------------------------
 
-You can install the package into your project from a PowerShell prompt. Navigate to the folder your project file is in and type:
+You can install the package into your project from a PowerShell 
+prompt. Navigate to the folder your project file is in and type:
 
 ::
 
     Install-Package Stravaig.Configuration.Diagnostics.Logging
 
+or
+
+::
+
+    Install-Package Stravaig.Configuration.Diagnostics.Serilog
+
 Installing using the .NET CLI
 -----------------------------
 
-You can install the package into your project with the .NET CLI command. Navigate to the folder your project file is in and type:
+You can install the package into your project with the .NET CLI 
+command. Navigate to the folder your project file is in and type:
 
 ::
 
     dotnet add package Stravaig.Configuration.Diagnostics.Logging
+
+or
+
+::
+
+    dotnet add package Stravaig.Configuration.Diagnostics.Serilog
 

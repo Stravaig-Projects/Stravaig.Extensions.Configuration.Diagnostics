@@ -1,17 +1,19 @@
-Quick start
-===========
+Quick start with Serilog
+========================
 
-Install the ``Stravaig.Extensions.Configuration.Diagnostics`` into your main project. (See :ref:`Installing <refInstalling>` for details of installing the NuGet Package.
+Install the ``Stravaig.Configuration.Diagnostics.Serilog`` into 
+your main project. (See :ref:`Installing <refInstalling>` for 
+details of installing the NuGet Package.
 
-In your ``Startup`` class in the ``Configure`` method add the following:
+In your ``Startup`` class in the ``Configure`` or 
+``ConfigureServices`` method add the following:
 
 ::
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         // Get the logger
-        var logFactory = app.ApplicationServices.GetRequiredService<ILoggerFactory>();
-        var logger = logFactory.CreateLogger<Startup>();
+        var logger = Log.ForContext<Startup>();
 
         // Define which keys contain secrets
         ConfigurationDiagnosticsOptions.SetupBy

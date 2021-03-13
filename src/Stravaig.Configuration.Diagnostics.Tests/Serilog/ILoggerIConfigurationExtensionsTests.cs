@@ -1,18 +1,19 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using NUnit.Framework;
+using Serilog.Events;
 using Shouldly;
 using Stravaig.Configuration.Diagnostics;
 using Stravaig.Configuration.Diagnostics.Extensions;
-using Stravaig.Configuration.Diagnostics.Logging;
 using Stravaig.Configuration.Diagnostics.Obfuscators;
+using Stravaig.Configuration.Diagnostics.Serilog;
 using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;
+using Stravaig.Extensions.Configuration.Diagnostics.Tests.__Extensions;
 
-namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
+namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Serilog
 {
     // ReSharper disable once InconsistentNaming
-    public class ILoggerIConfigurationExtensionsTests : TestBase
+    public class ILoggerIConfigurationExtensionsTests : SerilogTestBase
     {
         [SetUp]
         public void SetUp()
@@ -37,7 +38,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         public void LogsThreeValuesAsInformation()
         {
             Logger.LogConfigurationValuesAsInformation(ConfigRoot);
-            CheckLog(LogLevel.Information);
+            CheckLog(LogEventLevel.Information);
         }
         
         [Test]
@@ -45,14 +46,14 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         {
             var options = SetupOptions();
             Logger.LogConfigurationValuesAsInformation(ConfigRoot, options);
-            CheckObfuscatedLog(LogLevel.Information);
+            CheckObfuscatedLog(LogEventLevel.Information);
         }
         
         [Test]
         public void LogsThreeValuesAsDebug()
         {
             Logger.LogConfigurationValuesAsDebug(ConfigRoot);
-            CheckLog(LogLevel.Debug);
+            CheckLog(LogEventLevel.Debug);
         }
         
         [Test]
@@ -60,27 +61,27 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         {
             var options = SetupOptions();
             Logger.LogConfigurationValuesAsDebug(ConfigRoot, options);
-            CheckObfuscatedLog(LogLevel.Debug);
+            CheckObfuscatedLog(LogEventLevel.Debug);
         }
 
         [Test]
-        public void LogsThreeValuesAsTrace()
+        public void LogsThreeValuesAsVerbose()
         {
-            Logger.LogConfigurationValuesAsTrace(ConfigRoot);
-            CheckLog(LogLevel.Trace);
+            Logger.LogConfigurationValuesAsVerbose(ConfigRoot);
+            CheckLog(LogEventLevel.Verbose);
         }
 
         [Test]
         public void LogsThreeValuesWithObfuscationAsTrace()
         {
             var options = SetupOptions();
-            Logger.LogConfigurationValuesAsTrace(ConfigRoot, options);
-            CheckObfuscatedLog(LogLevel.Trace);
+            Logger.LogConfigurationValuesAsVerbose(ConfigRoot, options);
+            CheckObfuscatedLog(LogEventLevel.Verbose);
         }
 
         [Test]
         [TestCaseSource(typeof(LogLevelSource))]
-        public void LogsThreeValuesAsSpecificLogLevel(LogLevel level)
+        public void LogsThreeValuesAsSpecificLogLevel(LogEventLevel level)
         {
             Logger.LogConfigurationValues(ConfigRoot, level);
             CheckLog(level);
@@ -88,7 +89,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
 
         [Test]
         [TestCaseSource(typeof(LogLevelSource))]
-        public void LoggedSecretsAreObfuscated(LogLevel level)
+        public void LoggedSecretsAreObfuscated(LogEventLevel level)
         {
             var options = SetupOptions();
             Logger.LogConfigurationValues(ConfigRoot, level, options);
@@ -103,29 +104,28 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
             return options;
         }
 
-        private void CheckLog(LogLevel level)
+        private void CheckLog(LogEventLevel level)
         {
             var logs = GetLogs();
             logs.Count.ShouldBe(1);
-            logs[0].LogLevel.ShouldBe(level);
-            var message = logs[0].FormattedMessage;
+            logs[0].GetLevel().ShouldBe(level);
+            var message = logs[0].GetMessage();
             message.ShouldStartWith("The following values are available");
-            message.ShouldContain("ConfigOne : One");
-            message.ShouldContain("ConfigTwo : Dos");
-            message.ShouldContain("ConfigThree : Tres");
+            message.ShouldContain("ConfigOne : \"One\"");
+            message.ShouldContain("ConfigTwo : \"Dos\"");
+            message.ShouldContain("ConfigThree : \"Tres\"");
         }
         
-        private void CheckObfuscatedLog(LogLevel level)
+        private void CheckObfuscatedLog(LogEventLevel level)
         {
             var logs = GetLogs();
             logs.Count.ShouldBe(1);
-            logs[0].LogLevel.ShouldBe(level);
-            var message = logs[0].FormattedMessage;
+            logs[0].GetLevel().ShouldBe(level);
+            var message = logs[0].GetMessage();
             message.ShouldStartWith("The following values are available");
-            message.ShouldContain("ConfigOne : One");
-            message.ShouldContain("ConfigTwo : Dos");
-            message.ShouldContain("ConfigThree : ****");
+            message.ShouldContain("ConfigOne : \"One\"");
+            message.ShouldContain("ConfigTwo : \"Dos\"");
+            message.ShouldContain("ConfigThree : \"****\"");
         }
-
     }
 }
