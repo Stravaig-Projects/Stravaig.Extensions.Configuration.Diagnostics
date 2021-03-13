@@ -6,7 +6,7 @@
 Stravaig Projects: Configuration Diagnostics documentation!
 ===========================================================
 
-``Stravaig.Extensions.Configuration.Diagnostics`` is a set 
+``Stravaig.Configuration.Diagnostics`` is a set 
 of extensions to assist diagnosing configuration setting 
 issues by logging the current state which allows them to 
 be examined. It also provides options for obfuscating 
@@ -17,17 +17,32 @@ logs.
    :maxdepth: 2
    :caption: Introduction:
 
-   intro/quick-start
+   intro/quick-start-logging
+   intro/quick-start-serilog
    intro/installing-the-package
-   intro/configuration-values
-   intro/configuration-providers
-   intro/track-value-source
-   intro/connection-strings
    intro/diagnostics-options
 
 .. toctree::
    :maxdepth: 2
-   :caption: advanced
+   :caption: Microsoft Logging Extensions
+
+   logging-extensions/configuration-values
+   logging-extensions/configuration-providers
+   logging-extensions/track-value-source
+   logging-extensions/connection-strings
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Serilog Extensions
+
+   serilog/configuration-values
+   serilog/configuration-providers
+   serilog/track-value-source
+   serilog/connection-strings
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Advanced
 
    advanced/creating-obfuscators
    advanced/creating-matchers
