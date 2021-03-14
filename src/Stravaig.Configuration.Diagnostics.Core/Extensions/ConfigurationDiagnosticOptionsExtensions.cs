@@ -1,7 +1,7 @@
 using System;
 using Stravaig.Configuration.Diagnostics.Matchers;
 
-namespace Stravaig.Configuration.Diagnostics.Extensions
+namespace Stravaig.Configuration.Diagnostics
 {
     /// <summary>
     /// Extension methods for adding configuration key matchers to the configurations options builder.

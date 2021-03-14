@@ -1,17 +1,15 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
-using Serilog;
-using Serilog.Events;
-using Stravaig.Configuration.Diagnostics.Serilog.Extensions;
+using Microsoft.Extensions.Logging;
 
-namespace Stravaig.Configuration.Diagnostics.Serilog
+namespace Stravaig.Configuration.Diagnostics.Logging
 {
     /// <summary>
     /// Extension method for the IConfiguration interface
     /// </summary>
     // ReSharper disable once InconsistentNaming
     [SuppressMessage("ReSharper", "TemplateIsNotCompileTimeConstantProblem")]
-    public static class LoggerIConfigurationExtensions
+    public static class LoggerConfigurationExtensions
     {
         /// <summary>
         /// Logs the keys and values in the given configuration object at the information level.
@@ -20,7 +18,7 @@ namespace Stravaig.Configuration.Diagnostics.Serilog
         /// <param name="config">The configuration object to examine.</param>
         public static void LogConfigurationValuesAsInformation(this ILogger logger, IConfiguration config)
         {
-            logger.LogConfigurationValues(config, LogEventLevel.Information);
+            logger.LogConfigurationValues(config, LogLevel.Information);
         }
         
         /// <summary>
@@ -31,7 +29,7 @@ namespace Stravaig.Configuration.Diagnostics.Serilog
         /// <param name="options">The options to use to obfuscate secrets.</param>
         public static void LogConfigurationValuesAsInformation(this ILogger logger, IConfiguration config, ConfigurationDiagnosticsOptions options)
         {
-            logger.LogConfigurationValues(config, LogEventLevel.Information, options);
+            logger.LogConfigurationValues(config, LogLevel.Information, options);
         }
 
         /// <summary>
@@ -41,7 +39,7 @@ namespace Stravaig.Configuration.Diagnostics.Serilog
         /// <param name="logger">The logger to write the results to.</param>
         public static void LogConfigurationValuesAsDebug(this ILogger logger, IConfiguration config)
         {
-            logger.LogConfigurationValues(config, LogEventLevel.Debug);
+            logger.LogConfigurationValues(config, LogLevel.Debug);
         }
         
         /// <summary>
@@ -52,7 +50,7 @@ namespace Stravaig.Configuration.Diagnostics.Serilog
         /// <param name="options">The options to use to obfuscate secrets.</param>
         public static void LogConfigurationValuesAsDebug(this ILogger logger, IConfiguration config, ConfigurationDiagnosticsOptions options)
         {
-            logger.LogConfigurationValues(config, LogEventLevel.Debug, options);
+            logger.LogConfigurationValues(config, LogLevel.Debug, options);
         }
 
         /// <summary>
@@ -60,9 +58,9 @@ namespace Stravaig.Configuration.Diagnostics.Serilog
         /// </summary>
         /// <param name="config">The configuration object to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
-        public static void LogConfigurationValuesAsVerbose(this ILogger logger, IConfiguration config)
+        public static void LogConfigurationValuesAsTrace(this ILogger logger, IConfiguration config)
         {
-            logger.LogConfigurationValues(config, LogEventLevel.Verbose);
+            logger.LogConfigurationValues(config, LogLevel.Trace);
         }
         
         /// <summary>
@@ -71,9 +69,9 @@ namespace Stravaig.Configuration.Diagnostics.Serilog
         /// <param name="config">The configuration object to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
         /// <param name="options">The options to use to obfuscate secrets.</param>
-        public static void LogConfigurationValuesAsVerbose(this ILogger logger, IConfiguration config, ConfigurationDiagnosticsOptions options)
+        public static void LogConfigurationValuesAsTrace(this ILogger logger, IConfiguration config, ConfigurationDiagnosticsOptions options)
         {
-            logger.LogConfigurationValues(config, LogEventLevel.Verbose, options);
+            logger.LogConfigurationValues(config, LogLevel.Trace, options);
         }
 
         /// <summary>
@@ -82,7 +80,7 @@ namespace Stravaig.Configuration.Diagnostics.Serilog
         /// <param name="config">The configuration object to examine.</param>
         /// <param name="logger">The logger to write the results to.</param>
         /// <param name="level">The level to log at.</param>
-        public static void LogConfigurationValues(this ILogger logger, IConfiguration config, LogEventLevel level)
+        public static void LogConfigurationValues(this ILogger logger, IConfiguration config, LogLevel level)
         {
             logger.LogConfigurationValues(config, level, ConfigurationDiagnosticsOptions.GlobalOptions);
         }
@@ -94,10 +92,10 @@ namespace Stravaig.Configuration.Diagnostics.Serilog
         /// <param name="logger">The logger to write the results to.</param>
         /// <param name="level">The level to log at.</param>
         /// <param name="options">The options to use to obfuscate secrets.</param>
-        public static void LogConfigurationValues(this ILogger logger, IConfiguration config, LogEventLevel level, ConfigurationDiagnosticsOptions options)
+        public static void LogConfigurationValues(this ILogger logger, IConfiguration config, LogLevel level, ConfigurationDiagnosticsOptions options)
         {
             var message = options.ConfigurationKeyRenderer.Render(config, options);
-            logger.Write(message.GetLogLevel(level), message.Exception, message.MessageTemplate, message.Properties);
+            logger.Log(message.GetLogLevel(level), message.Exception, message.MessageTemplate, message.Properties);
         }
     }
 }

@@ -4,7 +4,6 @@ using NUnit.Framework;
 using Serilog.Events;
 using Shouldly;
 using Stravaig.Configuration.Diagnostics;
-using Stravaig.Configuration.Diagnostics.Extensions;
 using Stravaig.Configuration.Diagnostics.Obfuscators;
 using Stravaig.Configuration.Diagnostics.Serilog;
 using Stravaig.Extensions.Configuration.Diagnostics.Tests.__data;

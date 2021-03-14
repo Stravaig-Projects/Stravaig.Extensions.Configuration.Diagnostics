@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 using Stravaig.Configuration.Diagnostics.FluentOptions;
 using Stravaig.Configuration.Diagnostics.Matchers;
 
-namespace Stravaig.Configuration.Diagnostics.Extensions
+namespace Stravaig.Configuration.Diagnostics
 {
     /// <summary>
     /// Extension methods for adding Regex key matchers to the configuration.

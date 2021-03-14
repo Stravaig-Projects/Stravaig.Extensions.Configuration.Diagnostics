@@ -2,7 +2,6 @@ using System;
 using NUnit.Framework;
 using Shouldly;
 using Stravaig.Configuration.Diagnostics;
-using Stravaig.Configuration.Diagnostics.Extensions;
 using Stravaig.Configuration.Diagnostics.FluentOptions;
 using Stravaig.Configuration.Diagnostics.Obfuscators;
 
