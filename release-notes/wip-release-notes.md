@@ -17,6 +17,7 @@ Date: ???
 
 - #84 Update List-Contributors script
 - #88 Refactor internal structure to support different logging frameworks by creating a new "Core" package, with the specifics for various logging frameworks ultimately residing in various satellite packages.
+- #108 Refactor to improve class names, namespaces, etc.
 
 ### Dependabot
 

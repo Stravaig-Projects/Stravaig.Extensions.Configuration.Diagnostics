@@ -2,7 +2,7 @@ using System;
 using Stravaig.Configuration.Diagnostics.FluentOptions;
 using Stravaig.Configuration.Diagnostics.Matchers;
 
-namespace Stravaig.Configuration.Diagnostics.Extensions
+namespace Stravaig.Configuration.Diagnostics
 {
     /// <summary>
     /// Extension methods for adding the Func Matcher to the options builder.

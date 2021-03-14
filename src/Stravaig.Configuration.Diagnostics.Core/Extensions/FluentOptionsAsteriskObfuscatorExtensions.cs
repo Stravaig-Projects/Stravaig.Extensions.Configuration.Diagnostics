@@ -1,7 +1,7 @@
 using Stravaig.Configuration.Diagnostics.FluentOptions;
 using Stravaig.Configuration.Diagnostics.Obfuscators;
 
-namespace Stravaig.Configuration.Diagnostics.Extensions
+namespace Stravaig.Configuration.Diagnostics
 {
     /// <summary>
     /// Extensions to the fluent options builder for adding obfuscators.
