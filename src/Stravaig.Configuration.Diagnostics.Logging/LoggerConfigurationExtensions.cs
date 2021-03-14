@@ -9,7 +9,7 @@ namespace Stravaig.Configuration.Diagnostics.Logging
     /// </summary>
     // ReSharper disable once InconsistentNaming
     [SuppressMessage("ReSharper", "TemplateIsNotCompileTimeConstantProblem")]
-    public static class LoggerIConfigurationExtensions
+    public static class LoggerConfigurationExtensions
     {
         /// <summary>
         /// Logs the keys and values in the given configuration object at the information level.

@@ -8,7 +8,7 @@ namespace Stravaig.Configuration.Diagnostics.Logging
     /// Extensions that log information about the configuration root.
     /// </summary>
     [SuppressMessage("ReSharper", "TemplateIsNotCompileTimeConstantProblem")]
-    public static class ConfigurationRootProviderNameExtensions
+    public static class LoggerConfigurationRootProviderNameExtensions
     {
         /// <summary>
         /// Logs the provider names in the given <see cref="T:Microsoft.Extensions.Configuration.IConfigurationRoot"/>

@@ -10,7 +10,7 @@ namespace Stravaig.Configuration.Diagnostics.Logging
     /// Extension methods for deconstructing and logging the components of connection strings.
     /// </summary>
     [SuppressMessage("ReSharper", "TemplateIsNotCompileTimeConstantProblem")]
-    public static class ConnectionStringExtensions
+    public static class LoggerConnectionStringExtensions
     {
         /// <summary>
         /// Logs the details of the named connection string at the desired level.

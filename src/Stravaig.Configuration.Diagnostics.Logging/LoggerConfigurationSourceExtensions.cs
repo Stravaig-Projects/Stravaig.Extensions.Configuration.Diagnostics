@@ -8,7 +8,7 @@ namespace Stravaig.Configuration.Diagnostics.Logging
     /// Extension methods for tracking where a value came from in the configuration.
     /// </summary>
     [SuppressMessage("ReSharper", "TemplateIsNotCompileTimeConstantProblem")]
-    public static class ConfigurationSourceExtensions
+    public static class LoggerConfigurationSourceExtensions
     {
         /// <summary>
         /// Logs the source provider(s) for the given configuration key as Trace.
