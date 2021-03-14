@@ -1,7 +1,7 @@
-using Stravaig.Configuration.Diagnostics.Renderers;
 using Serilog.Events;
+using Stravaig.Configuration.Diagnostics.Renderers;
 
-namespace Stravaig.Configuration.Diagnostics.Serilog.Extensions
+namespace Stravaig.Configuration.Diagnostics.Serilog
 {
     internal static class MessageEntryExtensions
     {
