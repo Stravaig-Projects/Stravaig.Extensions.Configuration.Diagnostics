@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
 using Stravaig.Configuration.Diagnostics.Renderers;
-using Stravaig.Configuration.Diagnostics.Serilog.Extensions;
 
 namespace Stravaig.Configuration.Diagnostics.Serilog
 {
@@ -12,7 +11,7 @@ namespace Stravaig.Configuration.Diagnostics.Serilog
     /// Extension methods for deconstructing and logging the components of connection strings.
     /// </summary>
     [SuppressMessage("ReSharper", "TemplateIsNotCompileTimeConstantProblem")]
-    public static class ConnectionStringExtensions
+    public static class SerilogConnectionStringExtensions
     {
         /// <summary>
         /// Logs the details of the named connection string at the desired level.

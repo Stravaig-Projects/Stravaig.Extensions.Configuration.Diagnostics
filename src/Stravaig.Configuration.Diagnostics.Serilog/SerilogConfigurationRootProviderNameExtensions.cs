@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
-using Stravaig.Configuration.Diagnostics.Serilog.Extensions;
 
 namespace Stravaig.Configuration.Diagnostics.Serilog
 {
@@ -10,7 +9,7 @@ namespace Stravaig.Configuration.Diagnostics.Serilog
     /// Extensions that log information about the configuration root.
     /// </summary>
     [SuppressMessage("ReSharper", "TemplateIsNotCompileTimeConstantProblem")]
-    public static class ConfigurationRootProviderNameExtensions
+    public static class SerilogConfigurationRootProviderNameExtensions
     {
         /// <summary>
         /// Logs the provider names in the given <see cref="T:Microsoft.Extensions.Configuration.IConfigurationRoot"/>

@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
-using Stravaig.Configuration.Diagnostics.Serilog.Extensions;
 
 namespace Stravaig.Configuration.Diagnostics.Serilog
 {
@@ -11,7 +10,7 @@ namespace Stravaig.Configuration.Diagnostics.Serilog
     /// </summary>
     // ReSharper disable once InconsistentNaming
     [SuppressMessage("ReSharper", "TemplateIsNotCompileTimeConstantProblem")]
-    public static class LoggerIConfigurationExtensions
+    public static class SerilogConfigurationExtensions
     {
         /// <summary>
         /// Logs the keys and values in the given configuration object at the information level.
