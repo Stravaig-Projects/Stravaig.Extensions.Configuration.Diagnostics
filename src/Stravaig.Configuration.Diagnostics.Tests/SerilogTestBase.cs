@@ -16,13 +16,16 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
         protected ILogger Logger;
         private StringBuilder _logStringBuilder;
         private TextWriter _logTextWriter;
-        protected void SetupLogger()
+        protected void SetupLogger(bool writeToConsole = false)
         {
             _logStringBuilder = new StringBuilder();
             _logTextWriter = new StringWriter(_logStringBuilder);
-            Logger = new LoggerConfiguration()
+            var loggerConfiguration = new LoggerConfiguration()
                 .WriteTo.TextWriter(new JsonFormatter(renderMessage: true), _logTextWriter)
-                .MinimumLevel.Verbose()
+                .MinimumLevel.Verbose();
+            if (writeToConsole)
+                loggerConfiguration = loggerConfiguration.WriteTo.Console();
+            Logger = loggerConfiguration
                 .CreateLogger();
         }
 
