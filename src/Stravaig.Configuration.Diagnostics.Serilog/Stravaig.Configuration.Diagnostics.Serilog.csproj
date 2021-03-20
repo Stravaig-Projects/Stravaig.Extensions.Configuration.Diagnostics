@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
         <Title>Stravaig Configuration Diagnostics (Serilog Extensions)</Title>
         <Authors>Stravaig Projects</Authors>
         <Description>A set of diagnostics extensions for Serilog for enumerating details of the app's configuration.</Description>
@@ -17,7 +17,6 @@
     <ItemGroup>
         <None Include="stravaig-icon.png" Pack="true" PackagePath="" />
     </ItemGroup>
-
 
     <ItemGroup>
       <ProjectReference Include="..\Stravaig.Configuration.Diagnostics.Core\Stravaig.Configuration.Diagnostics.Core.csproj" />
