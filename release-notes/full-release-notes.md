@@ -6,9 +6,6 @@ Date: Sunday, 14 March, 2021 at 21:25:19 +00:00
 
 **THIS RELEASE CONTAINS BREAKING CHANGES**
 
-
-### Bugs
-
 ### Features
 
 - #87 Serilog extensions.
@@ -35,11 +32,10 @@ Date: Sunday, 14 March, 2021 at 21:25:19 +00:00
 - Bump Microsoft.NET.Test.Sdk from 16.8.3 to 16.9.1
 - Bump nunit from 3.13.0 to 3.13.1
 - Bump Stravaig.Extensions.Logging.Diagnostics from 0.3.1 to 0.3.2
+
 ## Version 0.5.0
 
 Date: Saturday, 23 January, 2021 at 14:31:04 +00:00
-
-### Bugs
 
 ### Features
 
@@ -81,9 +77,6 @@ Date: Saturday, 23 January, 2021 at 14:31:04 +00:00
 * Bump `Stravaig.Extensions.Logging.Diagnostics`
   * from 0.2.2 to 0.3.0
   * from 0.3.0 to 0.3.1
-
-
-
 
 ## Version 0.4.0
 
