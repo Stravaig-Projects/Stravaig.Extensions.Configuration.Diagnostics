@@ -23,7 +23,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Serilog
         [TestCaseSource(typeof(LogEventLevelSource))]
         public void NoProviders_LogsNoProviders(LogEventLevel level)
         {
-            SetupConfig(b => { });
+            SetupConfig(_ => { });
             SetupLogger();
 
             Logger.LogConfigurationKeySource(level, ConfigRoot, KeyName);
@@ -275,7 +275,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Serilog
         [Test]
         public void CheckInformationSpecificMethod()
         {
-            SetupConfig(b => { });
+            SetupConfig();
             SetupLogger();
             
             Logger.LogConfigurationKeySourceAsInformation(ConfigRoot, KeyName);
@@ -287,7 +287,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Serilog
         [Test]
         public void CheckDebugSpecificMethod()
         {
-            SetupConfig(b => { });
+            SetupConfig();
             SetupLogger();
             
             Logger.LogConfigurationKeySourceAsDebug(ConfigRoot, KeyName);
@@ -299,7 +299,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Serilog
         [Test]
         public void CheckTraceSpecificMethod()
         {
-            SetupConfig(b => { });
+            SetupConfig();
             SetupLogger();
             
             Logger.LogConfigurationKeySourceAsVerbose(ConfigRoot, KeyName);

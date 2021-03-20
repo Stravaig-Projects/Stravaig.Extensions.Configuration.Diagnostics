@@ -22,7 +22,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.LoggingExtensions
         [TestCaseSource(typeof(LogLevelSource))]
         public void NoProviders_LogsNoProviders(LogLevel level)
         {
-            SetupConfig(b => { });
+            SetupConfig();
             SetupLogger();
 
             Logger.LogConfigurationKeySource(level, ConfigRoot, KeyName);
@@ -270,7 +270,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.LoggingExtensions
         [Test]
         public void CheckInformationSpecificMethod()
         {
-            SetupConfig(b => { });
+            SetupConfig();
             SetupLogger();
             
             Logger.LogConfigurationKeySourceAsInformation(ConfigRoot, KeyName);
@@ -282,7 +282,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.LoggingExtensions
         [Test]
         public void CheckDebugSpecificMethod()
         {
-            SetupConfig(b => { });
+            SetupConfig();
             SetupLogger();
             
             Logger.LogConfigurationKeySourceAsDebug(ConfigRoot, KeyName);
@@ -294,7 +294,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.LoggingExtensions
         [Test]
         public void CheckTraceSpecificMethod()
         {
-            SetupConfig(b => { });
+            SetupConfig();
             SetupLogger();
             
             Logger.LogConfigurationKeySourceAsTrace(ConfigRoot, KeyName);
