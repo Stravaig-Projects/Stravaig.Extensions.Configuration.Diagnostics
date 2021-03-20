@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
         <Title>Stravaig Configuration Diagnostics Core</Title>
         <Authors>Stravaig Projects</Authors>
         <Description>The core functionality of a set of diagnostics extensions for enumerating details of the app's configuration.</Description>
@@ -19,8 +19,12 @@
         <None Include="stravaig-icon.png" Pack="true" PackagePath="" />
     </ItemGroup>
 
-    <ItemGroup>
+    <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
       <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.13" />
     </ItemGroup>
-    
+
+    <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+    </ItemGroup>
+
 </Project>

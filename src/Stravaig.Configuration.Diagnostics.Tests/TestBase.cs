@@ -7,10 +7,10 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
     {
         protected IConfigurationRoot ConfigRoot;
 
-        protected void SetupConfig(Action<IConfigurationBuilder> configure)
+        protected void SetupConfig(Action<IConfigurationBuilder> configure = null)
         {
             var builder = new ConfigurationBuilder();
-            configure(builder);
+            configure?.Invoke(builder);
             ConfigRoot = builder.Build();
         }
     }
