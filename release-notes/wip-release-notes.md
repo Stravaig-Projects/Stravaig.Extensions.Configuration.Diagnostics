@@ -25,7 +25,7 @@ Date: ???
 - .NET Core 3.1
   - No changes
 - General
-  - No changes
+  - Bump Stravaig.Extensions.Logging.Diagnostics from 0.3.2. to 0.4.0
 
 ---
 
