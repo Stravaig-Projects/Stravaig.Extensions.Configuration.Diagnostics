@@ -23,6 +23,7 @@ Date: ???
   - Microsoft.Extensions.Logging.Abstractions 5.0.0
   - Microsoft.Extensions.Logging.Console 5.0.0
 - .NET Core 3.1
+  - Bump Microsoft.Extensions.DependencyInjection from 3.1.13 to 3.1.14
   - Bump Microsoft.Extensions.Logging.Abstractions from 3.1.13 to 3.1.14
 - General
   - Bump Stravaig.Extensions.Logging.Diagnostics from 0.3.2. to 0.4.0
