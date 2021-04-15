@@ -35,7 +35,8 @@ Date: ???
   - Bump Microsoft.Extensions.Logging.Abstractions from 3.1.13 to 3.1.14
   - Bump Microsoft.Extensions.Logging.Console from 3.1.13 to 3.1.14
 - General
-  - Bump Stravaig.Extensions.Logging.Diagnostics from 0.3.2. to 0.4.0
+  - Bump NUnit3TestAdapter from 3.16.1 to 3.17.0
+  - Bump Stravaig.Extensions.Logging.Diagnostics from 0.3.2. to 0.4.1
 
 ---
 
