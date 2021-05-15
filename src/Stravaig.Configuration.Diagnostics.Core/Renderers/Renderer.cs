@@ -9,8 +9,6 @@ namespace Stravaig.Configuration.Diagnostics.Renderers
     {
         private const string PlaceholderPartJoin = "_";
 
-        private bool _convertDotToUnderscore = false;
-        
         /// <summary>
         /// Creates a safely named placeholder for use in structured renderers.
         /// </summary>
@@ -34,12 +32,10 @@ namespace Stravaig.Configuration.Diagnostics.Renderers
                 {
                     if (charPos == 0 && character >= '0' && character <= '9')
                         placeholderBuilder.Append('_');
-                    if (char.IsLetterOrDigit(character))
-                        placeholderBuilder.Append(character);
-                    if (character == '.')
-                        placeholderBuilder.Append(_convertDotToUnderscore ? '_' : '.');
-                    else
-                        placeholderBuilder.Append('_');
+                    placeholderBuilder.Append(
+                        char.IsLetterOrDigit(character)
+                            ? character
+                            : '_');
                     charPos++;
                 }
 

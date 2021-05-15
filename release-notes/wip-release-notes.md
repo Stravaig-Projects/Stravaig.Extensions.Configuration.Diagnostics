@@ -6,6 +6,8 @@ Date: ???
 
 ### Bugs
 
+- #111: Dots also get converted to underlines in structured keys.
+
 ### Features
 
 ### Miscellaneous
