@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using Shouldly;
 using Stravaig.Configuration.Diagnostics.Serilog;
