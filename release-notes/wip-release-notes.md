@@ -25,6 +25,7 @@ Date: ???
   - Bump Microsoft.Extensions.DependencyInjection from 3.1.14 to 3.1.15
   - Bump Microsoft.Extensions.Logging from 3.1.14 to 3.1.15
   - Bump Microsoft.Extensions.Logging.Abstractions from 3.1.14 to 3.1.15
+  - Bump Microsoft.Extensions.Logging.Console from 3.1.14 to 3.1.15
 - General
   - Bump Stravaig.Extensions.Logging.Diagnostics from 0.4.1 to 0.4.2
 
