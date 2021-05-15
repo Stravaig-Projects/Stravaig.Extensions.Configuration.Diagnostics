@@ -15,7 +15,12 @@ Date: ???
 - .NET 5.0
   - No changes
 - .NET Core 3.1
-  - No changes
+  - Bump Microsoft.Extensions.Configuration from 3.1.14 to 3.1.15
+  - Bump Microsoft.Extensions.Configuration.Abstractions from 3.1.14 to 3.1.15
+  - Bump Microsoft.Extensions.Configuration.Binder from 3.1.14 to 3.1.15
+  - Bump Microsoft.Extensions.DependencyInjection from 3.1.14 to 3.1.15
+  - Bump Microsoft.Extensions.Logging from 3.1.14 to 3.1.15
+  - Bump Microsoft.Extensions.Logging.Abstractions from 3.1.14 to 3.1.15
 - General
   - No changes
 

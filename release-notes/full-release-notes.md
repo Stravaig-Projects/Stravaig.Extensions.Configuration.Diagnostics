@@ -4,10 +4,6 @@
 
 Date: Thursday, 15 April, 2021 at 10:58:18 +00:00
 
-### Bugs
-
-### Features
-
 ### Miscellaneous
 
 #114: Multi-targeting .NET Core 3.1 and .NET 5.0
