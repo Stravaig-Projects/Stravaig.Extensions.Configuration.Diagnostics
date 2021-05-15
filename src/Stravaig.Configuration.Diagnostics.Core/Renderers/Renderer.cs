@@ -8,7 +8,7 @@ namespace Stravaig.Configuration.Diagnostics.Renderers
     public abstract class Renderer
     {
         private const string PlaceholderPartJoin = "_";
-        
+
         /// <summary>
         /// Creates a safely named placeholder for use in structured renderers.
         /// </summary>
@@ -17,9 +17,9 @@ namespace Stravaig.Configuration.Diagnostics.Renderers
         protected string Placeholder(params string[] parts)
         {
             StringBuilder placeholderBuilder = new StringBuilder();
-            placeholderBuilder.Append("{");
+            placeholderBuilder.Append('{');
             int partPos = 0;
-            foreach (var part in parts)
+            foreach (string part in parts)
             {
                 if (string.IsNullOrWhiteSpace(part))
                     continue;
@@ -31,18 +31,18 @@ namespace Stravaig.Configuration.Diagnostics.Renderers
                 foreach (char character in part)
                 {
                     if (charPos == 0 && character >= '0' && character <= '9')
-                        placeholderBuilder.Append("_");
-                    if (char.IsLetterOrDigit(character) || character == '.')
-                        placeholderBuilder.Append(character);
-                    else
-                        placeholderBuilder.Append("_");
+                        placeholderBuilder.Append('_');
+                    placeholderBuilder.Append(
+                        char.IsLetterOrDigit(character)
+                            ? character
+                            : '_');
                     charPos++;
                 }
 
                 partPos++;
             }
 
-            placeholderBuilder.Append("}");
+            placeholderBuilder.Append('}');
             return placeholderBuilder.ToString();
         }
     }
