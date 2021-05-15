@@ -19,6 +19,7 @@ Date: ???
   - Bump Microsoft.Extensions.Configuration.Abstractions from 3.1.14 to 3.1.15
   - Bump Microsoft.Extensions.Configuration.Binder from 3.1.14 to 3.1.15
   - Bump Microsoft.Extensions.Configuration.CommandLine from 3.1.14 to 3.1.15
+  - Bump Microsoft.Extensions.Logging.Console from 3.1.14 to 3.1.15
   - Bump Microsoft.Extensions.Configuration.EnvironmentVariables from 3.1.14 to 3.1.15
   - Bump Microsoft.Extensions.Configuration.Json from 3.1.14 to 3.1.15
   - Bump Microsoft.Extensions.Configuration.UserSecrets from 3.1.14 to 3.1.15
