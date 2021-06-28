@@ -4,6 +4,10 @@
 
 Date: ???
 
+### Bug Fixes
+
+- #113: Configuration Values rendering in reverse order.
+
 ### Dependent Packages
 
 - .NET 5.0
