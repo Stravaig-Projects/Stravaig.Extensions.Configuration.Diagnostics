@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 
@@ -20,11 +21,15 @@ namespace Stravaig.Configuration.Diagnostics.Renderers
         {
             List<object> args = new List<object>();
             StringBuilder messageTemplate = new StringBuilder("The following values are available:" + Environment.NewLine);
-            
-            foreach (var kvp in configuration.AsEnumerable())
+
+            var configKeyValues = configuration
+                .AsEnumerable()
+                .OrderBy(kv => kv.Key);
+
+            foreach (var kvp in configKeyValues)
             {
-                var configurationKeyPlaceholder = Placeholder(kvp.Key);
-                var potentiallyObfuscatedValue = Obfuscate(kvp, options);
+                string configurationKeyPlaceholder = Placeholder(kvp.Key);
+                string potentiallyObfuscatedValue = Obfuscate(kvp, options);
                 
                 messageTemplate.AppendLine($"{kvp.Key} : {configurationKeyPlaceholder}");
                 args.Add(potentiallyObfuscatedValue);
