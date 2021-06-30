@@ -45,7 +45,7 @@ if ([string]::IsNullOrWhiteSpace($Env:STRAVAIG_PACKAGE_FULL_VERSION))
     Write-Error "STRAVAIG_PACKAGE_FULL_VERSION is missing."
     Exit 3;
 }
-$TagName = "v" + $Env:STRAVAIG_PACKAGE_FULL_VERSION
+$TagName = $Env:STRAVAIG_RELEASE_TAG
 
 
 if ([string]::IsNullOrWhiteSpace($Env:STRAVAIG_IS_PREVIEW))

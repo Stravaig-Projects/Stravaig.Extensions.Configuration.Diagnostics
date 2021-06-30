@@ -1,18 +1,30 @@
 <Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <StravaigBuildTime>$([System.DateTime]::Now.ToString("dddd, d MMMM yyyy 'at' HH:mm:ss zzzz"))</StravaigBuildTime>
+        <StravaigCopyrightYear>$([System.DateTime]::Now.ToString("yyyy"))</StravaigCopyrightYear>
+        <StravaigGitHubCommit>$(GITHUB_SHA)</StravaigGitHubCommit>
+        <StravaigWorkflowUrl>$(GITHUB_SERVER_URL)/$(GITHUB_REPOSITORY)/actions/runs/$(GITHUB_RUN_ID)</StravaigWorkflowUrl>
+        <StravaigReleaseNotes>https://github.com/$(GITHUB_REPOSITORY)/releases/tag/$(STRAVAIG_RELEASE_TAG)</StravaigReleaseNotes>
+    </PropertyGroup>
 
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
         <Title>Stravaig Configuration Diagnostics Core</Title>
         <Authors>Stravaig Projects</Authors>
-        <Description>The core functionality of a set of diagnostics extensions for enumerating details of the app's configuration.</Description>
-        <Copyright>©2020-2021 Stravaig Projects. See licence for more information.</Copyright>
-        <PackageProjectUrl>https://github.com/Stravaig-Projects/Stravaig.Extensions.Configuration.Diagnostics/blob/main/README.md</PackageProjectUrl>
+        <Copyright>©2020-$(StravaigCopyrightYear) Stravaig Projects. See licence for more information.</Copyright>
+        <PackageProjectUrl>https://github.com/$(GITHUB_REPOSITORY)/blob/$(StravaigGitHubCommit)/README.md</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <RepositoryUrl>https://github.com/Stravaig-Projects/Stravaig.Extensions.Configuration.Diagnostics</RepositoryUrl>
+        <RepositoryUrl>https://github.com/$(GITHUB_REPOSITORY)</RepositoryUrl>
         <PackageIcon>stravaig-icon.png</PackageIcon>
         <PackageTags>logging configuration</PackageTags>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <RootNamespace>Stravaig.Configuration.Diagnostics</RootNamespace>
+        <Description>The core functionality of a set of diagnostics extensions for enumerating details of the app's configuration.
+
+Built on $(StravaigBuildTime).
+Build run details at: $(StravaigWorkflowUrl)
+Release notes at: $(StravaigReleaseNotes)
+        </Description>
     </PropertyGroup>
 
     <ItemGroup>
