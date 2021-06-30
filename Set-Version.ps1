@@ -65,6 +65,7 @@ else
 }
 "STRAVAIG_PACKAGE_VERSION_SUFFIX=$suffix" | Out-File -FilePath $Env:GITHUB_ENV -Encoding UTF8 -Append
 "STRAVAIG_PACKAGE_FULL_VERSION=$fullVersion" | Out-File -FilePath $Env:GITHUB_ENV -Encoding UTF8 -Append
+"STRAVAIG_RELEASE_TAG=v$fullVersion" | Out-File -FilePath $Env:GITHUB_ENV -Encoding UTF8 -Append
 
 if ($IsPublicRelease)
 {

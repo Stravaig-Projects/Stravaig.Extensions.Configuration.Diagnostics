@@ -4,6 +4,7 @@
         <StravaigCopyrightYear>$([System.DateTime]::Now.ToString("yyyy"))</StravaigCopyrightYear>
         <StravaigGitHubCommit>$(GITHUB_SHA)</StravaigGitHubCommit>
         <StravaigWorkflowUrl>$(GITHUB_SERVER_URL)/$(GITHUB_REPOSITORY)/actions/runs/$(GITHUB_RUN_ID)</StravaigWorkflowUrl>
+        <StravaigReleaseNotes>https://github.com/$(GITHUB_REPOSITORY)/releases/tag/$(STRAVAIG_RELEASE_TAG)</StravaigReleaseNotes>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -21,6 +22,7 @@
 
 Built on $(StravaigBuildTime).
 Build run details at: $(StravaigWorkflowUrl)
+Release notes at: $(StravaigReleaseNotes)
         </Description>
     </PropertyGroup>
 
