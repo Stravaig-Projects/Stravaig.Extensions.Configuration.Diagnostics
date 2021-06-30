@@ -1,17 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <StravaigBuildTime>$([System.DateTime]::Now.ToString("dddd, d MMMM yyyy 'at' HH:mm:ss zzzz"))</StravaigBuildTime>
+        <StravaigCopyrightYear>$([System.DateTime]::Now.ToString("yyyy"))</StravaigCopyrightYear>
+        <StravaigGitHubCommit>$(GITHUB_SHA)</StravaigGitHubCommit>
+        <StravaigWorkflowUrl>$(GITHUB_SERVER_URL)/$(GITHUB_REPOSITORY)/actions/runs/$(GITHUB_RUN_ID)</StravaigWorkflowUrl>
+    </PropertyGroup>
 
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
         <Title>Stravaig Configuration Diagnostics (Serilog Extensions)</Title>
         <Authors>Stravaig Projects</Authors>
-        <Description>A set of diagnostics extensions for Serilog for enumerating details of the app's configuration.</Description>
-        <Copyright>©2020-2021 Stravaig Projects. See licence for more information.</Copyright>
-        <PackageProjectUrl>https://github.com/Stravaig-Projects/Stravaig.Extensions.Configuration.Diagnostics/blob/main/README.md</PackageProjectUrl>
+        <Copyright>©2020-$(StravaigCopyrightYear) Stravaig Projects. See licence for more information.</Copyright>
+        <PackageProjectUrl>https://github.com/$(GITHUB_REPOSITORY)/blob/$(StravaigGitHubCommit)/README.md</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <RepositoryUrl>https://github.com/Stravaig-Projects/Stravaig.Extensions.Configuration.Diagnostics</RepositoryUrl>
+        <RepositoryUrl>https://github.com/$(GITHUB_REPOSITORY)</RepositoryUrl>
         <PackageIcon>stravaig-icon.png</PackageIcon>
         <PackageTags>serilog configuration</PackageTags>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <Description>A set of diagnostics extensions for Serilog for enumerating details of the app's configuration.
+
+Built on $(StravaigBuildTime).
+Build run details at: $(StravaigWorkflowUrl)
+        </Description>
     </PropertyGroup>
 
     <ItemGroup>
