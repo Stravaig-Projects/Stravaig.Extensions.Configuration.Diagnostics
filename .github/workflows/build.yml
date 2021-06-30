@@ -106,7 +106,7 @@ jobs:
         shell: pwsh
         run: ./build-release-notes.ps1
 
-      - name: Archive Simulated Release Notes
+      - name: Archive Simulated Release Information
         if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'false' }}
         uses: actions/upload-artifact@v2
         with:
@@ -115,9 +115,10 @@ jobs:
             contributors.md
             release-notes/full-release-notes.md
             release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
+            out/**
           retention-days: 7
 
-      - name: Archive Release Notes
+      - name: Archive Release Information
         if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
         uses: actions/upload-artifact@v2
         with:
@@ -126,6 +127,7 @@ jobs:
             contributors.md
             release-notes/full-release-notes.md
             release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
+            out/**
 
       - name: Create Release
         if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
