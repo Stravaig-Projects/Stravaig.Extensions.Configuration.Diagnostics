@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Repository_Configuration"
 ProjectSection(SolutionItems) = preProject
 	..\.gitignore = ..\.gitignore
 	..\.github\PULL_REQUEST_TEMPLATE\pull_request_template.md = ..\.github\PULL_REQUEST_TEMPLATE\pull_request_template.md
+	..\Install-GitHooks.ps1 = ..\Install-GitHooks.ps1
+	..\Uninstall-GitHooks.ps1 = ..\Uninstall-GitHooks.ps1
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Solution_Configuration", "__Solution_Configuration", "{39174DBA-7A56-43D3-96C2-81BA0CDFE950}"
@@ -50,6 +52,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Configuration.Diagnostics.Serilog", "Stravaig.Configuration.Diagnostics.Serilog\Stravaig.Configuration.Diagnostics.Serilog.csproj", "{0F3F3402-C723-437F-AB98-F96501CECE6D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHooks", "GitHooks", "{8A82C8D2-7202-496A-AA64-F9B49A33A838}"
+ProjectSection(SolutionItems) = preProject
+	..\.stravaig\gitHooks\commit-msg = ..\.stravaig\gitHooks\commit-msg
+EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
