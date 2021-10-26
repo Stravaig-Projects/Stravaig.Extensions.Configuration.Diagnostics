@@ -10,6 +10,8 @@ Date: ???
 
 ### Miscellaneous
 
+ - #165 Add git hook to add ticket number to the commit message.
+
 ### Dependent Packages
 
 - .NET 5.0
