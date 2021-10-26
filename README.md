@@ -21,3 +21,10 @@ The `Stravaig.Extensions.Configuration.Diagnostics` package is now deprecated. I
 The docs for this project are now available at Read The Docs:
 
 * Latest: https://stravaigextensionsconfigurationdiagnostics.readthedocs.io/en/latest/
+
+## Contributing / Getting Started
+
+* Ensure you have PowerShell 7.1.x or higher installed
+* At a PowerShell prompt
+  * Navigate to the root of this repository
+  * Run `./Install-GitHooks.ps1`
