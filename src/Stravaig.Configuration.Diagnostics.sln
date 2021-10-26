@@ -49,6 +49,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{357AACBA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.Configuration.Diagnostics.Serilog", "Stravaig.Configuration.Diagnostics.Serilog\Stravaig.Configuration.Diagnostics.Serilog.csproj", "{0F3F3402-C723-437F-AB98-F96501CECE6D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHooks", "GitHooks", "{8A82C8D2-7202-496A-AA64-F9B49A33A838}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,5 +84,6 @@ Global
 		{A76A4159-91DA-4984-8C81-8C3EBE4E24FC} = {357AACBA-349B-448A-8BC8-9FB72E3DD0FE}
 		{F63C62F9-BA30-411E-AABF-8E38067000D0} = {357AACBA-349B-448A-8BC8-9FB72E3DD0FE}
 		{0F3F3402-C723-437F-AB98-F96501CECE6D} = {FB4D1524-A3E8-4D38-A32F-AA7B6739C3EA}
+		{8A82C8D2-7202-496A-AA64-F9B49A33A838} = {492723FE-2E1C-41AB-AB72-E37151DE0CB6}
 	EndGlobalSection
 EndGlobal
