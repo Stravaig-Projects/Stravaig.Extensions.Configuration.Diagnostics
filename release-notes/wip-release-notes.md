@@ -29,7 +29,7 @@ Date: ???
   - Bump Microsoft.Extensions.Logging.Abstractions from 3.1.19 to 3.1.20
   - Bump Microsoft.Extensions.Logging.Console from 3.1.19 to 3.1.20
 - General
-  - No changes
+  - Bump Microsoft.NET.Test.Sdk from 16.11.0 to 17.0.0
 
 ---
 
