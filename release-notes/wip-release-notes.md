@@ -30,6 +30,7 @@ Date: ???
   - Bump Microsoft.Extensions.Logging.Console from 3.1.19 to 3.1.20
 - General
   - Bump Microsoft.NET.Test.Sdk from 16.11.0 to 17.0.0
+  - Bump Serilog.Extensions.Logging from 3.0.1 to 3.1.0
 
 ---
 
