@@ -111,6 +111,9 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
                 "NET5_0",
 #endif
 
+#if NET6_0
+                "NET6_0",
+#endif
 #if NETCOREAPP
                 "NETCOREAPP",
 #endif
