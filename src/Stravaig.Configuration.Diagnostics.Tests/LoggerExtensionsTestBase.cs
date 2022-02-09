@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
-#if NET5_0
+using NUnit.Framework;
+#if NET5_0_OR_GREATER
 using Microsoft.Extensions.Logging.Console;
 #endif
 using Stravaig.Extensions.Logging.Diagnostics;
@@ -22,7 +23,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests
                 {
                     o.DisableColors = true;
                 });
-#elif NET5_0
+#elif NET5_0_OR_GREATER
                 b.AddSimpleConsole(o =>
                 {
                     o.ColorBehavior = LoggerColorBehavior.Disabled;

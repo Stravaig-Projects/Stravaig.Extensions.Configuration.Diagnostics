@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net5.0;net6.0</TargetFrameworks>
         <Title>Stravaig Configuration Diagnostics (Logging Extensions)</Title>
         <Authors>Stravaig Projects</Authors>
         <Copyright>©2020-$(StravaigCopyrightYear) Stravaig Projects. See licence for more information.</Copyright>
@@ -31,13 +31,18 @@ Release notes at: $(StravaigReleaseNotes)
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.21" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.21" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.22" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.22" />
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
         <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
     </ItemGroup>
 
     <ItemGroup>
