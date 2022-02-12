@@ -8,6 +8,10 @@ Date: ???
 
 - #176: Add support for .NET 6.0
 
+### Bugs
+
+- #159: Fix for when multiple connection strings cannot be interpreted.Do you
+
 ### Dependent Packages
 
 - .NET 6.0
