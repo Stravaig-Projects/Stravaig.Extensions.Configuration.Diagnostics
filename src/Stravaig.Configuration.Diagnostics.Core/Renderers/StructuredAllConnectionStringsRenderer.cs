@@ -59,7 +59,7 @@ namespace Stravaig.Configuration.Diagnostics.Renderers
                     return new MessageEntry(
                         new AggregateException("Multiple errors occurred when rendering the connection strings.", exceptions),
                         messageTemplate.ToString(),
-                        properties);
+                        properties.ToArray());
             }
         }
     }
