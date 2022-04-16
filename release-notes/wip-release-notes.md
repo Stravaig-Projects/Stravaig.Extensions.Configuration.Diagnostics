@@ -17,7 +17,8 @@ Date: ???
 - .NET 5.0
   - No changes
 - .NET Core 3.1
-  - No changes
+  - Bump Microsoft.Extensions.Configuration.Abstractions to 3.1.24
+  - Bump Microsoft.Extensions.Logging.Abstractions to 3.1.24
 - General
   - No changes
 
