@@ -20,7 +20,7 @@ Date: ???
   - Bump Microsoft.Extensions.Configuration.Abstractions to 3.1.24
   - Bump Microsoft.Extensions.Logging.Abstractions to 3.1.24
 - General
-  - No changes
+  - Bump Serilog to 2.11.0
 
 ---
 
