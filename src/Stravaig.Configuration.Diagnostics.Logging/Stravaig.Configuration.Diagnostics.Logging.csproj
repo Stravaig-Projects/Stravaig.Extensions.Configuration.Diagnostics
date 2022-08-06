@@ -31,8 +31,8 @@ Release notes at: $(StravaigReleaseNotes)
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.25" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.25" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.27" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.27" />
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
