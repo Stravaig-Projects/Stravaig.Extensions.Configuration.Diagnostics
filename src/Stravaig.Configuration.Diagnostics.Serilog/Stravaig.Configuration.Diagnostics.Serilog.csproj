@@ -30,6 +30,17 @@ Release notes at: $(StravaigReleaseNotes)
         <None Include="stravaig-icon.png" Pack="true" PackagePath="" />
     </ItemGroup>
 
+    <PropertyGroup>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+    </ItemGroup>
+    
     <ItemGroup>
       <ProjectReference Include="..\Stravaig.Configuration.Diagnostics.Core\Stravaig.Configuration.Diagnostics.Core.csproj" />
     </ItemGroup>
