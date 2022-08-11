@@ -50,12 +50,8 @@ public class SerilogEmptyKeyConfigTests : SerilogTestBase
             .Select(p => p.Path.Split('.').Last())
             .Where(p => p is not ("_EmptyTopLevel" or "A_Regular_Key"))
             .ToArray();
+
         foreach (var nullProperty in nullProperties)
             properties.Value<string>(nullProperty).ShouldBeNull($"Property \"{nullProperty}\" should have a null value.");
-        // var nullProperties = properties.Children()
-        //     .Where(p => p.Key is not ("_EmptyTopLevel" or "A_Regular_Key" or "{OriginalFormat}"))
-        //     .ToArray();
-        // foreach(var nullProperty in nullProperties)
-        //     nullProperty.Value.ShouldBe("(null)", $"Property \"{nullProperty.Key}\" should have a dummy null value.");
     }
 }
