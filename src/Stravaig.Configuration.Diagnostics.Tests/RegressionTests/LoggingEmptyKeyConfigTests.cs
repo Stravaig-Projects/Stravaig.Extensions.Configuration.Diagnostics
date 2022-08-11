@@ -47,7 +47,13 @@ public class LoggingEmptyKeyConfigTests : LoggerExtensionsTestBase
         var nullProperties = properties
             .Where(p => p.Key is not ("_EmptyTopLevel" or "A_Regular_Key" or "{OriginalFormat}"))
             .ToArray();
+        
+#if NET6_0_OR_GREATER
+        foreach(var nullProperty in nullProperties)
+            nullProperty.Value.ShouldBeNull($"Property \"{nullProperty.Key}\" should have a null value.");
+#else
         foreach(var nullProperty in nullProperties)
             nullProperty.Value.ShouldBe("(null)", $"Property \"{nullProperty.Key}\" should have a dummy null value.");
+#endif
     }
 }
