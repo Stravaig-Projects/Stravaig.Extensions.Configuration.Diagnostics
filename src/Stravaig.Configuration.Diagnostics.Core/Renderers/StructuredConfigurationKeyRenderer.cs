@@ -28,6 +28,8 @@ namespace Stravaig.Configuration.Diagnostics.Renderers
 
             foreach (var kvp in configKeyValues)
             {
+                if (string.IsNullOrWhiteSpace(kvp.Key))
+                    continue;
                 string configurationKeyPlaceholder = Placeholder(kvp.Key);
                 string potentiallyObfuscatedValue = Obfuscate(kvp, options);
                 
