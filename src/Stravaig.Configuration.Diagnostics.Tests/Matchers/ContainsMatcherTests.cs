@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Shouldly;
 using Stravaig.Configuration.Diagnostics.Matchers;
@@ -31,5 +32,19 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.Matchers
         {
             return new ContainsMatcher(contains, StringComparison.Ordinal).IsMatch(candidate);
         }
+
+        [TestCaseSource(nameof(IsMatchWithMultipleValuesData))]
+        public void IsMatchWithMultipleValues(string candidate, IEnumerable<string> contains, bool expectedResult)
+        {
+            bool result = new ContainsMatcher(contains).IsMatch(candidate);
+            result.ShouldBe(expectedResult);
+        }
+
+        public static IEnumerable<object[]> IsMatchWithMultipleValuesData = new[]
+        {
+            new object[] {"The dog jumps over the fox", new[] {"cat", "bunny"}, false},
+            new object[] {"The dog jumps over the fox", new[] {"cat", "dog"}, true},
+            new object[] {"The dog jumps over the fox", new[] {"fox", "dog"}, true},
+        };
     }
 }

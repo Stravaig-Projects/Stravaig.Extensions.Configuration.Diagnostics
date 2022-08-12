@@ -8,7 +8,7 @@ namespace Stravaig.Configuration.Diagnostics.Matchers
     /// </summary>
     public class KeyMatchBuilder : IKeyMatchBuilder
     {
-        private List<IMatcher> _matchers;
+        private readonly List<IMatcher> _matchers;
         
         /// <summary>
         /// Initialises the key match builder.

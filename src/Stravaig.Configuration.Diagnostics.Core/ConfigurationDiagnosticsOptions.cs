@@ -30,6 +30,21 @@ namespace Stravaig.Configuration.Diagnostics
         /// Initiate the fluent configuration options builder.
         /// </summary>
         public static ConfigurationDiagnosticsOptionsBuilder SetupBy => new ConfigurationDiagnosticsOptionsBuilder();
+
+        public static ConfigurationDiagnosticsOptions Setup(Action<ConfigurationDiagnosticsOptionsSetupBuilder> setup)
+        {
+            var builder = new ConfigurationDiagnosticsOptionsSetupBuilder();
+            setup(builder);
+            if (builder.ApplyGlobally)
+            {
+                builder.ApplyTo(GlobalOptions);
+                return GlobalOptions;
+            }
+            
+            var result = new ConfigurationDiagnosticsOptions();
+            builder.ApplyTo(result);
+            return result;
+        }
         
         /// <summary>
         /// The obfuscator to use to mask out secrets.
