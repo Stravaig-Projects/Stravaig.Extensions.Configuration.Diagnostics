@@ -38,7 +38,7 @@ public static class SetupFixedAsteriskObfuscatorExtensions
     }
 
     /// <summary>
-    /// Sets up a fixed asterisk obfuscator with the default number of asterisks.
+    /// Sets up a fixed asterisk obfuscator with the given number of asterisks.
     /// </summary>
     /// <param name="builder">The setup builder</param>
     /// <param name="numberOfAsterisks">The number of asterisks with which to replace the secret.</param>
