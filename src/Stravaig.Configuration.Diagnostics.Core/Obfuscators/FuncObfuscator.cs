@@ -27,7 +27,7 @@ public class FuncObfuscator : ISecretObfuscator
 }
 
 /// <summary>
-/// Helper extensions for setting up a fixed asterisk obfuscator
+/// Helper extensions for setting up a func based obfuscator
 /// </summary>
 public static class SetupFuncObfuscatorExtensions
 {
