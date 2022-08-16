@@ -6,6 +6,21 @@ Date: ???
 
 ### Bugs
 
-- #177 : Fix serilog issue where it skews the config keys and values when there is a config key with an empty top-level path element.
+### Features
+
+### Miscellaneous
+
+### Dependent Packages
+
+- .NET 6.0
+  - No changes
+- .NET 5.0
+  - No changes
+- .NET Core 3.1
+  - No changes
+- General
+  - No changes
+
+---
 
 
