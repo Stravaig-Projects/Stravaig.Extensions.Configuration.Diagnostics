@@ -4,22 +4,17 @@
 
 Date: ???
 
-### Bugs
-
-### Features
-
-### Miscellaneous
-
 ### Dependent Packages
 
 - .NET 6.0
-  - No changes
+  - Bump Microsoft.Extensions.Logging.Abstractions to 6.0.2
 - .NET 5.0
   - No changes
 - .NET Core 3.1
-  - No changes
+  - Bump Microsoft.Extensions.Configuration.Abstractions to 3.1.29
+  - Bump Microsoft.Extensions.Logging.Abstractions to 3.1.29
 - General
-  - No changes
+  - Bump Serilog from 2.11.0 to 2.12.0
 
 ---
 
