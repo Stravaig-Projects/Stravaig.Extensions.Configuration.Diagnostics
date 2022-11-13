@@ -4,12 +4,6 @@
 
 Date: ???
 
-### Bugs
-
-### Features
-
-### Miscellaneous
-
 ### Dependent Packages
 
 - .NET 7.0
@@ -20,8 +14,6 @@ Date: ???
 - .NET Core 3.1
   - Bump Microsoft.Extensions.Configuration.Abstractions to 3.1.31
   - Bump Microsoft.Extensions.Logging.Abstractions to 3.1.31
-- General
-  - No changes
 
 ---
 
