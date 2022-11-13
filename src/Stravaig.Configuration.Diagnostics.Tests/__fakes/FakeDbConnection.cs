@@ -32,7 +32,7 @@ namespace Stravaig.Extensions.Configuration.Diagnostics.Tests.__fakes
 
         public IDbCommand CreateCommand()
         {
-            return null;
+            return null!;
         }
 
         public void Open()
