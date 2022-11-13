@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net5.0;net6.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net5.0;net6.0;net7.0</TargetFrameworks>
         <Title>Stravaig Configuration Diagnostics Core</Title>
         <Authors>Stravaig Projects</Authors>
         <Copyright>©2020-$(StravaigCopyrightYear) Stravaig Projects. See licence for more information.</Copyright>
@@ -44,7 +44,7 @@ Release notes at: $(StravaigReleaseNotes)
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.29" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.31" />
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
@@ -53,6 +53,10 @@ Release notes at: $(StravaigReleaseNotes)
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
         <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
     </ItemGroup>
 
 </Project>

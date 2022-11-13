@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net5.0;net6.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net5.0;net6.0;net7.0</TargetFrameworks>
         <Title>Stravaig Configuration Diagnostics (Serilog Extensions)</Title>
         <Authors>Stravaig Projects</Authors>
         <Copyright>©2020-$(StravaigCopyrightYear) Stravaig Projects. See licence for more information.</Copyright>

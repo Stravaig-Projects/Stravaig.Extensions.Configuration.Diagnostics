@@ -12,12 +12,14 @@ Date: ???
 
 ### Dependent Packages
 
+- .NET 7.0
+  - Introducing Microsoft.Extensions.Configuration.Abstractions 7.0.0
+  - Introducing Microsoft.Extensions.Logging.Abstractions 7.0.0
 - .NET 6.0
-  - No changes
-- .NET 5.0
-  - No changes
+  - Bump Microsoft.Extensions.Logging.Abstractions to 6.0.3
 - .NET Core 3.1
-  - No changes
+  - Bump Microsoft.Extensions.Configuration.Abstractions to 3.1.31
+  - Bump Microsoft.Extensions.Logging.Abstractions to 3.1.31
 - General
   - No changes
 
