@@ -18,7 +18,7 @@ The `Stravaig.Extensions.Configuration.Diagnostics` package is now deprecated. I
 
 Supported frameworks: .NET Core 3.1, .NET 5.0, 6.0, & 7.0
 
-NOTE: :warning: .NET 5.0 support will be removed from this package at the next major version update.
+NOTE: :warning: .NET Core 3.1 and .NET 5.0 support will be removed from this package at the next major version update.
 
 ## Read the Docs
 
