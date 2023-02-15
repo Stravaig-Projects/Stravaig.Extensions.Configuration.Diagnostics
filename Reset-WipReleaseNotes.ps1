@@ -13,6 +13,8 @@ $content = @(
 "",
 "### Dependent Packages",
 "",
+"- .NET 7.0",
+"  - No changes",
 "- .NET 6.0",
 "  - No changes",
 "- .NET 5.0",
