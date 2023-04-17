@@ -16,7 +16,7 @@
         <PackageReference Include="Serilog.Formatting.Compact" Version="1.1.0" />
         <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" /> 
         <PackageReference Include="Serilog.Sinks.TextWriter" Version="2.1.0" />
-        <PackageReference Include="Shouldly" Version="4.1.0" />
+        <PackageReference Include="Shouldly" Version="4.2.0" />
         <PackageReference Include="Stravaig.Jailbreak" Version="0.1.0" />
     </ItemGroup>
 
