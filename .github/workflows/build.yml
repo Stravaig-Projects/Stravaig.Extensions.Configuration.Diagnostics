@@ -3,7 +3,6 @@ on:
   push:
     branches: 
       - main
-      - '#88-refactor'
 
     paths-ignore:
       - 'README.md'
@@ -44,7 +43,7 @@ jobs:
     
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -64,22 +63,22 @@ jobs:
           echo "Is Preview: $STRAVAIG_IS_PREVIEW"
           echo "Is Stable: $STRAVAIG_IS_STABLE"
           
-      - uses: actions/setup-dotnet@v1
+      - uses: actions/setup-dotnet@v3
         name: Setup .NET Core
         with:
           dotnet-version: 3.1.x # Always the latest patch version.
 
-      - uses: actions/setup-dotnet@v1
+      - uses: actions/setup-dotnet@v3
         name: Setup .NET 5.0
         with:
           dotnet-version: 5.0.x # Always the latest patch version.
 
-      - uses: actions/setup-dotnet@v1
+      - uses: actions/setup-dotnet@v3
         name: Setup .NET 6.0
         with:
           dotnet-version: 6.0.x # Always the latest patch version.
 
-      - uses: actions/setup-dotnet@v1
+      - uses: actions/setup-dotnet@v3
         name: Setup .NET 7.0
         with:
           dotnet-version: 7.0.x # Always the latest patch version.
@@ -90,13 +89,29 @@ jobs:
       - name: Run Tests
         run: dotnet test src/$STRAVAIG_TESTS/$STRAVAIG_TESTS.csproj --configuration Release
        
-      - name: Package Preview Release
+      - name: Package 'Core' Preview Release
         if: ${{ env.STRAVAIG_IS_PREVIEW == 'true' }}
-        run: dotnet pack $STRAVAIG_SOLUTION --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" --version-suffix "$STRAVAIG_PACKAGE_VERSION_SUFFIX" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+        run: dotnet pack src/Stravaig.Configuration.Diagnostics.Core/Stravaig.Configuration.Diagnostics.Core.csproj --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" --version-suffix "$STRAVAIG_PACKAGE_VERSION_SUFFIX" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+
+      - name: Package 'Logging' Preview Release
+        if: ${{ env.STRAVAIG_IS_PREVIEW == 'true' }}
+        run: dotnet pack src/Stravaig.Configuration.Diagnostics.Logging/Stravaig.Configuration.Diagnostics.Logging.csproj --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" --version-suffix "$STRAVAIG_PACKAGE_VERSION_SUFFIX" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
        
-      - name: Package Stable Release
+      - name: Package 'Serilog' Preview Release
+        if: ${{ env.STRAVAIG_IS_PREVIEW == 'true' }}
+        run: dotnet pack src/Stravaig.Configuration.Diagnostics.Serilog/Stravaig.Configuration.Diagnostics.Serilog.csproj --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" --version-suffix "$STRAVAIG_PACKAGE_VERSION_SUFFIX" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+        
+      - name: Package 'Core' Stable Release
         if: ${{ env.STRAVAIG_IS_STABLE == 'true' }}
-        run: dotnet pack $STRAVAIG_SOLUTION --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+        run: dotnet pack src/Stravaig.Configuration.Diagnostics.Core/Stravaig.Configuration.Diagnostics.Core.csproj --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+
+      - name: Package 'Logging' Stable Release
+        if: ${{ env.STRAVAIG_IS_STABLE == 'true' }}
+        run: dotnet pack src/Stravaig.Configuration.Diagnostics.Logging/Stravaig.Configuration.Diagnostics.Logging.csproj --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+
+      - name: Package 'Serilog' Stable Release
+        if: ${{ env.STRAVAIG_IS_STABLE == 'true' }}
+        run: dotnet pack src/Stravaig.Configuration.Diagnostics.Serilog/Stravaig.Configuration.Diagnostics.Serilog.csproj --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
 
       - name: Push package to NuGet
         if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
