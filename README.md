@@ -16,9 +16,9 @@ Provides logged diagnostics for the app configuration.
 
 The `Stravaig.Extensions.Configuration.Diagnostics` package is now deprecated. It is replaced by the `Stravaig.Configuration.Diagnostics.Logging` package (which references the `Stravaig.Configuration.Diagnostics.Core` package.)
 
-Supported frameworks: .NET Core 3.1, .NET 5.0, 6.0, & 7.0
+Supported frameworks: 6.0, & 7.0
 
-NOTE: :warning: .NET Core 3.1 and .NET 5.0 support will be removed from this package at the next major version update.
+Use version 1.x for .NET Core 3.1 and .NET 5.0
 
 ## Read the Docs
 
@@ -28,7 +28,7 @@ The docs for this project are now available at Read The Docs:
 
 ## Contributing / Getting Started
 
-* Ensure you have PowerShell 7.1.x or higher installed
+* Ensure you have PowerShell 7.1.x installed.
 * At a PowerShell prompt
   * Navigate to the root of this repository
   * Run `./Install-GitHooks.ps1`

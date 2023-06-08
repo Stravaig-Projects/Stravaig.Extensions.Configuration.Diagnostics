@@ -4,24 +4,9 @@
 
 Date: ???
 
-### Bugs
-
-### Features
-
 ### Miscellaneous
 
-### Dependent Packages
-
-- .NET 7.0
-  - No changes
-- .NET 6.0
-  - No changes
-- .NET 5.0
-  - No changes
-- .NET Core 3.1
-  - No changes
-- General
-  - No changes
+- #236: Dropped support for .NET Core 3.1 and .NET 5.0
 
 ---
 
