@@ -1,20 +1,20 @@
 ---
 layout: default
-title: Quick Start with Microsoft Logging Extensions
+title: Quick start with Serilog
 ---
 
-# Quick start with Logging Extensions
+# Quick start with Serilog
 
-Install the `Stravaig.Configuration.Diagnostics.Logging` into your main project. (See [Installing the Nuget Pacakges](installing-the-package.md) for details of installing the Nuget Package.)
+Install the `Stravaig.Configuration.Diagnostics.Serilog` into your main project. (See [Installing the Nuget Package](installing-the-package.md) for 
+details of installing the NuGet Package.)
 
-In your `Startup` class in the `Configure` method add the following:
+In your `Startup` class in the `Configure` or `ConfigureServices` method add the following:
 
-```csharp
+```
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
     // Get the logger
-    var logFactory = app.ApplicationServices.GetRequiredService<ILoggerFactory>();
-    var logger = logFactory.CreateLogger<Startup>();
+    var logger = Log.ForContext<Startup>();
 
     // Define which keys contain secrets
     ConfigurationDiagnosticsOptions.SetupBy
@@ -36,12 +36,12 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
-The above setup up the diagnostics as follows
+The above setup up the diagnostics as follows:
 
 * Any secret that is found is obfuscated by replacing the value with asterisks.
-* Any configuration key that contains "AccessToken" is considered a secret and will be obfuscated.
+* Any configuration key that contains "AccessToken" is considered a secret an will be obfuscated.
 * Any configuration key that contains "ConnectionString" is considered a secret.
-* When deconstructing connection strings, any part where the key contains "password" is considered a secret.
+* When deconstructing connection strings, any part where the key contains "password"is considered a secret.
 
 ## LogProvidersAsInformation
 
@@ -95,7 +95,7 @@ One of the things you can see here, is that there is a typo in one of the config
 It is possible to trace where a specific key value came from, so in the case of the key with the typo, you can add a line to log out the source of that specific key/value.
 
 ```
-logger.LogConfigurationKeySourceAsInformation(Configuration, "ExtenalSystem:AccessToken");
+    logger.LogConfigurationKeySourceAsInformation(Configuration, "ExtenalSystem:AccessToken");
 ```
 
 The output looks something like this:
@@ -110,8 +110,8 @@ info: Example.Startup[0]
     * EnvironmentVariablesConfigurationProvider ==> null
     * CommandLineConfigurationProvider ==> null
 ```
-As the only provider with a value for the key with the typo is the `secrets.json` file we can instantly tell where the issue is.
 
+As the only provider with a value for the key with the typo is the `secrets.json` file we can instantly tell where the issue is.
 
 ## LogAllConnectionStringsAsInformation
 
