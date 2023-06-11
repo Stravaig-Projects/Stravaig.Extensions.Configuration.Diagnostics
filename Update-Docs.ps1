@@ -47,13 +47,15 @@ Get-ChildItem "$releaseNotesOriginal" |
     Sort-Object -Descending -Property Name |
     ForEach-Object -Process {
         $name = $_.Name;
-        $releaseDate = $_.LastWriteTimeUtc.ToString("dddd, d MMMM yyyy 'at' HH:mm");
+        $releaseNoteFile = Get-Content $_.FullName;
+        $releaseDate = ($releaseNoteFile |
+          Where-Object {$_.StartsWith("Date: ")}).Substring(6)
+
         $null = $name -match "release-notes-(?<version>[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})\.md";
         $version = $Matches.version;
-        $releaseNotesIndexFile += "- **[v$version]($name) released on $releaseDate UTC**";
+        $releaseNotesIndexFile += "- **[v$version]($name) released on $releaseDate**";
         $releaseNotesIndexFile += "  - [GitHub Release](https://github.com/Stravaig-Projects/$($ENV:REPO_NAME)/releases/tag/v$version)"
         
-        $releaseNoteFile = Get-Content $_.FullName;
         $frontMatter = @(
             "---"
             "layout: default"
