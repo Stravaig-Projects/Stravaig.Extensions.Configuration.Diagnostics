@@ -1,0 +1,25 @@
+remote_theme: Stravaig-Projects/stravaig-theme
+plugins:
+  - jekyll-remote-theme 
+  - jekyll-relative-links
+
+exclude:
+  - scripts
+
+title: Stravaig.Configuration.Diagnostics
+description: Diagnostic logging for assisting with issues in the .NET Configuration System.
+
+kramdown:
+    highlighter: rouge
+    syntax_highlighter_opts:
+        block:
+            line_numbers: true
+
+github:
+  repository_url: https://github.com/Stravaig-Projects/Stravaig.Extensions.Configuration.Diagnostics
+
+nuget:
+  urls:
+    - https://www.nuget.org/packages/Stravaig.Configuration.Diagnostics.Core
+    - https://www.nuget.org/packages/Stravaig.Configuration.Diagnostics.Logging
+    - https://www.nuget.org/packages/Stravaig.Configuration.Diagnostics.Serilog

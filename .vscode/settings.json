@@ -1,17 +1,18 @@
 {
     "cSpell.words": [
         "Dependabot",
+        "devcontainers",
         "Fallah",
         "Mackay",
         "NUGET",
-        "Serilog",
-        "Shouldly",
-        "Stravaig",
         "nunit",
         "nupkg",
         "octocat",
         "pwsh",
-        "snupkg"
+        "Serilog",
+        "Shouldly",
+        "snupkg",
+        "Stravaig"
     ],
     "restructuredtext.confPath": "${workspaceFolder}\\docs"
 }
