@@ -12,6 +12,8 @@ title: Stravaig Configuration Diagnostics Home
   * [Quick Start with Serilog](intro/quick-start-serilog.md)
   * [Installing the package](intro/installing-the-package.md)
   * [Diagnostic Options](intro/diagnostics-options.md)
+* Advanced
+  * [Creating Obfuscators](advanced/creating-obfuscators.md)
 
 The latest packages are available on [NuGet](https://www.nuget.org/packages?q=Stravaig.Configuration.Diagnostics)
 
