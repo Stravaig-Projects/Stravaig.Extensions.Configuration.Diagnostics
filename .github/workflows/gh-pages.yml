@@ -1,4 +1,4 @@
-name: Deploy Feature Flag Docs to GitHubPages
+name: Deploy Docs to GitHubPages
 
 on:
   # Runs on pushes targeting the default branch
