@@ -16,7 +16,7 @@ Provides logged diagnostics for the app configuration.
 
 The `Stravaig.Extensions.Configuration.Diagnostics` package is now deprecated. It is replaced by the `Stravaig.Configuration.Diagnostics.Logging` package (which references the `Stravaig.Configuration.Diagnostics.Core` package.)
 
-Supported frameworks: 6.0, & 7.0
+Supported frameworks: 6.0, 7.0 & 8.0
 
 Use version 1.x for .NET Core 3.1 and .NET 5.0
 
