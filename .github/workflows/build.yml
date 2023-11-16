@@ -63,15 +63,13 @@ jobs:
           echo "Is Preview: $STRAVAIG_IS_PREVIEW"
           echo "Is Stable: $STRAVAIG_IS_STABLE"
           
-      - uses: actions/setup-dotnet@v3
-        name: Setup .NET 6.0
-        with:
-          dotnet-version: 6.0.x # Always the latest patch version.
-
-      - uses: actions/setup-dotnet@v3
-        name: Setup .NET 7.0
-        with:
-          dotnet-version: 7.0.x # Always the latest patch version.
+      - uses: actions/setup-dotnet@v3 
+        name: Setup .NET 6.0, 7.0 & 8.0 
+        with: 
+          dotnet-version: | 
+            6.0.x 
+            7.0.x 
+            8.0.x 
           
       - name: .NET State
         run: dotnet --info
